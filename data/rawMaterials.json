@@ -1,0 +1,102 @@
+{
+  "materials": [
+    {
+      "id": "ATUN-ENTERO",
+      "name": "Atún entero congelado",
+      "unit": "Tonelada",
+      "currentPriceMXN": 42500,
+      "referenceUSD": 2250,
+      "priceHistory": [
+        { "period": "2024-03", "priceMXN": 39200 },
+        { "period": "2024-04", "priceMXN": 38800 },
+        { "period": "2024-05", "priceMXN": 39500 },
+        { "period": "2024-06", "priceMXN": 40100 },
+        { "period": "2024-07", "priceMXN": 41200 },
+        { "period": "2024-08", "priceMXN": 41800 },
+        { "period": "2024-09", "priceMXN": 42000 },
+        { "period": "2024-10", "priceMXN": 41500 },
+        { "period": "2024-11", "priceMXN": 42100 },
+        { "period": "2024-12", "priceMXN": 42800 },
+        { "period": "2025-01", "priceMXN": 43200 },
+        { "period": "2025-02", "priceMXN": 42500 }
+      ],
+      "supplyRisk": "medium",
+      "supplyRiskNote": "Veda temporal en Pacífico Oriental Mar–May 2025. Stock de seguridad crítico."
+    },
+    {
+      "id": "ACEITE-SOYA",
+      "name": "Aceite de soya refinado",
+      "unit": "Tonelada",
+      "currentPriceMXN": 22800,
+      "referenceUSD": 1210,
+      "priceHistory": [
+        { "period": "2024-03", "priceMXN": 25400 },
+        { "period": "2024-04", "priceMXN": 24800 },
+        { "period": "2024-05", "priceMXN": 24200 },
+        { "period": "2024-06", "priceMXN": 23600 },
+        { "period": "2024-07", "priceMXN": 23100 },
+        { "period": "2024-08", "priceMXN": 22900 },
+        { "period": "2024-09", "priceMXN": 22500 },
+        { "period": "2024-10", "priceMXN": 22300 },
+        { "period": "2024-11", "priceMXN": 22100 },
+        { "period": "2024-12", "priceMXN": 22400 },
+        { "period": "2025-01", "priceMXN": 22600 },
+        { "period": "2025-02", "priceMXN": 22800 }
+      ],
+      "supplyRisk": "low",
+      "supplyRiskNote": "Mercado estable. Cosecha de soya EUA en línea con expectativas."
+    },
+    {
+      "id": "HOJALATA",
+      "name": "Hojalata electrolítica (coils)",
+      "unit": "Tonelada",
+      "currentPriceMXN": 31500,
+      "referenceUSD": 1670,
+      "priceHistory": [
+        { "period": "2024-03", "priceMXN": 28900 },
+        { "period": "2024-04", "priceMXN": 29200 },
+        { "period": "2024-05", "priceMXN": 29800 },
+        { "period": "2024-06", "priceMXN": 30100 },
+        { "period": "2024-07", "priceMXN": 30500 },
+        { "period": "2024-08", "priceMXN": 30800 },
+        { "period": "2024-09", "priceMXN": 31000 },
+        { "period": "2024-10", "priceMXN": 31200 },
+        { "period": "2024-11", "priceMXN": 31500 },
+        { "period": "2024-12", "priceMXN": 31800 },
+        { "period": "2025-01", "priceMXN": 32100 },
+        { "period": "2025-02", "priceMXN": 31500 }
+      ],
+      "supplyRisk": "high",
+      "supplyRiskNote": "Aranceles acero EUA–MEX generan incertidumbre. Proveedor principal importa 60% de insumos."
+    },
+    {
+      "id": "SAL-YODADA",
+      "name": "Sal yodada industrial",
+      "unit": "Tonelada",
+      "currentPriceMXN": 3200,
+      "referenceUSD": 170,
+      "priceHistory": [
+        { "period": "2024-03", "priceMXN": 3050 },
+        { "period": "2024-04", "priceMXN": 3080 },
+        { "period": "2024-05", "priceMXN": 3100 },
+        { "period": "2024-06", "priceMXN": 3120 },
+        { "period": "2024-07", "priceMXN": 3130 },
+        { "period": "2024-08", "priceMXN": 3140 },
+        { "period": "2024-09", "priceMXN": 3150 },
+        { "period": "2024-10", "priceMXN": 3160 },
+        { "period": "2024-11", "priceMXN": 3180 },
+        { "period": "2024-12", "priceMXN": 3200 },
+        { "period": "2025-01", "priceMXN": 3210 },
+        { "period": "2025-02", "priceMXN": 3200 }
+      ],
+      "supplyRisk": "low",
+      "supplyRiskNote": "Commodity estable. Sin riesgo de abasto."
+    }
+  ],
+  "costImpactPct": {
+    "ATUN-ENTERO": 0.52,
+    "ACEITE-SOYA": 0.18,
+    "HOJALATA": 0.22,
+    "SAL-YODADA": 0.03
+  }
+}
