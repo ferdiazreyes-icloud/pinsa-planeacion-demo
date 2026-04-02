@@ -1,48 +1,68 @@
-# PINSA Torre de Control de Planeación
+# PINSA Torre de Control de Planeacion
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.2.0 · **Status:** Demo V0 — ECharts + Paleta PINSA
+**Version:** 0.3.0 · **Status:** Demo V0 — Listo para presentacion
 
 ---
 
 ## Funcionalidad implementada
 
 - [x] **Home / Role selector** — Landing page con KPIs actuales y acceso por rol
-- [x] **Dashboard Directivo** — KPI cards (Fill Rate, Asertividad, Inventario, Capital de trabajo), alertas activas, gráficas de tendencia (12 meses)
+- [x] **Dashboard Directivo** — KPI cards (Fill Rate, Asertividad, Inventario, Capital de trabajo), alertas activas, graficas de tendencia (12 meses)
 - [x] **Ciclo S&OP Mensual (5 pasos):**
-  - [x] Paso 1: Pronóstico estadístico con accuracy por SKU
-  - [x] Paso 2: Colaboración de ventas (tabla editable con ajustes y justificaciones)
-  - [x] Paso 3: Revisión de calidad (comparativo MAPE, radar score)
-  - [x] Paso 4: Plan de inventarios (días de cobertura, órdenes de reposición)
-  - [x] Paso 5: Validación financiera (P&L, riesgos, aprobación)
-- [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, política inventario), horizonte 1–12 meses, gráficas reactivas en tiempo real
+  - [x] Paso 1: Pronostico estadistico con accuracy por SKU
+  - [x] Paso 2: Colaboracion de ventas (tabla editable con ajustes y justificaciones)
+  - [x] Paso 3: Revision de calidad (comparativo MAPE, radar score)
+  - [x] Paso 4: Plan de inventarios (dias de cobertura, ordenes de reposicion)
+  - [x] Paso 5: Validacion financiera (P&L, riesgos, aprobacion)
+- [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.3.0
+
+- [x] **Fase T** — 133 tests exhaustivos (88 unitarios + 45 E2E Playwright), todos pasan
+- [x] **Extreme warning banner** — aparece en Simulador cuando desabasto > 60% Y demanda > 30%
+- [x] **Bug fix** — flujo de rechazo en Step5Finance (boton "Devolver con observaciones")
+- [x] **Documentacion** — TEST-RESULTS.md, GUIA_DEMO.md, RESUMEN_SISTEMA.md
 
 ## Completado en v0.2.0
 
 - [x] **Fase A** — Paleta de colores PINSA oficial aplicada en todo el sistema
-- [x] **Fase B** — Migración de Recharts → Apache ECharts (8 componentes)
+- [x] **Fase B** — Migracion de Recharts a Apache ECharts (8 componentes)
 - [x] **Fase C** — Polish visual final: Home, Dashboard, S&OP, Simulador
 
-Ver `tasks.md` para historial de tareas.
+Ver `tasks.md` para historial completo de tareas.
 
 ## Pendientes (V1)
 
-- [ ] Datos reales vía API (PostgreSQL)
-- [ ] Autenticación por rol
-- [ ] Multi-tenant (soporte para más clientes)
+- [ ] Datos reales via API (PostgreSQL)
+- [ ] Autenticacion por rol
+- [ ] Multi-tenant (soporte para mas clientes)
 - [ ] Export PDF/Excel del plan S&OP
-- [ ] Notificaciones y alertas automáticas
+- [ ] Notificaciones y alertas automaticas
 
-## Cómo correr localmente
+## Como correr localmente
 
 ```bash
 npm install
 npm run dev
-# Abre http://localhost:3000
+# Abre http://localhost:3001
 ```
 
-## Cómo hacer build
+## Como correr los tests
+
+```bash
+# Unit tests (rapido, ~1s)
+npm run test
+
+# E2E (requiere dev server corriendo en :3001)
+npm run test:e2e
+
+# Ver reporte interactivo de E2E
+npm run test:e2e:ui
+```
+
+## Como hacer build
 
 ```bash
 npm run build
@@ -52,14 +72,16 @@ npm run start
 ## Deploy en Railway
 
 1. Conecta el repo GitHub en Railway
-2. Railway detecta Next.js automáticamente
+2. Railway detecta Next.js automaticamente
 3. No se requieren variables de entorno en V0
 4. El deploy ocurre en cada `git push` a `main`
 
 ## Stack
 
-Next.js 14 · TypeScript · Tailwind CSS · Apache ECharts · lucide-react · Railway
+Next.js 14 · TypeScript · Tailwind CSS · Apache ECharts · lucide-react · Vitest · Playwright · Railway
 
-## Rama activa
+## Documentacion adicional
 
-`feature/echart-style` — Migración a ECharts + paleta de colores PINSA oficial
+- `docs/RESUMEN_SISTEMA.md` — resumen ejecutivo de una pagina
+- `docs/GUIA_DEMO.md` — tutorial paso a paso para presentar el demo
+- `TEST-RESULTS.md` — resultados completos de los 133 tests
