@@ -1,5 +1,27 @@
 import Link from 'next/link'
 import { BarChart3, GitBranch, Sliders, TrendingUp, Package, ArrowRight } from 'lucide-react'
+import TourGuide, { type TourStep } from '@/components/layout/TourGuide'
+
+const HOME_TOUR: TourStep[] = [
+  {
+    target: '[data-tour="home-headline"]',
+    title: 'Torre de Control PINSA',
+    desc: 'Plataforma S&OP/IBP que centraliza todo el ciclo de planeación: desde el pronóstico de demanda hasta la aprobación financiera del plan mensual.',
+    position: 'bottom',
+  },
+  {
+    target: '[data-tour="home-roles"]',
+    title: '4 roles, 4 perspectivas',
+    desc: 'Cada tarjeta lleva a la vista de un rol diferente en PINSA. Haz clic en cualquiera para entrar directamente a ese módulo.',
+    position: 'bottom',
+  },
+  {
+    target: '[data-tour="home-kpi-strip"]',
+    title: 'Métricas actuales',
+    desc: 'Estos 4 indicadores muestran el estado real del negocio. En producción se actualizan en tiempo real desde el ERP de PINSA.',
+    position: 'top',
+  },
+]
 
 const roles = [
   {
@@ -71,7 +93,7 @@ export default function HomePage() {
           S&OP / IBP Control Tower · Demo PINSA 2025
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-black text-white text-center leading-tight tracking-tight mb-4">
+        <h1 data-tour="home-headline" className="text-4xl md:text-5xl font-black text-white text-center leading-tight tracking-tight mb-4">
           Orquesta tu cadena<br />
           <span style={{ color: '#D4A0C0' }}>de valor completa</span>
         </h1>
@@ -82,7 +104,7 @@ export default function HomePage() {
         </p>
 
         {/* Role cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl mb-14">
+        <div data-tour="home-roles" className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl mb-14">
           {roles.map(({ role, description, href, icon: Icon, accentColor, badge, badgeBg, badgeColor }) => (
             <Link
               key={role}
@@ -118,6 +140,7 @@ export default function HomePage() {
 
         {/* KPI strip */}
         <div
+          data-tour="home-kpi-strip"
           className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden w-full max-w-2xl"
           style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)' }}
         >
@@ -143,6 +166,13 @@ export default function HomePage() {
       <div className="text-center py-5 text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>
         PINSA Torre de Control · Demo confidencial · {new Date().getFullYear()}
       </div>
+
+      <TourGuide
+        steps={HOME_TOUR}
+        storageKey="pinsa-tour-home"
+        welcomeTitle="Bienvenido a PINSA Torre de Control"
+        welcomeDesc="Demo interactivo de la plataforma S&OP/IBP. Explora los 4 módulos o sigue el recorrido guiado."
+      />
     </div>
   )
 }

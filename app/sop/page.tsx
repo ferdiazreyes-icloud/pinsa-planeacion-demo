@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import TourGuide, { type TourStep } from '@/components/layout/TourGuide'
 import Step1Forecast from '@/components/sop/Step1Forecast'
 import Step2Collaboration from '@/components/sop/Step2Collaboration'
 import Step3Quality from '@/components/sop/Step3Quality'
@@ -24,6 +25,13 @@ function SOPContent() {
   const [currentStep, setCurrentStep]     = useState(Math.min(Math.max(initialStep, 1), 5))
   const [completedSteps, setCompletedSteps] = useState<number[]>([])
 
+  const SOP_TOUR: TourStep[] = [
+    { target: '[data-tour="sop-stepper"]',     title: 'Ciclo S&OP en 5 pasos',    desc: 'El proceso mensual completo en una sola pantalla. El stepper muestra en qué paso estás. Puedes regresar a cualquier paso ya completado.',          position: 'bottom' },
+    { target: '[data-tour="sop-step-header"]', title: 'Rol responsable del paso', desc: 'Cada paso indica qué rol ejecuta la acción: Planeador de Demanda, Ventas, Supply Chain o Finanzas. Facilita la coordinación entre equipos.',           position: 'bottom' },
+    { target: '[data-tour="sop-content"]',     title: 'Contenido del paso actual', desc: 'Aquí se muestra la información y herramientas del paso en curso: gráficas de pronóstico, tablas editables, radar de calidad, inventarios o P&L.',    position: 'top'    },
+    { target: '[data-tour="sop-nav"]',         title: 'Navegar entre pasos',       desc: 'Usa "Confirmar y continuar" para avanzar. El flujo es secuencial pero puedes regresar con "Paso anterior" en cualquier momento sin perder cambios.', position: 'top'    },
+  ]
+
   const handleNext = () => {
     setCompletedSteps(prev => [...new Set([...prev, currentStep])])
     setCurrentStep(s => Math.min(s + 1, 5))
@@ -43,7 +51,7 @@ function SOPContent() {
       </div>
 
       {/* Stepper */}
-      <div className="ec-card px-6 py-4 mb-6 animate-fade-in-up">
+      <div data-tour="sop-stepper" className="ec-card px-6 py-4 mb-6 animate-fade-in-up">
         <div className="flex items-center gap-0 overflow-x-auto">
           {STEPS.map((step, idx) => {
             const isCompleted  = completedSteps.includes(step.id)
@@ -100,6 +108,7 @@ function SOPContent() {
       <div className="ec-card p-6 md:p-8 animate-fade-in-up" style={{ animationDelay: '80ms' }}>
         {/* Step header */}
         <div
+          data-tour="sop-step-header"
           className="flex items-center gap-3 mb-6 pb-5"
           style={{ borderBottom: '1px solid var(--border-primary)' }}
         >
@@ -127,14 +136,17 @@ function SOPContent() {
           </div>
         </div>
 
+        <div data-tour="sop-content">
         {currentStep === 1 && <Step1Forecast />}
         {currentStep === 2 && <Step2Collaboration />}
         {currentStep === 3 && <Step3Quality />}
         {currentStep === 4 && <Step4Inventory />}
         {currentStep === 5 && <Step5Finance />}
+        </div>
 
         {/* Navigation */}
         <div
+          data-tour="sop-nav"
           className="flex items-center justify-between mt-8 pt-5"
           style={{ borderTop: '1px solid var(--border-primary)' }}
         >
@@ -165,6 +177,12 @@ function SOPContent() {
           )}
         </div>
       </div>
+      <TourGuide
+        steps={SOP_TOUR}
+        storageKey="pinsa-tour-sop"
+        welcomeTitle="Ciclo S&OP Mensual"
+        welcomeDesc="Flujo guiado de 5 pasos: Pronóstico → Colaboración → Calidad → Inventarios → Finanzas."
+      />
     </div>
   )
 }

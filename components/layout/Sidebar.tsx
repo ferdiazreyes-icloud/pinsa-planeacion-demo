@@ -112,8 +112,18 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Demo badge */}
+      {/* Tour relaunch + Demo badge */}
       <div className="px-4 pb-5">
+        <button
+          className="tour-relaunch"
+          onClick={() => window.dispatchEvent(new CustomEvent('pinsa-start-tour'))}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Ver tour guiado
+        </button>
         <div
           className="flex items-center gap-2 px-3 py-2 rounded-xl"
           style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}

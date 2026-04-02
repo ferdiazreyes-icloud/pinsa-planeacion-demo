@@ -1,6 +1,7 @@
 'use client'
 
 import { BarChart3, TrendingUp, Package, DollarSign } from 'lucide-react'
+import TourGuide, { type TourStep } from '@/components/layout/TourGuide'
 import KPICard from '@/components/dashboard/KPICard'
 import AlertBanner from '@/components/dashboard/AlertBanner'
 import FillRateChart from '@/components/dashboard/FillRateChart'
@@ -11,6 +12,15 @@ import { KPIs, type Alert } from '@/data'
 export default function DashboardPage() {
   const { current, monthly } = KPIs
   const alerts = KPIs.alerts as Alert[]
+
+  const DASH_TOUR: TourStep[] = [
+    { target: '[data-tour="dash-kpis"]',     title: 'KPIs ejecutivos',          desc: 'Cuatro indicadores con su meta, tendencia y estatus. Verde = en meta, amarillo = por mejorar, rojo = alerta que requiere acción inmediata.',         position: 'bottom' },
+    { target: '[data-tour="dash-alerts"]',   title: 'Alertas activas',          desc: 'El sistema identifica automáticamente los problemas más urgentes y los ordena por severidad. Sin necesidad de revisar correos ni reportes manuales.', position: 'bottom' },
+    { target: '[data-tour="dash-fillrate"]', title: 'Fill Rate — 12 meses',     desc: 'Tendencia histórica del Fill Rate OTIF. La línea punteada es la meta del 95%. Ideal para detectar caídas y estacionalidad.',                       position: 'bottom' },
+    { target: '[data-tour="dash-revenue"]',  title: 'Ventas vs COGS',           desc: 'Comparativo mes a mes de ingresos y costo de venta. Detecta compresión de margen de un vistazo. Las barras claras son pronóstico.',                  position: 'bottom' },
+    { target: '[data-tour="dash-channels"]', title: 'Mix de ventas por canal',  desc: 'Participación de Autoservicio, Mayoreo, Tienda de proximidad, Foodservice y Export. Útil para identificar concentración de riesgo.',                  position: 'top'    },
+    { target: '[data-tour="dash-skus"]',     title: 'Top SKUs por volumen',     desc: 'Los 5 productos con mayor volumen este mes con fill rate individual y tendencia vs el mes anterior.',                                                  position: 'top'    },
+  ]
 
   const fillRateData = monthly.map(m => ({ label: m.label, fillRate: m.fillRate, target: 95 }))
   const revenueData  = monthly.map(m => ({ label: m.label, revenue: m.revenue, cogs: m.cogs, isForecast: m.fillRate === null }))
@@ -30,7 +40,7 @@ export default function DashboardPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-7 stagger-children">
+      <div data-tour="dash-kpis" className="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-7 stagger-children">
         <KPICard
           title="Fill Rate (OTIF)"
           value={`${current.fillRate}%`}
@@ -70,7 +80,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Alerts */}
-      <div className="ec-card p-5 mb-7 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+      <div data-tour="dash-alerts" className="ec-card p-5 mb-7 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
         <div className="flex items-center gap-2 mb-4">
           <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Alertas activas</span>
           <span
@@ -85,23 +95,25 @@ export default function DashboardPage() {
 
       {/* Charts row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-7">
-        {[
-          { title: 'Fill Rate — 12 meses', subtitle: null, chart: <FillRateChart data={fillRateData} />, delay: '250ms' },
-          { title: 'Ventas vs COGS', subtitle: 'Barras claras = pronóstico', chart: <RevenueChart data={revenueData} />, delay: '300ms' },
-          { title: 'Capital de trabajo (MXN)', subtitle: null, chart: <WorkingCapitalChart data={wcData} />, delay: '350ms' },
-        ].map(({ title, subtitle, chart, delay }) => (
-          <div key={title} className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: delay }}>
-            <div className="text-sm font-bold mb-0.5" style={{ color: 'var(--text-primary)' }}>{title}</div>
-            {subtitle && <div className="text-xs mb-3" style={{ color: 'var(--text-tertiary)' }}>{subtitle}</div>}
-            <div className="mt-3">{chart}</div>
-          </div>
-        ))}
+        <div data-tour="dash-fillrate" className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '250ms' }}>
+          <div className="text-sm font-bold mb-0.5" style={{ color: 'var(--text-primary)' }}>Fill Rate — 12 meses</div>
+          <div className="mt-3"><FillRateChart data={fillRateData} /></div>
+        </div>
+        <div data-tour="dash-revenue" className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+          <div className="text-sm font-bold mb-0.5" style={{ color: 'var(--text-primary)' }}>Ventas vs COGS</div>
+          <div className="text-xs mb-3" style={{ color: 'var(--text-tertiary)' }}>Barras claras = pronóstico</div>
+          <div className="mt-3"><RevenueChart data={revenueData} /></div>
+        </div>
+        <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '350ms' }}>
+          <div className="text-sm font-bold mb-0.5" style={{ color: 'var(--text-primary)' }}>Capital de trabajo (MXN)</div>
+          <div className="mt-3"><WorkingCapitalChart data={wcData} /></div>
+        </div>
       </div>
 
       {/* Bottom row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Channel mix */}
-        <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+        <div data-tour="dash-channels" className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
           <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Mix de ventas por canal</div>
           <div className="space-y-3">
             {[
@@ -123,7 +135,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Top SKUs */}
-        <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '440ms' }}>
+        <div data-tour="dash-skus" className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '440ms' }}>
           <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Top SKUs por volumen — Feb 2025</div>
           <div className="space-y-0">
             {[
@@ -157,6 +169,13 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+
+      <TourGuide
+        steps={DASH_TOUR}
+        storageKey="pinsa-tour-dashboard"
+        welcomeTitle="Dashboard Ejecutivo"
+        welcomeDesc="Vista ejecutiva con KPIs, alertas activas y tendencias de los últimos 12 meses."
+      />
     </div>
   )
 }

@@ -5,6 +5,15 @@ import { generateScenarioTimeline, isExtremeScenario } from '@/lib/calculations'
 import { formatCurrency } from '@/lib/formatters'
 import ReactECharts from 'echarts-for-react'
 import { RefreshCw, Info } from 'lucide-react'
+import TourGuide, { type TourStep } from '@/components/layout/TourGuide'
+
+const SIM_TOUR: TourStep[] = [
+  { target: '[data-tour="sim-horizon"]',  title: 'Horizonte de proyección',      desc: 'Elige entre 1, 3, 6 o 12 meses. Las gráficas y métricas se ajustan automáticamente al horizonte seleccionado.',                                 position: 'bottom' },
+  { target: '[data-tour="sim-sliders"]',  title: 'Variables del escenario',      desc: 'Mueve los sliders para simular cualquier combinación: alza en materias primas, desabasto, variación de demanda o cambio en política de inventario.', position: 'bottom' },
+  { target: '[data-tour="sim-impact"]',   title: 'Impacto en tiempo real',       desc: 'Estas 4 métricas se recalculan instantáneamente: Fill Rate promedio, Capital de trabajo, Revenue en riesgo y Delta COGS vs baseline.',              position: 'bottom' },
+  { target: '[data-tour="sim-fillrate"]', title: 'Fill Rate proyectado',         desc: 'La línea azul es tu escenario. La gris punteada es el baseline sin cambios. La línea verde es la meta del 95%.',                                     position: 'bottom' },
+  { target: '[data-tour="sim-wc"]',       title: 'Capital de trabajo proyectado', desc: 'Cómo afecta el escenario al capital de trabajo mes a mes. Si el desabasto supera 60% y la demanda +30% simultáneamente, aparece un aviso de riesgo crítico.', position: 'bottom' },
+]
 
 const HORIZON_OPTIONS = [
   { label: '1 mes', months: 1 },
@@ -196,7 +205,7 @@ export default function SimulatorPage() {
           <p className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>Ajusta las variables y ve el impacto en tiempo real</p>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: 'var(--bg-tertiary)' }}>
+          <div data-tour="sim-horizon" className="flex items-center gap-1 p-1 rounded-xl" style={{ background: 'var(--bg-tertiary)' }}>
             {HORIZON_OPTIONS.map(opt => (
               <button
                 key={opt.months}
@@ -227,7 +236,7 @@ export default function SimulatorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
         {/* Controls */}
-        <div className="ec-card p-6 space-y-7 animate-fade-in-up">
+        <div data-tour="sim-sliders" className="ec-card p-6 space-y-7 animate-fade-in-up">
           <div className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--text-tertiary)' }}>
             Variables del escenario
           </div>
@@ -266,7 +275,7 @@ export default function SimulatorPage() {
           />
 
           {/* Impact summary */}
-          <div className="pt-1">
+          <div data-tour="sim-impact" className="pt-1">
             <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text-tertiary)' }}>
               Impacto del escenario
             </div>
@@ -324,13 +333,13 @@ export default function SimulatorPage() {
           )}
 
           {/* Fill Rate */}
-          <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <div data-tour="sim-fillrate" className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             <div className="text-sm font-bold mb-1" style={{ color: 'var(--text-primary)' }}>Fill Rate proyectado vs baseline</div>
             <ReactECharts option={fillRateOption} style={{ height: 210 }} notMerge />
           </div>
 
           {/* Working Capital */}
-          <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '160ms' }}>
+          <div data-tour="sim-wc" className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '160ms' }}>
             <div className="text-sm font-bold mb-1" style={{ color: 'var(--text-primary)' }}>Capital de trabajo proyectado</div>
             <ReactECharts option={wcOption} style={{ height: 210 }} notMerge />
           </div>
@@ -353,6 +362,13 @@ export default function SimulatorPage() {
           )}
         </div>
       </div>
+
+      <TourGuide
+        steps={SIM_TOUR}
+        storageKey="pinsa-tour-simulator"
+        welcomeTitle="Simulador de Escenarios"
+        welcomeDesc="Ajusta las 4 variables y ve el impacto en fill rate y capital de trabajo en tiempo real."
+      />
     </div>
   )
 }
