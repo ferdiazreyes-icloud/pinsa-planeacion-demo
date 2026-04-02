@@ -110,8 +110,8 @@ export function generateScenarioTimeline(
     const label = monthLabels[(startMonth + i) % 12]
     const scenarioOut = simulateScenario(inputs, 1)
 
-    // Add slight variance per month to make it look real
-    const variance = 0.98 + Math.random() * 0.04
+    // Add slight variance per month to make it look real (deterministic to avoid SSR/CSR mismatch)
+    const variance = 0.98 + ((i * 7 + 3) % 5) * 0.008
     result.push({
       month: i + 1,
       label,
