@@ -128,7 +128,7 @@ export default function Step5Finance() {
       </div>
 
       {/* Approval */}
-      {!approved ? (
+      {approved === null ? (
         <div className="rounded-xl p-6" style={{ background: 'var(--bg-tertiary)' }}>
           <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Decisión de Finanzas</div>
           <textarea

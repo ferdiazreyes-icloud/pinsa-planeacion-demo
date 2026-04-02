@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { generateScenarioTimeline } from '@/lib/calculations'
+import { generateScenarioTimeline, isExtremeScenario } from '@/lib/calculations'
 import { formatCurrency } from '@/lib/formatters'
 import ReactECharts from 'echarts-for-react'
 import { RefreshCw, Info } from 'lucide-react'
@@ -64,6 +64,7 @@ export default function SimulatorPage() {
   const totalRevenueAtRisk = scenarioData.reduce((s, d) => s + d.revenueAtRiskMXN, 0)
   const totalCogsDelta     = scenarioData.reduce((s, d) => s + d.cogsDeltaMXN, 0)
   const hasChanges         = rawMatChange !== 0 || supplyDisruption !== 0 || demandChange !== 0 || safetyStock !== 33
+  const extreme            = isExtremeScenario({ rawMaterialPriceChangePct: rawMatChange, supplyDisruptionPct: supplyDisruption, demandChangePct: demandChange, safetyStockDays: safetyStock })
 
   const fillRateOption = {
     grid: { top: 12, right: 44, bottom: 20, left: 8, containLabel: true },
@@ -303,6 +304,24 @@ export default function SimulatorPage() {
 
         {/* Charts */}
         <div className="lg:col-span-2 space-y-5">
+
+          {/* Extreme scenario warning */}
+          {extreme && (
+            <div
+              data-testid="extreme-warning"
+              className="flex items-start gap-3 p-4 rounded-xl animate-fade-in-up"
+              style={{ background: 'rgba(155,28,74,0.07)', border: '1px solid rgba(155,28,74,0.3)' }}
+            >
+              <span style={{ color: '#9B1C4A', fontSize: 18, flexShrink: 0 }}>⚠</span>
+              <div>
+                <div className="text-sm font-bold" style={{ color: '#9B1C4A' }}>Valor fuera de rangos aceptables</div>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
+                  La combinación de desabasto &gt;60% con demanda &gt;+30% excede los parámetros del modelo.
+                  Los resultados pueden no ser representativos de un escenario real.
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Fill Rate */}
           <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>

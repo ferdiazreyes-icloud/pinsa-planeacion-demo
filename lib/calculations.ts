@@ -98,6 +98,14 @@ export function simulateScenario(inputs: ScenarioInputs, months = 3): ScenarioOu
   }
 }
 
+/**
+ * Returns true when the combination of inputs is extreme enough to produce
+ * unreliable results (supplyDisruption > 60 AND demandChange > 30).
+ */
+export function isExtremeScenario(inputs: ScenarioInputs): boolean {
+  return inputs.supplyDisruptionPct > 60 && inputs.demandChangePct > 30
+}
+
 export function generateScenarioTimeline(
   inputs: ScenarioInputs,
   months: number
