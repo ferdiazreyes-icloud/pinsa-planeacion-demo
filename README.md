@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.3.0 · **Status:** Demo V0 — Listo para presentacion
+**Version:** 0.4.0 · **Status:** Demo V0 — Listo para presentacion · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -17,6 +17,16 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Plan de inventarios (dias de cobertura, ordenes de reposicion)
   - [x] Paso 5: Validacion financiera (P&L, riesgos, aprobacion)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.4.0
+
+- [x] **Tour guiado interactivo** — Spotlight + tooltip + welcome modal en los 4 módulos (Home, Dashboard, S&OP, Simulador)
+- [x] **Sidebar "Ver tour guiado"** — botón persistente en sidebar dispara el tour desde cualquier página
+- [x] **Posicionamiento inteligente de tooltip** — auto-flip (bottom↔top, left↔right) y clamp para que nunca salga del viewport
+- [x] **Branding Arena Analytics** — logos integrados en Home (footer), Sidebar ("Powered by") y welcome modal del tour
+- [x] **Datos actualizados al ciclo Abril 2026** — todos los períodos de JSON y textos de UI actualizados (+13 meses)
+- [x] **45/45 tests E2E pasan** — incluyendo fix strict-mode en simulator.spec.ts
+- [x] **Documentación UAT** — `docs/UAT_GUIA_PRUEBAS.md` y `docs/UAT_DATOS_DEMO.md`
 
 ## Completado en v0.3.0
 
