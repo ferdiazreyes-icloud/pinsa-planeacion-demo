@@ -134,7 +134,7 @@ export default function Step2Collaboration() {
       </div>
 
       <div className="bg-slate-50 rounded-xl p-4 text-sm text-slate-600">
-        <span className="font-semibold text-slate-800">Resumen:</span> Los ajustes al alza suman +5,600 cajas adicionales (+5.8%) sobre el pronóstico estadístico para Marzo.
+        <span className="font-semibold text-slate-800">Resumen:</span> Los ajustes al alza suman +5,600 cajas adicionales (+5.8%) sobre el pronóstico estadístico para Abril.
         Impacto estimado: +$2.4M MXN en revenue adicional si se captura con fill rate ≥95%.
       </div>
     </div>

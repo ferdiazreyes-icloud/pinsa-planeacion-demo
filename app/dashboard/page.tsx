@@ -35,7 +35,7 @@ export default function DashboardPage() {
           Dashboard Ejecutivo
         </h1>
         <p className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>
-          Snapshot de la cadena de valor · Actualizado Feb 2025
+          Snapshot de la cadena de valor · Actualizado Mar 2026
         </p>
       </div>
 
@@ -136,7 +136,7 @@ export default function DashboardPage() {
 
         {/* Top SKUs */}
         <div data-tour="dash-skus" className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '440ms' }}>
-          <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Top SKUs por volumen — Feb 2025</div>
+          <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Top SKUs por volumen — Mar 2026</div>
           <div className="space-y-0">
             {[
               { sku: 'Dolores Atún Agua 170g',    cases: 19500, fillRate: 93.2, trend: '+1.2pp' },

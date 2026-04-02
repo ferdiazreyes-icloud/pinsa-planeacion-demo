@@ -117,7 +117,7 @@ export default function Step3Quality() {
         </div>
 
         <div>
-          <div className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Score calidad de colaboración — Feb 2025</div>
+          <div className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Score calidad de colaboración — Mar 2026</div>
           <ReactECharts option={radarOption} style={{ height: 260 }} notMerge />
           <div className="text-xs text-center -mt-2" style={{ color: 'var(--text-tertiary)' }}>Score global: 72/100 · Meta: 80/100</div>
         </div>

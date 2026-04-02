@@ -14,8 +14,8 @@ const accuracyData = TOP_SKUS.map(skuId => {
   return { sku: sku?.name.replace('Dolores ', 'DOL ').replace('Guardamar ', 'GUA ').replace('La Sirena ', 'SIR '), accuracy: Math.round((100 - mape) * 10) / 10 }
 })
 
-const chartData = ['2024-10', '2024-11', '2024-12', '2025-01', '2025-02', '2025-03'].map(period => {
-  const label = { '2024-10': 'Oct', '2024-11': 'Nov', '2024-12': 'Dic', '2025-01': 'Ene', '2025-02': 'Feb', '2025-03': 'Mar (F)' }[period]
+const chartData = ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04'].map(period => {
+  const label = { '2025-11': 'Nov', '2025-12': 'Dic', '2026-01': 'Ene', '2026-02': 'Feb', '2026-03': 'Mar', '2026-04': 'Abr (F)' }[period]
   const periodRecords = Forecast.filter(f => f.period === period)
   const statistical = periodRecords.reduce((s, r) => s + r.statistical, 0)
   const collaborated = periodRecords.reduce((s, r) => s + (r.collaborated ?? r.statistical), 0)
@@ -87,7 +87,7 @@ export default function Step1Forecast() {
     <div className="space-y-7">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { value: '71.2%',  label: 'Asertividad Feb 2025',    sub: '1 − MAPE promedio portafolio',          color: 'var(--warning)' },
+          { value: '71.2%',  label: 'Asertividad Mar 2026',    sub: '1 − MAPE promedio portafolio',          color: 'var(--warning)' },
           { value: '+3.1pp', label: 'Mejora con colaboración', sub: 'Estadístico 71.2% → Colaborado 74.3%',  color: 'var(--brand-navy)' },
           { value: '-2.4%',  label: 'Sesgo del pronóstico',    sub: 'Ligero sub-pronóstico sistémico',        color: 'var(--negative)' },
         ].map(({ value, label, sub, color }) => (
@@ -129,7 +129,7 @@ export default function Step1Forecast() {
 
       <div className="px-4 py-3 rounded-xl" style={{ background: 'rgba(36,45,81,0.06)', border: '1px solid rgba(36,45,81,0.15)' }}>
         <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-          <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Pronóstico estadístico Mar 2025 listo.</span>{' '}
+          <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Pronóstico estadístico Abr 2026 listo.</span>{' '}
           El modelo detecta un pico estacional de +19% por Semana Santa (confirmado históricamente en 2023 y 2024).
           Pendiente: colaboración de ventas para ajuste por clientes clave.
         </p>

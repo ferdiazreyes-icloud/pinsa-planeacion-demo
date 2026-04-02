@@ -43,7 +43,7 @@ export default function Sidebar() {
             className="ml-auto text-xs px-2 py-0.5 rounded-full font-semibold"
             style={{ background: 'rgba(96,27,77,0.3)', color: '#D4A0C0' }}
           >
-            Mar 2025
+            Abr 2026
           </span>
         </div>
       </div>

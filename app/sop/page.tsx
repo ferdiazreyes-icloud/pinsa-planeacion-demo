@@ -47,7 +47,7 @@ function SOPContent() {
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Ciclo S&OP Mensual</h1>
-        <p className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>Período: Marzo 2025 · Semana 2 de 4</p>
+        <p className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>Período: Abril 2026 · Semana 2 de 4</p>
       </div>
 
       {/* Stepper */}
@@ -131,7 +131,7 @@ function SOPContent() {
               className="text-xs px-3 py-1.5 rounded-full font-semibold"
               style={{ background: 'rgba(43,76,126,0.08)', color: 'var(--brand-navy)' }}
             >
-              Mar 2025
+              Abr 2026
             </span>
           </div>
         </div>
@@ -172,7 +172,7 @@ function SOPContent() {
               className="px-6 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 flex items-center gap-2"
               style={{ background: '#1A7A6E' }}
             >
-              <CheckCircle2 size={14} /> Aprobar plan Mar 2025
+              <CheckCircle2 size={14} /> Aprobar plan Abr 2026
             </button>
           )}
         </div>

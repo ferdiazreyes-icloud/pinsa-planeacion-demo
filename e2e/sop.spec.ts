@@ -7,7 +7,7 @@ test.describe('S&OP Ciclo Mensual', () => {
 
   test('shows page title and period', async ({ page }) => {
     await expect(page.locator('h1', { hasText: 'Ciclo S&OP Mensual' })).toBeVisible()
-    await expect(page.locator('text=Marzo 2025')).toBeVisible()
+    await expect(page.locator('text=Abril 2026')).toBeVisible()
   })
 
   test('shows stepper with 5 steps', async ({ page }) => {
@@ -20,11 +20,11 @@ test.describe('S&OP Ciclo Mensual', () => {
 
   test('step 1 content is visible by default', async ({ page }) => {
     await expect(page.locator('text=Pronóstico estadístico').first()).toBeVisible()
-    await expect(page.locator('text=Asertividad Feb 2025')).toBeVisible()
+    await expect(page.locator('text=Asertividad Mar 2026')).toBeVisible()
   })
 
   test('step 1 shows KPI cards', async ({ page }) => {
-    await expect(page.locator('text=Asertividad Feb 2025')).toBeVisible()
+    await expect(page.locator('text=Asertividad Mar 2026')).toBeVisible()
     await expect(page.locator('text=Mejora con colaboración')).toBeVisible()
     await expect(page.locator('text=Sesgo del pronóstico')).toBeVisible()
   })
@@ -91,8 +91,8 @@ test.describe('S&OP Ciclo Mensual', () => {
     for (let i = 0; i < 4; i++) {
       await page.click('button:has-text("Confirmar y continuar")')
     }
-    await page.click('button:has-text("Aprobar plan Mar 2025")')
-    await expect(page.locator('text=Plan Marzo 2025 aprobado')).toBeVisible()
+    await page.click('button:has-text("Aprobar plan Abr 2026")')
+    await expect(page.locator('text=Plan Abril 2026 aprobado')).toBeVisible()
   })
 
   test('step 5 reject button works', async ({ page }) => {

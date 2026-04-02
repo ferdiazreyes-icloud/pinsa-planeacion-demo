@@ -70,11 +70,11 @@ test.describe('Simulador de Escenarios', () => {
     await page.click('button:has-text("1 mes")')
     await page.waitForTimeout(500)
     // 1 month shows 1 data point — page still renders without crash
-    await expect(page.locator('text=Simulador de Escenarios')).toBeVisible()
+    await expect(page.locator('text=Simulador de Escenarios').first()).toBeVisible()
 
     await page.click('button:has-text("12 meses")')
     await page.waitForTimeout(500)
-    await expect(page.locator('text=Simulador de Escenarios')).toBeVisible()
+    await expect(page.locator('text=Simulador de Escenarios').first()).toBeVisible()
   })
 
   test('extreme warning banner does NOT appear at default values', async ({ page }) => {

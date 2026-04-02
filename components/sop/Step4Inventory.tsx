@@ -102,7 +102,7 @@ export default function Step4Inventory() {
 
       {/* Bar chart */}
       <div>
-        <div className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Días de cobertura proyectada — cierre Mar 2025</div>
+        <div className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Días de cobertura proyectada — cierre Abr 2026</div>
         <ReactECharts option={barOption} style={{ height: 220 }} notMerge />
       </div>
 

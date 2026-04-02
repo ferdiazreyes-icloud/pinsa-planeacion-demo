@@ -1,26 +1,26 @@
 [
-  { "skuId": "DOL-170-ACE", "period": "2025-01", "openingStock": 52000, "closingStock": 48500, "daysOfCover": 38, "safetyStockDays": 30, "replenishmentOrder": 12000, "stockValueMXN": 14432150 },
-  { "skuId": "DOL-170-ACE", "period": "2025-02", "openingStock": 48500, "closingStock": 44200, "daysOfCover": 34, "safetyStockDays": 30, "replenishmentOrder": 14000, "stockValueMXN": 13155400 },
-  { "skuId": "DOL-170-ACE", "period": "2025-03", "openingStock": 44200, "closingStock": 36800, "daysOfCover": 27, "safetyStockDays": 35, "replenishmentOrder": 19500, "stockValueMXN": 10951600 },
-  { "skuId": "DOL-170-ACE", "period": "2025-04", "openingStock": 36800, "closingStock": 32100, "daysOfCover": 25, "safetyStockDays": 30, "replenishmentOrder": 16000, "stockValueMXN": 9557800 },
-  { "skuId": "DOL-170-ACE", "period": "2025-05", "openingStock": 32100, "closingStock": 30500, "daysOfCover": 24, "safetyStockDays": 30, "replenishmentOrder": 15000, "stockValueMXN": 9088900 },
-  { "skuId": "DOL-170-ACE", "period": "2025-06", "openingStock": 30500, "closingStock": 31200, "daysOfCover": 24, "safetyStockDays": 30, "replenishmentOrder": 18000, "stockValueMXN": 9297600 },
+  { "skuId": "DOL-170-ACE", "period": "2026-02", "openingStock": 52000, "closingStock": 48500, "daysOfCover": 38, "safetyStockDays": 30, "replenishmentOrder": 12000, "stockValueMXN": 14432150 },
+  { "skuId": "DOL-170-ACE", "period": "2026-03", "openingStock": 48500, "closingStock": 44200, "daysOfCover": 34, "safetyStockDays": 30, "replenishmentOrder": 14000, "stockValueMXN": 13155400 },
+  { "skuId": "DOL-170-ACE", "period": "2026-04", "openingStock": 44200, "closingStock": 36800, "daysOfCover": 27, "safetyStockDays": 35, "replenishmentOrder": 19500, "stockValueMXN": 10951600 },
+  { "skuId": "DOL-170-ACE", "period": "2026-05", "openingStock": 36800, "closingStock": 32100, "daysOfCover": 25, "safetyStockDays": 30, "replenishmentOrder": 16000, "stockValueMXN": 9557800 },
+  { "skuId": "DOL-170-ACE", "period": "2026-06", "openingStock": 32100, "closingStock": 30500, "daysOfCover": 24, "safetyStockDays": 30, "replenishmentOrder": 15000, "stockValueMXN": 9088900 },
+  { "skuId": "DOL-170-ACE", "period": "2026-07", "openingStock": 30500, "closingStock": 31200, "daysOfCover": 24, "safetyStockDays": 30, "replenishmentOrder": 18000, "stockValueMXN": 9297600 },
 
-  { "skuId": "DOL-170-AGU", "period": "2025-01", "openingStock": 62000, "closingStock": 57800, "daysOfCover": 36, "safetyStockDays": 28, "replenishmentOrder": 14500, "stockValueMXN": 16066900 },
-  { "skuId": "DOL-170-AGU", "period": "2025-02", "openingStock": 57800, "closingStock": 52400, "daysOfCover": 33, "safetyStockDays": 28, "replenishmentOrder": 16000, "stockValueMXN": 14567200 },
-  { "skuId": "DOL-170-AGU", "period": "2025-03", "openingStock": 52400, "closingStock": 41900, "daysOfCover": 25, "safetyStockDays": 35, "replenishmentOrder": 22000, "stockValueMXN": 11648200 },
-  { "skuId": "DOL-170-AGU", "period": "2025-04", "openingStock": 41900, "closingStock": 36700, "daysOfCover": 23, "safetyStockDays": 28, "replenishmentOrder": 18000, "stockValueMXN": 10202600 },
+  { "skuId": "DOL-170-AGU", "period": "2026-02", "openingStock": 62000, "closingStock": 57800, "daysOfCover": 36, "safetyStockDays": 28, "replenishmentOrder": 14500, "stockValueMXN": 16066900 },
+  { "skuId": "DOL-170-AGU", "period": "2026-03", "openingStock": 57800, "closingStock": 52400, "daysOfCover": 33, "safetyStockDays": 28, "replenishmentOrder": 16000, "stockValueMXN": 14567200 },
+  { "skuId": "DOL-170-AGU", "period": "2026-04", "openingStock": 52400, "closingStock": 41900, "daysOfCover": 25, "safetyStockDays": 35, "replenishmentOrder": 22000, "stockValueMXN": 11648200 },
+  { "skuId": "DOL-170-AGU", "period": "2026-05", "openingStock": 41900, "closingStock": 36700, "daysOfCover": 23, "safetyStockDays": 28, "replenishmentOrder": 18000, "stockValueMXN": 10202600 },
 
-  { "skuId": "DOL-POUCH-ACE", "period": "2025-01", "openingStock": 78000, "closingStock": 72500, "daysOfCover": 34, "safetyStockDays": 25, "replenishmentOrder": 21000, "stockValueMXN": 13412500 },
-  { "skuId": "DOL-POUCH-ACE", "period": "2025-02", "openingStock": 72500, "closingStock": 65800, "daysOfCover": 29, "safetyStockDays": 25, "replenishmentOrder": 22000, "stockValueMXN": 12173000 },
-  { "skuId": "DOL-POUCH-ACE", "period": "2025-03", "openingStock": 65800, "closingStock": 51600, "daysOfCover": 22, "safetyStockDays": 32, "replenishmentOrder": 32000, "stockValueMXN": 9546000 },
-  { "skuId": "DOL-POUCH-ACE", "period": "2025-04", "openingStock": 51600, "closingStock": 44200, "daysOfCover": 19, "safetyStockDays": 25, "replenishmentOrder": 26000, "stockValueMXN": 8177000 },
+  { "skuId": "DOL-POUCH-ACE", "period": "2026-02", "openingStock": 78000, "closingStock": 72500, "daysOfCover": 34, "safetyStockDays": 25, "replenishmentOrder": 21000, "stockValueMXN": 13412500 },
+  { "skuId": "DOL-POUCH-ACE", "period": "2026-03", "openingStock": 72500, "closingStock": 65800, "daysOfCover": 29, "safetyStockDays": 25, "replenishmentOrder": 22000, "stockValueMXN": 12173000 },
+  { "skuId": "DOL-POUCH-ACE", "period": "2026-04", "openingStock": 65800, "closingStock": 51600, "daysOfCover": 22, "safetyStockDays": 32, "replenishmentOrder": 32000, "stockValueMXN": 9546000 },
+  { "skuId": "DOL-POUCH-ACE", "period": "2026-05", "openingStock": 51600, "closingStock": 44200, "daysOfCover": 19, "safetyStockDays": 25, "replenishmentOrder": 26000, "stockValueMXN": 8177000 },
 
-  { "skuId": "GUA-170-ACE", "period": "2025-01", "openingStock": 24000, "closingStock": 22500, "daysOfCover": 32, "safetyStockDays": 28, "replenishmentOrder": 7000, "stockValueMXN": 6030000 },
-  { "skuId": "GUA-170-ACE", "period": "2025-02", "openingStock": 22500, "closingStock": 20800, "daysOfCover": 28, "safetyStockDays": 28, "replenishmentOrder": 7500, "stockValueMXN": 5574400 },
-  { "skuId": "GUA-170-ACE", "period": "2025-03", "openingStock": 20800, "closingStock": 16400, "daysOfCover": 19, "safetyStockDays": 35, "replenishmentOrder": 11000, "stockValueMXN": 4395200 },
+  { "skuId": "GUA-170-ACE", "period": "2026-02", "openingStock": 24000, "closingStock": 22500, "daysOfCover": 32, "safetyStockDays": 28, "replenishmentOrder": 7000, "stockValueMXN": 6030000 },
+  { "skuId": "GUA-170-ACE", "period": "2026-03", "openingStock": 22500, "closingStock": 20800, "daysOfCover": 28, "safetyStockDays": 28, "replenishmentOrder": 7500, "stockValueMXN": 5574400 },
+  { "skuId": "GUA-170-ACE", "period": "2026-04", "openingStock": 20800, "closingStock": 16400, "daysOfCover": 19, "safetyStockDays": 35, "replenishmentOrder": 11000, "stockValueMXN": 4395200 },
 
-  { "skuId": "SIR-SARD-425", "period": "2025-01", "openingStock": 17500, "closingStock": 16200, "daysOfCover": 33, "safetyStockDays": 30, "replenishmentOrder": 5000, "stockValueMXN": 5103000 },
-  { "skuId": "SIR-SARD-425", "period": "2025-02", "openingStock": 16200, "closingStock": 14900, "daysOfCover": 30, "safetyStockDays": 30, "replenishmentOrder": 5500, "stockValueMXN": 4693500 },
-  { "skuId": "SIR-SARD-425", "period": "2025-03", "openingStock": 14900, "closingStock": 11200, "daysOfCover": 21, "safetyStockDays": 38, "replenishmentOrder": 8000, "stockValueMXN": 3528000 }
+  { "skuId": "SIR-SARD-425", "period": "2026-02", "openingStock": 17500, "closingStock": 16200, "daysOfCover": 33, "safetyStockDays": 30, "replenishmentOrder": 5000, "stockValueMXN": 5103000 },
+  { "skuId": "SIR-SARD-425", "period": "2026-03", "openingStock": 16200, "closingStock": 14900, "daysOfCover": 30, "safetyStockDays": 30, "replenishmentOrder": 5500, "stockValueMXN": 4693500 },
+  { "skuId": "SIR-SARD-425", "period": "2026-04", "openingStock": 14900, "closingStock": 11200, "daysOfCover": 21, "safetyStockDays": 38, "replenishmentOrder": 8000, "stockValueMXN": 3528000 }
 ]

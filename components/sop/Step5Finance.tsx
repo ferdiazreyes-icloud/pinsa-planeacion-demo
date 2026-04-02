@@ -32,7 +32,7 @@ export default function Step5Finance() {
 
       {/* P&L Summary */}
       <div>
-        <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>P&L proyectado — Marzo 2025</div>
+        <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>P&L proyectado — Abril 2026</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
@@ -148,7 +148,7 @@ export default function Step5Finance() {
               className="flex-1 text-white py-3 rounded-xl font-semibold text-sm transition-opacity hover:opacity-90 flex items-center justify-center gap-2"
               style={{ background: '#1A7A6E' }}
             >
-              <CheckCircle2 size={16} /> Aprobar plan Mar 2025
+              <CheckCircle2 size={16} /> Aprobar plan Abr 2026
             </button>
             <button
               onClick={() => setApproved(false)}
@@ -172,7 +172,7 @@ export default function Step5Finance() {
             style={{ color: approved ? '#1A7A6E' : '#9B1C4A' }}
           >
             {approved ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}
-            {approved ? 'Plan Marzo 2025 aprobado' : 'Plan devuelto a revisión'}
+            {approved ? 'Plan Abril 2026 aprobado' : 'Plan devuelto a revisión'}
           </div>
           {comment && <p className="text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>{comment}</p>}
           {approved && (

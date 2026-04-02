@@ -7,7 +7,7 @@ test.describe('Home page', () => {
 
   test('loads and shows PINSA branding', async ({ page }) => {
     // Home page shows PINSA in the demo tag and "Orquesta tu cadena" headline
-    await expect(page.locator('text=Demo PINSA 2025')).toBeVisible()
+    await expect(page.locator('text=Demo PINSA 2026')).toBeVisible()
     await expect(page.locator('text=S&OP / IBP Control Tower')).toBeVisible()
   })
 

@@ -90,7 +90,7 @@ export default function HomePage() {
           className="text-xs font-semibold uppercase tracking-widest mb-4 px-4 py-1.5 rounded-full"
           style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.6)', border: '1px solid rgba(255,255,255,0.12)' }}
         >
-          S&OP / IBP Control Tower · Demo PINSA 2025
+          S&OP / IBP Control Tower · Demo PINSA 2026
         </div>
 
         <h1 data-tour="home-headline" className="text-4xl md:text-5xl font-black text-white text-center leading-tight tracking-tight mb-4">

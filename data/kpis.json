@@ -13,21 +13,21 @@
     "collaborationRateTarget": 80
   },
   "monthly": [
-    { "period": "2024-03", "label": "Mar 24", "fillRate": 88.2, "forecastAccuracy": 66.5, "daysOfCover": 38, "workingCapitalMXN": 312000000, "revenue": 142500000, "cogs": 91200000 },
-    { "period": "2024-04", "label": "Abr 24", "fillRate": 89.8, "forecastAccuracy": 68.1, "daysOfCover": 36, "workingCapitalMXN": 308500000, "revenue": 128300000, "cogs": 82100000 },
-    { "period": "2024-05", "label": "May 24", "fillRate": 90.1, "forecastAccuracy": 69.3, "daysOfCover": 35, "workingCapitalMXN": 305200000, "revenue": 124600000, "cogs": 79800000 },
-    { "period": "2024-06", "label": "Jun 24", "fillRate": 91.5, "forecastAccuracy": 70.2, "daysOfCover": 34, "workingCapitalMXN": 301800000, "revenue": 131200000, "cogs": 83900000 },
-    { "period": "2024-07", "label": "Jul 24", "fillRate": 92.3, "forecastAccuracy": 71.0, "daysOfCover": 33, "workingCapitalMXN": 298600000, "revenue": 134500000, "cogs": 86100000 },
-    { "period": "2024-08", "label": "Ago 24", "fillRate": 90.8, "forecastAccuracy": 70.5, "daysOfCover": 34, "workingCapitalMXN": 302100000, "revenue": 127800000, "cogs": 81800000 },
-    { "period": "2024-09", "label": "Sep 24", "fillRate": 91.2, "forecastAccuracy": 71.2, "daysOfCover": 33, "workingCapitalMXN": 299400000, "revenue": 129600000, "cogs": 83000000 },
-    { "period": "2024-10", "label": "Oct 24", "fillRate": 92.8, "forecastAccuracy": 72.4, "daysOfCover": 32, "workingCapitalMXN": 295800000, "revenue": 135800000, "cogs": 86900000 },
-    { "period": "2024-11", "label": "Nov 24", "fillRate": 93.1, "forecastAccuracy": 73.1, "daysOfCover": 31, "workingCapitalMXN": 292300000, "revenue": 151200000, "cogs": 96700000 },
-    { "period": "2024-12", "label": "Dic 24", "fillRate": 91.5, "forecastAccuracy": 72.8, "daysOfCover": 29, "workingCapitalMXN": 289700000, "revenue": 164800000, "cogs": 105400000 },
-    { "period": "2025-01", "label": "Ene 25", "fillRate": 90.8, "forecastAccuracy": 71.5, "daysOfCover": 35, "workingCapitalMXN": 295100000, "revenue": 118500000, "cogs": 75800000 },
-    { "period": "2025-02", "label": "Feb 25", "fillRate": 91.4, "forecastAccuracy": 71.2, "daysOfCover": 33, "workingCapitalMXN": 298500000, "revenue": 122400000, "cogs": 78300000 },
-    { "period": "2025-03", "label": "Mar 25 (F)", "fillRate": null, "forecastAccuracy": null, "daysOfCover": null, "workingCapitalMXN": null, "revenue": 148000000, "cogs": 94700000 },
-    { "period": "2025-04", "label": "Abr 25 (F)", "fillRate": null, "forecastAccuracy": null, "daysOfCover": null, "workingCapitalMXN": null, "revenue": 131200000, "cogs": 83900000 },
-    { "period": "2025-05", "label": "May 25 (F)", "fillRate": null, "forecastAccuracy": null, "daysOfCover": null, "workingCapitalMXN": null, "revenue": 127500000, "cogs": 81600000 }
+    { "period": "2025-04", "label": "Abr 25", "fillRate": 88.2, "forecastAccuracy": 66.5, "daysOfCover": 38, "workingCapitalMXN": 312000000, "revenue": 142500000, "cogs": 91200000 },
+    { "period": "2025-05", "label": "May 25", "fillRate": 89.8, "forecastAccuracy": 68.1, "daysOfCover": 36, "workingCapitalMXN": 308500000, "revenue": 128300000, "cogs": 82100000 },
+    { "period": "2025-06", "label": "Jun 25", "fillRate": 90.1, "forecastAccuracy": 69.3, "daysOfCover": 35, "workingCapitalMXN": 305200000, "revenue": 124600000, "cogs": 79800000 },
+    { "period": "2025-07", "label": "Jul 25", "fillRate": 91.5, "forecastAccuracy": 70.2, "daysOfCover": 34, "workingCapitalMXN": 301800000, "revenue": 131200000, "cogs": 83900000 },
+    { "period": "2025-08", "label": "Ago 25", "fillRate": 92.3, "forecastAccuracy": 71.0, "daysOfCover": 33, "workingCapitalMXN": 298600000, "revenue": 134500000, "cogs": 86100000 },
+    { "period": "2025-09", "label": "Sep 25", "fillRate": 90.8, "forecastAccuracy": 70.5, "daysOfCover": 34, "workingCapitalMXN": 302100000, "revenue": 127800000, "cogs": 81800000 },
+    { "period": "2025-10", "label": "Oct 25", "fillRate": 91.2, "forecastAccuracy": 71.2, "daysOfCover": 33, "workingCapitalMXN": 299400000, "revenue": 129600000, "cogs": 83000000 },
+    { "period": "2025-11", "label": "Nov 25", "fillRate": 92.8, "forecastAccuracy": 72.4, "daysOfCover": 32, "workingCapitalMXN": 295800000, "revenue": 135800000, "cogs": 86900000 },
+    { "period": "2025-12", "label": "Dic 25", "fillRate": 93.1, "forecastAccuracy": 73.1, "daysOfCover": 31, "workingCapitalMXN": 292300000, "revenue": 151200000, "cogs": 96700000 },
+    { "period": "2026-01", "label": "Ene 26", "fillRate": 91.5, "forecastAccuracy": 72.8, "daysOfCover": 29, "workingCapitalMXN": 289700000, "revenue": 164800000, "cogs": 105400000 },
+    { "period": "2026-02", "label": "Feb 26", "fillRate": 90.8, "forecastAccuracy": 71.5, "daysOfCover": 35, "workingCapitalMXN": 295100000, "revenue": 118500000, "cogs": 75800000 },
+    { "period": "2026-03", "label": "Mar 26", "fillRate": 91.4, "forecastAccuracy": 71.2, "daysOfCover": 33, "workingCapitalMXN": 298500000, "revenue": 122400000, "cogs": 78300000 },
+    { "period": "2026-04", "label": "Abr 26 (F)", "fillRate": null, "forecastAccuracy": null, "daysOfCover": null, "workingCapitalMXN": null, "revenue": 148000000, "cogs": 94700000 },
+    { "period": "2026-05", "label": "May 26 (F)", "fillRate": null, "forecastAccuracy": null, "daysOfCover": null, "workingCapitalMXN": null, "revenue": 131200000, "cogs": 83900000 },
+    { "period": "2026-06", "label": "Jun 26 (F)", "fillRate": null, "forecastAccuracy": null, "daysOfCover": null, "workingCapitalMXN": null, "revenue": 127500000, "cogs": 81600000 }
   ],
   "alerts": [
     {
@@ -35,7 +35,7 @@
       "severity": "high",
       "type": "supply",
       "title": "Riesgo de desabasto: Hojalata",
-      "description": "Proveedor principal advierte retraso de 3 semanas por aranceles acero. Impacto estimado: -12% capacidad producción Abr–May.",
+      "description": "Proveedor principal advierte retraso de 3 semanas por aranceles acero. Impacto estimado: -12% capacidad producción May–Jun.",
       "skusAffected": ["DOL-170-ACE", "DOL-170-AGU", "GUA-170-ACE", "SIR-SARD-425"],
       "financialImpactMXN": 18500000
     },
@@ -43,8 +43,8 @@
       "id": "ALERT-002",
       "severity": "medium",
       "type": "forecast",
-      "title": "Colaboración pendiente: Mar 2025",
-      "description": "32% de SKUs Clase A sin colaboración de ventas para el período de Semana Santa. Deadline: 10 Mar.",
+      "title": "Colaboración pendiente: Abr 2026",
+      "description": "32% de SKUs Clase A sin colaboración de ventas para el período de Semana Santa. Deadline: 10 Abr.",
       "skusAffected": ["DOL-280-ACE", "DOL-FOODSVC-1KG", "GUA-170-AGU"],
       "financialImpactMXN": 4200000
     },
