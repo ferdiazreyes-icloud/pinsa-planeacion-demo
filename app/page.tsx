@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BarChart3, GitBranch, Sliders, TrendingUp, Package } from 'lucide-react'
+import { BarChart3, GitBranch, Sliders, TrendingUp, Package, ArrowRight } from 'lucide-react'
 
 const roles = [
   {
@@ -7,100 +7,140 @@ const roles = [
     description: 'Vista ejecutiva con KPIs de la cadena, tendencias y alertas activas.',
     href: '/dashboard',
     icon: BarChart3,
-    color: 'from-blue-500 to-blue-700',
+    accentColor: '#242d51',
     badge: '4 alertas activas',
-    badgeColor: 'bg-amber-100 text-amber-700',
+    badgeBg: 'rgba(184,125,26,0.15)',
+    badgeColor: '#D4A0C0',
   },
   {
     role: 'Planeador de Demanda',
-    description: 'Revisa el pronóstico estadístico, evalúa la colaboración y gestiona el ciclo S&OP mensual.',
+    description: 'Pronóstico estadístico, evaluación de colaboración y ciclo S&OP mensual.',
     href: '/sop',
     icon: TrendingUp,
-    color: 'from-violet-500 to-violet-700',
+    accentColor: '#1A7A6E',
     badge: 'Ciclo Mar 25 abierto',
-    badgeColor: 'bg-violet-100 text-violet-700',
+    badgeBg: 'rgba(26,122,110,0.15)',
+    badgeColor: '#6ECEC5',
   },
   {
     role: 'Ventas / Colaboración',
     description: 'Ajusta el pronóstico por cliente y canal con visibilidad del baseline estadístico.',
     href: '/sop?step=2',
     icon: GitBranch,
-    color: 'from-emerald-500 to-emerald-700',
+    accentColor: '#601b4d',
     badge: '32% SKUs pendientes',
-    badgeColor: 'bg-red-100 text-red-600',
+    badgeBg: 'rgba(96,27,77,0.15)',
+    badgeColor: '#D4A0C0',
   },
   {
     role: 'Planeador de Inventarios',
     description: 'Simula niveles de inventario y calcula reposición ante cambios en demanda y abasto.',
     href: '/simulator',
     icon: Package,
-    color: 'from-teal-500 to-teal-700',
+    accentColor: '#B87D1A',
     badge: '1 SKU bajo mínimo',
-    badgeColor: 'bg-orange-100 text-orange-700',
+    badgeBg: 'rgba(184,125,26,0.15)',
+    badgeColor: '#E8C06A',
   },
 ]
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 flex flex-col">
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-16 text-center">
-        <div className="mb-6 inline-flex items-center gap-2 bg-blue-500/20 text-blue-200 text-sm px-4 py-2 rounded-full border border-blue-500/30">
-          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-          S&OP / IBP Control Tower — Demo PINSA 2025
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: 'linear-gradient(160deg, #0f1a3b 0%, #242d51 45%, #1a2240 100%)' }}
+    >
+      <div className="flex-1 flex flex-col items-center justify-center px-8 py-16">
+
+        {/* Logo mark */}
+        <div
+          className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-white text-2xl mb-8"
+          style={{
+            background: 'linear-gradient(135deg, #601b4d 0%, #8B2E6A 100%)',
+            boxShadow: '0 0 32px rgba(96,27,77,0.6)',
+          }}
+        >
+          P
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight tracking-tight">
+        {/* Headline */}
+        <div
+          className="text-xs font-semibold uppercase tracking-widest mb-4 px-4 py-1.5 rounded-full"
+          style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.6)', border: '1px solid rgba(255,255,255,0.12)' }}
+        >
+          S&OP / IBP Control Tower · Demo PINSA 2025
+        </div>
+
+        <h1 className="text-4xl md:text-5xl font-black text-white text-center leading-tight tracking-tight mb-4">
           Orquesta tu cadena<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
-            de valor completa
-          </span>
+          <span style={{ color: '#D4A0C0' }}>de valor completa</span>
         </h1>
 
-        <p className="text-slate-300 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
-          De la planeación de la demanda al abasto — una sola plataforma, datos en tiempo real,
+        <p className="text-center max-w-xl mb-12 leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 15 }}>
+          De la planeación de la demanda al abasto — una sola plataforma,
           decisiones más rápidas y menos capital de trabajo.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
-          {roles.map(({ role, description, href, icon: Icon, color, badge, badgeColor }) => (
+        {/* Role cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl mb-14">
+          {roles.map(({ role, description, href, icon: Icon, accentColor, badge, badgeBg, badgeColor }) => (
             <Link
               key={role}
               href={href}
-              className="group bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/40 rounded-2xl p-6 text-left transition-all duration-200 hover:scale-[1.02] hover:shadow-2xl"
+              className="group flex items-start gap-4 p-5 rounded-2xl transition-all duration-200 hover:scale-[1.02]"
+              style={{
+                background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.12)',
+              }}
             >
-              <div className="flex items-start gap-4">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                  <Icon size={22} className="text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="font-semibold text-white">{role}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${badgeColor}`}>{badge}</span>
-                  </div>
-                  <p className="text-slate-300 text-sm leading-relaxed">{description}</p>
-                </div>
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ background: `${accentColor}25`, border: `1px solid ${accentColor}40` }}
+              >
+                <Icon size={20} style={{ color: accentColor }} />
               </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <span className="font-bold text-sm text-white">{role}</span>
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full font-medium"
+                    style={{ background: badgeBg, color: badgeColor }}
+                  >
+                    {badge}
+                  </span>
+                </div>
+                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>{description}</p>
+              </div>
+              <ArrowRight size={14} className="flex-shrink-0 mt-1 opacity-40 group-hover:opacity-80 transition-opacity" style={{ color: 'white' }} />
             </Link>
           ))}
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-3xl">
+        {/* KPI strip */}
+        <div
+          className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden w-full max-w-2xl"
+          style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)' }}
+        >
           {[
-            { label: 'Fill Rate actual', value: '91.4%', target: 'Meta: 95%', alert: true },
-            { label: 'Asertividad pronóstico', value: '71.2%', target: 'Meta: 75%', alert: true },
-            { label: 'Capital de trabajo', value: '$298M', target: 'Meta: $280M', alert: true },
-            { label: 'Cobertura inventario', value: '33 días', target: 'Rango: 30–45', alert: false },
-          ].map(({ label, value, target, alert }) => (
-            <div key={label} className="text-center">
-              <div className={`text-2xl font-bold ${alert ? 'text-amber-400' : 'text-emerald-400'}`}>{value}</div>
-              <div className="text-slate-300 text-sm mt-1">{label}</div>
-              <div className="text-slate-500 text-xs mt-0.5">{target}</div>
+            { label: 'Fill Rate', value: '91.4%', meta: 'Meta 95%', ok: false },
+            { label: 'Asertividad', value: '71.2%', meta: 'Meta 75%', ok: false },
+            { label: 'Capital trabajo', value: '$298M', meta: 'Meta $280M', ok: false },
+            { label: 'Días cobertura', value: '33d', meta: 'Rango 30–45d', ok: true },
+          ].map(({ label, value, meta, ok }) => (
+            <div
+              key={label}
+              className="flex flex-col items-center justify-center py-5 px-3 text-center"
+              style={{ background: 'rgba(255,255,255,0.03)' }}
+            >
+              <div className="text-2xl font-black" style={{ color: ok ? '#6ECEC5' : '#E8C06A' }}>{value}</div>
+              <div className="text-xs mt-1 font-medium" style={{ color: 'rgba(255,255,255,0.7)' }}>{label}</div>
+              <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.3)' }}>{meta}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="text-center py-6 text-slate-600 text-xs">
+      <div className="text-center py-5 text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>
         PINSA Torre de Control · Demo confidencial · {new Date().getFullYear()}
       </div>
     </div>

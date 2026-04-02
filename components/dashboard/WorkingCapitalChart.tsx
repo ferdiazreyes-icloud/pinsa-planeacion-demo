@@ -1,37 +1,70 @@
 'use client'
 
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine, ResponsiveContainer } from 'recharts'
+import ReactECharts from 'echarts-for-react'
 
-type DataPoint = {
-  label: string
-  wc: number | null
-}
+type DataPoint = { label: string; wc: number | null }
 
 export default function WorkingCapitalChart({ data }: { data: DataPoint[] }) {
-  return (
-    <ResponsiveContainer width="100%" height={220}>
-      <AreaChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
-        <defs>
-          <linearGradient id="wcGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.2} />
-            <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
-          </linearGradient>
-        </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-        <XAxis dataKey="label" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-        <YAxis
-          domain={[260_000_000, 330_000_000]}
-          tick={{ fontSize: 11, fill: '#94a3b8' }}
-          axisLine={false} tickLine={false}
-          tickFormatter={v => `$${(v / 1_000_000).toFixed(0)}M`}
-        />
-        <Tooltip
-          contentStyle={{ background: '#1e293b', border: 'none', borderRadius: 8, color: '#f8fafc', fontSize: 12 }}
-          formatter={(v) => [`$${(Number(v) / 1_000_000).toFixed(1)}M`, 'Capital de trabajo']}
-        />
-        <ReferenceLine y={280_000_000} stroke="#10b981" strokeDasharray="4 4" label={{ value: 'Meta $280M', fill: '#10b981', fontSize: 10, position: 'right' }} />
-        <Area type="monotone" dataKey="wc" stroke="#f59e0b" strokeWidth={2.5} fill="url(#wcGrad)" dot={{ r: 3, fill: '#f59e0b' }} connectNulls={false} />
-      </AreaChart>
-    </ResponsiveContainer>
-  )
+  const option = {
+    grid: { top: 12, right: 48, bottom: 20, left: 8, containLabel: true },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(255,255,255,0.97)',
+      borderColor: '#D8DAE8',
+      borderWidth: 1,
+      textStyle: { color: '#3D4466', fontSize: 11 },
+      formatter: (params: { name: string; value: number | null }[]) => {
+        const p = params[0]
+        if (!p || p.value === null) return ''
+        return `<span style="font-weight:600;color:#3D4466">${p.name}</span><br/><span style="color:#B87D1A;font-weight:700">$${(p.value / 1e6).toFixed(1)}M</span> Capital de trabajo`
+      },
+    },
+    xAxis: {
+      type: 'category',
+      data: data.map(d => d.label),
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: { color: '#8E93AF', fontSize: 10 },
+    },
+    yAxis: {
+      type: 'value',
+      min: 260_000_000,
+      max: 330_000_000,
+      axisLine: { show: false },
+      axisTick: { show: false },
+      splitLine: { lineStyle: { color: '#ECEDF3', type: 'dashed' } },
+      axisLabel: { color: '#8E93AF', fontSize: 10, formatter: (v: number) => `$${(v / 1e6).toFixed(0)}M` },
+    },
+    series: [
+      {
+        name: 'Capital de trabajo',
+        type: 'line',
+        data: data.map(d => d.wc),
+        smooth: 0.4,
+        symbol: 'circle',
+        symbolSize: 7,
+        lineStyle: { color: '#B87D1A', width: 2.5 },
+        itemStyle: { color: '#B87D1A', borderWidth: 2, borderColor: '#fff' },
+        areaStyle: {
+          color: {
+            type: 'linear',
+            x: 0, y: 0, x2: 0, y2: 1,
+            colorStops: [
+              { offset: 0, color: 'rgba(184,125,26,0.2)' },
+              { offset: 1, color: 'rgba(184,125,26,0)' },
+            ],
+          },
+        },
+        markLine: {
+          silent: true,
+          symbol: 'none',
+          label: { color: '#1A7A6E', fontSize: 10, position: 'end', formatter: '$280M' },
+          lineStyle: { color: '#1A7A6E', type: 'dashed', width: 1.5 },
+          data: [{ yAxis: 280_000_000 }],
+        },
+      },
+    ],
+  }
+
+  return <ReactECharts option={option} style={{ height: 200 }} notMerge />
 }

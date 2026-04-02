@@ -1,6 +1,6 @@
 'use client'
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts'
+import ReactECharts from 'echarts-for-react'
 import { AlertTriangle } from 'lucide-react'
 
 const inventoryPlan = [
@@ -11,15 +11,72 @@ const inventoryPlan = [
   { sku: 'SIR-SARD-425',  demand: 8000,  currentStock: 14900, safetyDays: 38, daysOfCover: 21, replenishment: 8000,  status: 'warning'  as const, statusNote: 'Cobertura justa para temporada' },
 ]
 
-const chartData = inventoryPlan.map(row => ({
-  sku: row.sku.replace('DOL-', '').replace('GUA-', 'GUA-').replace('SIR-', 'SIR-'),
-  daysOfCover: row.daysOfCover,
-  status: row.status,
-}))
+const STATUS_COLORS = {
+  critical: '#9B1C4A',
+  warning:  '#B87D1A',
+  ok:       '#1A7A6E',
+}
 
 export default function Step4Inventory() {
   const totalReplenishment = inventoryPlan.reduce((s, r) => s + r.replenishment, 0)
   const avgDOC = Math.round(inventoryPlan.reduce((s, r) => s + r.daysOfCover, 0) / inventoryPlan.length)
+
+  const barOption = {
+    grid: { top: 12, right: 60, bottom: 20, left: 8, containLabel: true },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(255,255,255,0.97)',
+      borderColor: '#D8DAE8',
+      borderWidth: 1,
+      textStyle: { color: '#3D4466', fontSize: 11 },
+      formatter: (params: { name: string; value: number }[]) => {
+        const p = params[0]
+        if (!p) return ''
+        return `<span style="font-weight:600;color:#3D4466">${p.name}</span><br/><b>${p.value} días</b> de cobertura`
+      },
+    },
+    xAxis: {
+      type: 'category',
+      data: inventoryPlan.map(r => r.sku.replace('DOL-', '').replace('GUA-', 'GUA-').replace('SIR-', 'SIR-')),
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: { color: '#8E93AF', fontSize: 10 },
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { show: false },
+      axisTick: { show: false },
+      splitLine: { lineStyle: { color: '#ECEDF3', type: 'dashed' } },
+      axisLabel: { color: '#8E93AF', fontSize: 10 },
+    },
+    series: [
+      {
+        type: 'bar',
+        barMaxWidth: 48,
+        data: inventoryPlan.map(r => ({
+          value: r.daysOfCover,
+          itemStyle: { color: STATUS_COLORS[r.status], borderRadius: [4, 4, 0, 0] },
+        })),
+        markLine: {
+          silent: true,
+          symbol: 'none',
+          data: [
+            {
+              yAxis: 35,
+              label: { color: '#B87D1A', fontSize: 10, position: 'end', formatter: 'Mín 35d' },
+              lineStyle: { color: '#B87D1A', type: 'dashed', width: 1.5 },
+            },
+            {
+              yAxis: 20,
+              label: { color: '#9B1C4A', fontSize: 10, position: 'end', formatter: 'Crítico 20d' },
+              lineStyle: { color: '#9B1C4A', type: 'dashed', width: 1.5 },
+            },
+          ],
+        },
+      },
+    ],
+  }
 
   return (
     <div className="space-y-8">
@@ -31,12 +88,12 @@ export default function Step4Inventory() {
           <div className="text-sm mt-1 font-semibold" style={{ color: 'var(--text-primary)' }}>Cobertura promedio</div>
           <div className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>Mínimo requerido: 35 días</div>
         </div>
-        <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(43,76,126,0.06)' }}>
+        <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(36,45,81,0.06)' }}>
           <div className="text-3xl font-bold" style={{ color: 'var(--brand-navy)' }}>{totalReplenishment.toLocaleString()}</div>
           <div className="text-sm mt-1 font-semibold" style={{ color: 'var(--text-primary)' }}>Cajas a reponer (Mar 25)</div>
           <div className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>~{Math.round(totalReplenishment / 48)} pallets</div>
         </div>
-        <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(220,38,38,0.06)' }}>
+        <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(155,28,74,0.06)' }}>
           <div className="text-3xl font-bold" style={{ color: 'var(--negative)' }}>2</div>
           <div className="text-sm mt-1 font-semibold" style={{ color: 'var(--text-primary)' }}>SKUs en estado crítico</div>
           <div className="text-xs mt-0.5" style={{ color: 'var(--negative)' }}>Requieren acción inmediata</div>
@@ -45,25 +102,8 @@ export default function Step4Inventory() {
 
       {/* Bar chart */}
       <div>
-        <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Días de cobertura proyectada — cierre Mar 2025</div>
-        <ResponsiveContainer width="100%" height={200}>
-          <BarChart data={chartData} barSize={36} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="var(--border-secondary)" vertical={false} />
-            <XAxis dataKey="sku" tick={{ fontSize: 10, fill: 'var(--text-tertiary)' }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 11, fill: 'var(--text-tertiary)' }} axisLine={false} tickLine={false} />
-            <Tooltip
-              contentStyle={{ background: 'rgba(255,255,255,0.96)', border: '1px solid var(--border-primary)', borderRadius: 8, fontSize: 11 }}
-              formatter={(v) => [`${v} días`]}
-            />
-            <ReferenceLine y={35} stroke="#f59e0b" strokeDasharray="4 4" label={{ value: 'Mín 35d', fill: '#f59e0b', fontSize: 10, position: 'right' }} />
-            <ReferenceLine y={20} stroke="#ef4444" strokeDasharray="4 4" label={{ value: 'Crítico 20d', fill: '#ef4444', fontSize: 10, position: 'right' }} />
-            <Bar dataKey="daysOfCover" radius={[4, 4, 0, 0]}>
-              {chartData.map((entry, i) => (
-                <Cell key={i} fill={entry.status === 'critical' ? 'var(--negative)' : entry.status === 'warning' ? 'var(--warning)' : 'var(--positive)'} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Días de cobertura proyectada — cierre Mar 2025</div>
+        <ReactECharts option={barOption} style={{ height: 220 }} notMerge />
       </div>
 
       {/* Detail table */}
@@ -87,18 +127,12 @@ export default function Step4Inventory() {
                   <td className="px-4 py-3 font-medium text-xs" style={{ color: 'var(--text-primary)' }}>{row.sku}</td>
                   <td className="px-4 py-3 text-right text-xs" style={{ color: 'var(--text-secondary)' }}>{row.demand.toLocaleString()}</td>
                   <td className="px-4 py-3 text-right text-xs" style={{ color: 'var(--text-secondary)' }}>{row.currentStock.toLocaleString()}</td>
-                  <td
-                    className="px-4 py-3 text-right font-semibold text-xs"
-                    style={{ color: row.status === 'critical' ? 'var(--negative)' : row.status === 'warning' ? 'var(--warning)' : 'var(--positive)' }}
-                  >
+                  <td className="px-4 py-3 text-right font-semibold text-xs" style={{ color: STATUS_COLORS[row.status] }}>
                     {row.daysOfCover}d
                   </td>
                   <td className="px-4 py-3 text-right font-medium text-xs" style={{ color: 'var(--brand-navy)' }}>{row.replenishment.toLocaleString()}</td>
                   <td className="px-4 py-3">
-                    <span
-                      className="flex items-center gap-1.5 text-xs font-medium"
-                      style={{ color: row.status === 'critical' ? 'var(--negative)' : row.status === 'warning' ? 'var(--warning)' : 'var(--positive)' }}
-                    >
+                    <span className="flex items-center gap-1.5 text-xs font-medium" style={{ color: STATUS_COLORS[row.status] }}>
                       <AlertTriangle size={12} />
                       {row.statusNote}
                     </span>
@@ -111,7 +145,7 @@ export default function Step4Inventory() {
       </div>
 
       {/* Footer note */}
-      <div className="px-4 py-3 rounded-xl" style={{ background: 'rgba(43,76,126,0.06)', border: '1px solid rgba(43,76,126,0.2)' }}>
+      <div className="px-4 py-3 rounded-xl" style={{ background: 'rgba(36,45,81,0.06)', border: '1px solid rgba(36,45,81,0.15)' }}>
         <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
           <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Plan listo para validación financiera.</span>{' '}
           La orden de reposición total representa un desembolso estimado de <span className="font-bold" style={{ color: 'var(--brand-navy)' }}>$22.4M MXN</span> en materiales y producción.

@@ -1,57 +1,92 @@
 'use client'
 
-import { TrendingUp, TrendingDown, Minus, AlertTriangle } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
 
 type Props = {
   title: string
   value: string
   target: string
-  trend: number // percentage change vs previous period
+  trend: number
   status: 'ok' | 'warning' | 'critical'
   icon: React.ReactNode
-  unit?: string
   subtitle?: string
 }
 
+function useCountUp(active: boolean) {
+  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { threshold: 0.1 })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, visible }
+}
+
+const statusDot = {
+  ok:       'bg-emerald-400',
+  warning:  'bg-amber-400',
+  critical: 'bg-red-500',
+}
+
+const statusLabel = {
+  ok:       { text: 'En meta',     bg: 'rgba(26,122,110,0.08)',  color: '#1A7A6E' },
+  warning:  { text: 'Por mejorar', bg: 'rgba(184,125,26,0.08)',  color: '#B87D1A' },
+  critical: { text: 'Alerta',      bg: 'rgba(155,28,74,0.08)',   color: '#9B1C4A' },
+}
+
 export default function KPICard({ title, value, target, trend, status, icon, subtitle }: Props) {
-  const statusStyles = {
-    ok: 'border-l-4 border-l-emerald-500',
-    warning: 'border-l-4 border-l-amber-500',
-    critical: 'border-l-4 border-l-red-500',
-  }
-
-  const statusBadge = {
-    ok: 'bg-emerald-100 text-emerald-700',
-    warning: 'bg-amber-100 text-amber-700',
-    critical: 'bg-red-100 text-red-700',
-  }
-
-  const statusLabel = { ok: 'En meta', warning: 'Por mejorar', critical: 'Alerta' }
+  const { ref, visible } = useCountUp(true)
+  const s = statusLabel[status]
 
   return (
-    <div className={`bg-white rounded-xl p-5 shadow-sm ${statusStyles[status]} hover:shadow-md transition-shadow`}>
-      <div className="flex items-start justify-between mb-3">
-        <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600">
+    <div
+      ref={ref}
+      className="ec-card p-5 animate-fade-in-up"
+    >
+      {/* Top row */}
+      <div className="flex items-start justify-between mb-4">
+        <div
+          className="w-9 h-9 rounded-xl flex items-center justify-center"
+          style={{ background: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}
+        >
           {icon}
         </div>
-        <span className={`text-xs font-medium px-2 py-1 rounded-full ${statusBadge[status]}`}>
-          {status === 'warning' || status === 'critical' ? (
-            <span className="flex items-center gap-1"><AlertTriangle size={10} />{statusLabel[status]}</span>
-          ) : statusLabel[status]}
+        <span
+          className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full"
+          style={{ background: s.bg, color: s.color }}
+        >
+          <span className={`w-1.5 h-1.5 rounded-full ${statusDot[status]}`} />
+          {s.text}
         </span>
       </div>
 
-      <div className="mt-2">
-        <div className="text-3xl font-bold text-slate-900 tracking-tight">{value}</div>
-        <div className="text-sm text-slate-500 mt-0.5">{title}</div>
-        {subtitle && <div className="text-xs text-slate-400 mt-0.5">{subtitle}</div>}
+      {/* Value */}
+      <div className={visible ? 'animate-count-up' : 'opacity-0'}>
+        <div
+          className="text-3xl font-black tracking-tight leading-none"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          {value}
+        </div>
+        <div className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>{title}</div>
+        {subtitle && <div className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{subtitle}</div>}
       </div>
 
-      <div className="mt-3 flex items-center justify-between">
-        <span className="text-xs text-slate-400">Meta: <span className="text-slate-600 font-medium">{target}</span></span>
-        <div className={`flex items-center gap-1 text-xs font-medium ${trend > 0 ? 'text-emerald-600' : trend < 0 ? 'text-red-500' : 'text-slate-400'}`}>
-          {trend > 0 ? <TrendingUp size={12} /> : trend < 0 ? <TrendingDown size={12} /> : <Minus size={12} />}
-          {Math.abs(trend).toFixed(1)}pp vs mes ant.
+      {/* Footer */}
+      <div className="mt-4 pt-3 flex items-center justify-between" style={{ borderTop: '1px solid var(--border-secondary)' }}>
+        <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
+          Meta: <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>{target}</span>
+        </span>
+        <div
+          className="flex items-center gap-1 text-xs font-semibold"
+          style={{ color: trend > 0 ? 'var(--positive)' : trend < 0 ? 'var(--negative)' : 'var(--text-tertiary)' }}
+        >
+          {trend > 0 ? <TrendingUp size={11} /> : trend < 0 ? <TrendingDown size={11} /> : <Minus size={11} />}
+          {Math.abs(trend).toFixed(1)}pp
         </div>
       </div>
     </div>

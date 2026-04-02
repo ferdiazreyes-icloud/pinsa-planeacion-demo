@@ -3,11 +3,8 @@
 import { useState, useMemo } from 'react'
 import { generateScenarioTimeline } from '@/lib/calculations'
 import { formatCurrency } from '@/lib/formatters'
-import {
-  LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, ReferenceLine, Legend
-} from 'recharts'
-import { Sliders, RefreshCw, Info } from 'lucide-react'
+import ReactECharts from 'echarts-for-react'
+import { RefreshCw, Info } from 'lucide-react'
 
 const HORIZON_OPTIONS = [
   { label: '1 mes', months: 1 },
@@ -25,239 +22,314 @@ type SliderProps = {
   step: number
   format: (v: number) => string
   onChange: (v: number) => void
-  color: string
+  accentColor: string
 }
 
-function ScenarioSlider({ label, description, value, min, max, step, format, onChange, color }: SliderProps) {
+function ScenarioSlider({ label, description, value, min, max, step, format, onChange, accentColor }: SliderProps) {
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between">
+    <div className="space-y-2.5">
+      <div className="flex items-start justify-between">
         <div>
-          <div className="text-sm font-semibold text-slate-700">{label}</div>
-          <div className="text-xs text-slate-400">{description}</div>
+          <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{label}</div>
+          <div className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{description}</div>
         </div>
-        <span className={`text-lg font-bold ${color}`}>{format(value)}</span>
+        <span className="text-lg font-black ml-4 flex-shrink-0" style={{ color: accentColor }}>{format(value)}</span>
       </div>
       <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
+        type="range" min={min} max={max} step={step} value={value}
         onChange={e => onChange(Number(e.target.value))}
-        className="w-full h-2 bg-slate-200 rounded-full appearance-none cursor-pointer accent-blue-600"
+        style={{ accentColor }}
       />
-      <div className="flex justify-between text-xs text-slate-400">
-        <span>{format(min)}</span>
-        <span>{format(max)}</span>
+      <div className="flex justify-between text-xs" style={{ color: 'var(--text-tertiary)' }}>
+        <span>{format(min)}</span><span>{format(max)}</span>
       </div>
     </div>
   )
 }
 
 export default function SimulatorPage() {
-  const [horizon, setHorizon] = useState(3)
-  const [rawMatChange, setRawMatChange] = useState(0)
+  const [horizon, setHorizon]               = useState(3)
+  const [rawMatChange, setRawMatChange]     = useState(0)
   const [supplyDisruption, setSupplyDisruption] = useState(0)
-  const [demandChange, setDemandChange] = useState(0)
-  const [safetyStock, setSafetyStock] = useState(33)
+  const [demandChange, setDemandChange]     = useState(0)
+  const [safetyStock, setSafetyStock]       = useState(33)
 
   const scenarioData = useMemo(
     () => generateScenarioTimeline({ rawMaterialPriceChangePct: rawMatChange, supplyDisruptionPct: supplyDisruption, demandChangePct: demandChange, safetyStockDays: safetyStock }, horizon),
     [rawMatChange, supplyDisruption, demandChange, safetyStock, horizon]
   )
 
-  const avgFillRate = scenarioData.reduce((s, d) => s + d.fillRate, 0) / scenarioData.length
-  const avgWC = scenarioData.reduce((s, d) => s + d.workingCapitalMXN, 0) / scenarioData.length
+  const avgFillRate        = scenarioData.reduce((s, d) => s + d.fillRate, 0) / scenarioData.length
+  const avgWC              = scenarioData.reduce((s, d) => s + d.workingCapitalMXN, 0) / scenarioData.length
   const totalRevenueAtRisk = scenarioData.reduce((s, d) => s + d.revenueAtRiskMXN, 0)
-  const totalCogsDelta = scenarioData.reduce((s, d) => s + d.cogsDeltaMXN, 0)
+  const totalCogsDelta     = scenarioData.reduce((s, d) => s + d.cogsDeltaMXN, 0)
+  const hasChanges         = rawMatChange !== 0 || supplyDisruption !== 0 || demandChange !== 0 || safetyStock !== 33
 
-  const hasChanges = rawMatChange !== 0 || supplyDisruption !== 0 || demandChange !== 0 || safetyStock !== 33
+  const fillRateOption = {
+    grid: { top: 12, right: 44, bottom: 20, left: 8, containLabel: true },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(255,255,255,0.97)',
+      borderColor: '#D8DAE8',
+      borderWidth: 1,
+      textStyle: { color: '#3D4466', fontSize: 11 },
+      formatter: (params: { seriesName: string; value: number; name: string }[]) =>
+        `<span style="font-weight:600;color:#3D4466">${params[0]?.name ?? ''}</span><br/>` +
+        params.map(p => `${p.seriesName}: <b>${Number(p.value).toFixed(1)}%</b>`).join('<br/>'),
+    },
+    legend: { bottom: 0, itemWidth: 10, itemHeight: 10, textStyle: { color: '#8E93AF', fontSize: 11 } },
+    xAxis: {
+      type: 'category',
+      data: scenarioData.map(d => d.label),
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: { color: '#8E93AF', fontSize: 10 },
+    },
+    yAxis: {
+      type: 'value',
+      min: 75, max: 100,
+      axisLine: { show: false },
+      axisTick: { show: false },
+      splitLine: { lineStyle: { color: '#ECEDF3', type: 'dashed' } },
+      axisLabel: { color: '#8E93AF', fontSize: 10, formatter: (v: number) => `${v}%` },
+    },
+    series: [
+      {
+        name: 'Baseline',
+        type: 'line',
+        data: scenarioData.map(d => d.baselineFillRate),
+        smooth: 0.3,
+        symbol: 'none',
+        lineStyle: { color: '#acacac', width: 1.5, type: 'dashed' },
+        markLine: {
+          silent: true,
+          symbol: 'none',
+          data: [{ yAxis: 95, label: { color: '#1A7A6E', fontSize: 10, position: 'end', formatter: '95%' }, lineStyle: { color: '#1A7A6E', type: 'dashed', width: 1.5 } }],
+        },
+      },
+      {
+        name: 'Escenario',
+        type: 'line',
+        data: scenarioData.map(d => d.fillRate),
+        smooth: 0.3,
+        symbol: 'circle',
+        symbolSize: 7,
+        lineStyle: { color: '#242d51', width: 2.5 },
+        itemStyle: { color: '#242d51', borderWidth: 2, borderColor: '#fff' },
+      },
+    ],
+  }
 
-  const handleReset = () => {
-    setRawMatChange(0)
-    setSupplyDisruption(0)
-    setDemandChange(0)
-    setSafetyStock(33)
+  const wcOption = {
+    grid: { top: 12, right: 56, bottom: 20, left: 8, containLabel: true },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(255,255,255,0.97)',
+      borderColor: '#D8DAE8',
+      borderWidth: 1,
+      textStyle: { color: '#3D4466', fontSize: 11 },
+      formatter: (params: { seriesName: string; value: number; name: string }[]) =>
+        `<span style="font-weight:600;color:#3D4466">${params[0]?.name ?? ''}</span><br/>` +
+        params.map(p => `${p.seriesName}: <b>$${(p.value / 1e6).toFixed(1)}M</b>`).join('<br/>'),
+    },
+    legend: { bottom: 0, itemWidth: 10, itemHeight: 10, textStyle: { color: '#8E93AF', fontSize: 11 } },
+    xAxis: {
+      type: 'category',
+      data: scenarioData.map(d => d.label),
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: { color: '#8E93AF', fontSize: 10 },
+    },
+    yAxis: {
+      type: 'value',
+      min: 220e6, max: 400e6,
+      axisLine: { show: false },
+      axisTick: { show: false },
+      splitLine: { lineStyle: { color: '#ECEDF3', type: 'dashed' } },
+      axisLabel: { color: '#8E93AF', fontSize: 10, formatter: (v: number) => `$${(v / 1e6).toFixed(0)}M` },
+    },
+    series: [
+      {
+        name: 'Baseline',
+        type: 'line',
+        data: scenarioData.map(d => d.baselineWC),
+        smooth: 0.3,
+        symbol: 'none',
+        lineStyle: { color: '#acacac', width: 1.5, type: 'dashed' },
+        areaStyle: { color: 'rgba(172,172,172,0.06)' },
+        markLine: {
+          silent: true,
+          symbol: 'none',
+          data: [{ yAxis: 280e6, label: { color: '#1A7A6E', fontSize: 10, position: 'end', formatter: '$280M' }, lineStyle: { color: '#1A7A6E', type: 'dashed', width: 1.5 } }],
+        },
+      },
+      {
+        name: 'Escenario',
+        type: 'line',
+        data: scenarioData.map(d => d.workingCapitalMXN),
+        smooth: 0.3,
+        symbol: 'circle',
+        symbolSize: 7,
+        lineStyle: { color: '#B87D1A', width: 2.5 },
+        itemStyle: { color: '#B87D1A', borderWidth: 2, borderColor: '#fff' },
+        areaStyle: {
+          color: {
+            type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+            colorStops: [
+              { offset: 0, color: 'rgba(184,125,26,0.18)' },
+              { offset: 1, color: 'rgba(184,125,26,0)' },
+            ],
+          },
+        },
+      },
+    ],
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 py-8">
-      <div className="flex items-center justify-between mb-8">
+    <div className="px-8 py-7 max-w-screen-xl">
+
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Simulador de Escenarios</h1>
-          <p className="text-slate-500 text-sm mt-1">Ajusta las variables y ve el impacto en tiempo real</p>
+          <h1 className="text-xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Simulador de Escenarios</h1>
+          <p className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>Ajusta las variables y ve el impacto en tiempo real</p>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-slate-100 rounded-xl p-1">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: 'var(--bg-tertiary)' }}>
             {HORIZON_OPTIONS.map(opt => (
               <button
                 key={opt.months}
                 onClick={() => setHorizon(opt.months)}
-                className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${horizon === opt.months ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                className="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                style={{
+                  background: horizon === opt.months ? 'var(--bg-secondary)' : 'transparent',
+                  color: horizon === opt.months ? 'var(--text-primary)' : 'var(--text-tertiary)',
+                  boxShadow: horizon === opt.months ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
+                }}
               >
                 {opt.label}
               </button>
             ))}
           </div>
           {hasChanges && (
-            <button onClick={handleReset} className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-700 px-3 py-2 border border-slate-200 rounded-xl hover:bg-slate-50">
-              <RefreshCw size={13} /> Reset
+            <button
+              onClick={() => { setRawMatChange(0); setSupplyDisruption(0); setDemandChange(0); setSafetyStock(33) }}
+              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-xl transition-colors"
+              style={{ border: '1px solid var(--border-primary)', color: 'var(--text-secondary)', background: 'var(--bg-secondary)' }}
+            >
+              <RefreshCw size={12} /> Reset
             </button>
           )}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
         {/* Controls */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-8">
-          <div className="flex items-center gap-2 text-slate-700 font-semibold">
-            <Sliders size={16} />
+        <div className="ec-card p-6 space-y-7 animate-fade-in-up">
+          <div className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--text-tertiary)' }}>
             Variables del escenario
           </div>
 
           <ScenarioSlider
             label="Precio materia prima"
-            description="Variación vs precio actual (atún, aceite, hojalata)"
-            value={rawMatChange}
-            min={-30}
-            max={50}
-            step={1}
+            description="Variación vs precio actual"
+            value={rawMatChange} min={-30} max={50} step={1}
             format={v => `${v > 0 ? '+' : ''}${v}%`}
             onChange={setRawMatChange}
-            color={rawMatChange > 0 ? 'text-red-500' : rawMatChange < 0 ? 'text-emerald-600' : 'text-slate-400'}
+            accentColor={rawMatChange > 0 ? 'var(--negative)' : rawMatChange < 0 ? 'var(--positive)' : 'var(--text-tertiary)'}
           />
-
           <ScenarioSlider
-            label="Desabasto de materia prima"
-            description="% del abasto en riesgo (veda, proveedor, aranceles)"
-            value={supplyDisruption}
-            min={0}
-            max={80}
-            step={5}
+            label="Desabasto de MP"
+            description="% del abasto en riesgo"
+            value={supplyDisruption} min={0} max={80} step={5}
             format={v => `${v}%`}
             onChange={setSupplyDisruption}
-            color={supplyDisruption > 30 ? 'text-red-500' : supplyDisruption > 10 ? 'text-amber-600' : 'text-slate-400'}
+            accentColor={supplyDisruption > 30 ? 'var(--negative)' : supplyDisruption > 10 ? 'var(--warning)' : 'var(--text-tertiary)'}
           />
-
           <ScenarioSlider
             label="Variación de demanda"
-            description="Cambio vs pronóstico base (estacionalidad, promo, etc.)"
-            value={demandChange}
-            min={-30}
-            max={50}
-            step={1}
+            description="vs pronóstico base"
+            value={demandChange} min={-30} max={50} step={1}
             format={v => `${v > 0 ? '+' : ''}${v}%`}
             onChange={setDemandChange}
-            color={demandChange > 0 ? 'text-blue-600' : demandChange < 0 ? 'text-amber-600' : 'text-slate-400'}
+            accentColor={demandChange >= 0 ? 'var(--brand-navy)' : 'var(--warning)'}
           />
-
           <ScenarioSlider
-            label="Política de inventario de seguridad"
-            description="Días de cobertura mínima requerida"
-            value={safetyStock}
-            min={15}
-            max={90}
-            step={5}
-            format={v => `${v} días`}
+            label="Stock de seguridad"
+            description="Días de cobertura mínima"
+            value={safetyStock} min={15} max={90} step={5}
+            format={v => `${v}d`}
             onChange={setSafetyStock}
-            color={safetyStock > 60 ? 'text-amber-600' : safetyStock < 20 ? 'text-red-500' : 'text-slate-600'}
+            accentColor={safetyStock > 60 ? 'var(--warning)' : safetyStock < 20 ? 'var(--negative)' : 'var(--brand-teal)'}
           />
 
-          {/* Scenario summary */}
-          <div className="bg-slate-50 rounded-xl p-4 space-y-3">
-            <div className="text-xs font-semibold text-slate-600 uppercase tracking-wider">Impacto del escenario</div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-600">Fill Rate promedio</span>
-                <span className={`font-semibold ${avgFillRate >= 93 ? 'text-emerald-600' : avgFillRate >= 88 ? 'text-amber-600' : 'text-red-500'}`}>
-                  {avgFillRate.toFixed(1)}%
-                </span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-600">Capital de trabajo prom.</span>
-                <span className="font-semibold text-slate-800">{formatCurrency(avgWC, true)}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-600">Revenue en riesgo</span>
-                <span className={`font-semibold ${totalRevenueAtRisk > 0 ? 'text-red-500' : 'text-emerald-600'}`}>
-                  {totalRevenueAtRisk > 0 ? `-${formatCurrency(totalRevenueAtRisk, true)}` : '$0'}
-                </span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-600">Δ COGS materiales</span>
-                <span className={`font-semibold ${totalCogsDelta > 0 ? 'text-red-500' : 'text-emerald-600'}`}>
-                  {totalCogsDelta > 0 ? '+' : ''}{formatCurrency(totalCogsDelta, true)}
-                </span>
-              </div>
+          {/* Impact summary */}
+          <div className="pt-1">
+            <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text-tertiary)' }}>
+              Impacto del escenario
+            </div>
+            <div className="space-y-2.5">
+              {[
+                {
+                  label: 'Fill Rate promedio',
+                  value: `${avgFillRate.toFixed(1)}%`,
+                  color: avgFillRate >= 93 ? 'var(--positive)' : avgFillRate >= 88 ? 'var(--warning)' : 'var(--negative)',
+                },
+                {
+                  label: 'Capital de trabajo',
+                  value: formatCurrency(avgWC, true),
+                  color: 'var(--text-primary)',
+                },
+                {
+                  label: 'Revenue en riesgo',
+                  value: totalRevenueAtRisk > 0 ? `-${formatCurrency(totalRevenueAtRisk, true)}` : '$0',
+                  color: totalRevenueAtRisk > 0 ? 'var(--negative)' : 'var(--positive)',
+                },
+                {
+                  label: 'Δ COGS materiales',
+                  value: `${totalCogsDelta > 0 ? '+' : ''}${formatCurrency(totalCogsDelta, true)}`,
+                  color: totalCogsDelta > 0 ? 'var(--negative)' : 'var(--positive)',
+                },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="flex items-center justify-between">
+                  <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>{label}</span>
+                  <span className="text-sm font-bold" style={{ color }}>{value}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Charts */}
         <div className="lg:col-span-2 space-y-5">
+
           {/* Fill Rate */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
-            <h3 className="text-sm font-semibold text-slate-700 mb-4">Fill Rate proyectado vs baseline</h3>
-            <ResponsiveContainer width="100%" height={200}>
-              <LineChart data={scenarioData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                <XAxis dataKey="label" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                <YAxis domain={[75, 100]} tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={v => `${v}%`} />
-                <Tooltip contentStyle={{ background: '#1e293b', border: 'none', borderRadius: 8, color: '#f8fafc', fontSize: 12 }} formatter={(v) => [`${Number(v).toFixed(1)}%`]} />
-                <ReferenceLine y={95} stroke="#10b981" strokeDasharray="4 4" label={{ value: 'Meta 95%', fill: '#10b981', fontSize: 10, position: 'right' }} />
-                <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 11 }} />
-                <Line type="monotone" dataKey="baselineFillRate" name="Baseline" stroke="#94a3b8" strokeWidth={1.5} strokeDasharray="4 4" dot={false} />
-                <Line type="monotone" dataKey="fillRate" name="Escenario" stroke="#3b82f6" strokeWidth={2.5} dot={{ r: 4, fill: '#3b82f6' }} />
-              </LineChart>
-            </ResponsiveContainer>
+          <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+            <div className="text-sm font-bold mb-1" style={{ color: 'var(--text-primary)' }}>Fill Rate proyectado vs baseline</div>
+            <ReactECharts option={fillRateOption} style={{ height: 210 }} notMerge />
           </div>
 
           {/* Working Capital */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
-            <h3 className="text-sm font-semibold text-slate-700 mb-4">Capital de trabajo proyectado</h3>
-            <ResponsiveContainer width="100%" height={200}>
-              <AreaChart data={scenarioData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="wcScenGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.2} />
-                    <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient id="wcBaseGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.1} />
-                    <stop offset="95%" stopColor="#94a3b8" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                <XAxis dataKey="label" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                <YAxis
-                  domain={[220_000_000, 400_000_000]}
-                  tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false}
-                  tickFormatter={v => `$${(v / 1_000_000).toFixed(0)}M`}
-                />
-                <Tooltip contentStyle={{ background: '#1e293b', border: 'none', borderRadius: 8, color: '#f8fafc', fontSize: 12 }} formatter={(v) => [`$${(Number(v) / 1_000_000).toFixed(1)}M`]} />
-                <ReferenceLine y={280_000_000} stroke="#10b981" strokeDasharray="4 4" label={{ value: 'Meta $280M', fill: '#10b981', fontSize: 10, position: 'right' }} />
-                <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 11 }} />
-                <Area type="monotone" dataKey="baselineWC" name="Baseline" stroke="#94a3b8" fill="url(#wcBaseGrad)" strokeWidth={1.5} strokeDasharray="4 4" dot={false} />
-                <Area type="monotone" dataKey="workingCapitalMXN" name="Escenario" stroke="#f59e0b" fill="url(#wcScenGrad)" strokeWidth={2.5} dot={{ r: 4, fill: '#f59e0b' }} />
-              </AreaChart>
-            </ResponsiveContainer>
+          <div className="ec-card p-5 animate-fade-in-up" style={{ animationDelay: '160ms' }}>
+            <div className="text-sm font-bold mb-1" style={{ color: 'var(--text-primary)' }}>Capital de trabajo proyectado</div>
+            <ReactECharts option={wcOption} style={{ height: 210 }} notMerge />
           </div>
 
-          {/* Scenario description */}
+          {/* Narrative */}
           {hasChanges && (
-            <div className="bg-slate-800 text-white rounded-2xl p-5">
-              <div className="flex items-start gap-3">
-                <Info size={16} className="text-blue-400 flex-shrink-0 mt-0.5" />
-                <div className="text-sm leading-relaxed text-slate-200">
-                  <span className="text-white font-semibold">Interpretación del escenario:</span>{' '}
-                  {supplyDisruption > 20 && `Con un ${supplyDisruption}% de desabasto, el fill rate cae a ~${avgFillRate.toFixed(0)}%, generando ~${formatCurrency(totalRevenueAtRisk, true)} en ventas perdidas. `}
-                  {rawMatChange > 10 && `El alza de ${rawMatChange}% en MP incrementa COGS en ${formatCurrency(Math.abs(totalCogsDelta), true)} adicionales. `}
-                  {demandChange > 15 && `El incremento de demanda de ${demandChange}% requiere mayor capital de trabajo (${formatCurrency(avgWC, true)} promedio). `}
-                  {safetyStock > 50 && `Aumentar el stock de seguridad a ${safetyStock} días inmoviliza capital adicional pero reduce riesgo de desabasto. `}
-                  {!supplyDisruption && !rawMatChange && demandChange <= 0 && safetyStock <= 45 && 'Ajusta las variables para ver el impacto en fill rate y capital de trabajo.'}
-                </div>
-              </div>
+            <div
+              className="flex items-start gap-3 p-4 rounded-xl animate-fade-in-up"
+              style={{ background: 'rgba(36,45,81,0.06)', border: '1px solid rgba(36,45,81,0.12)', animationDelay: '220ms' }}
+            >
+              <Info size={15} style={{ color: 'var(--brand-navy)', flexShrink: 0, marginTop: 1 }} />
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Interpretación: </span>
+                {supplyDisruption > 20 && `Con ${supplyDisruption}% de desabasto el fill rate cae a ~${avgFillRate.toFixed(0)}%, generando ~${formatCurrency(totalRevenueAtRisk, true)} en ventas perdidas. `}
+                {rawMatChange > 10 && `Alza de ${rawMatChange}% en MP incrementa COGS en ${formatCurrency(Math.abs(totalCogsDelta), true)} adicionales. `}
+                {demandChange > 15 && `Incremento de demanda ${demandChange}% requiere mayor capital de trabajo (${formatCurrency(avgWC, true)} promedio). `}
+                {safetyStock > 50 && `Aumentar stock de seguridad a ${safetyStock} días reduce riesgo de quiebre pero inmoviliza capital adicional. `}
+              </p>
             </div>
           )}
         </div>

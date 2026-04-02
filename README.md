@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.1.0 · **Status:** Demo V0
+**Version:** 0.2.0 · **Status:** Demo V0 — ECharts + Paleta PINSA
 
 ---
 
@@ -17,6 +17,14 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Plan de inventarios (días de cobertura, órdenes de reposición)
   - [x] Paso 5: Validación financiera (P&L, riesgos, aprobación)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, política inventario), horizonte 1–12 meses, gráficas reactivas en tiempo real
+
+## Completado en v0.2.0
+
+- [x] **Fase A** — Paleta de colores PINSA oficial aplicada en todo el sistema
+- [x] **Fase B** — Migración de Recharts → Apache ECharts (8 componentes)
+- [x] **Fase C** — Polish visual final: Home, Dashboard, S&OP, Simulador
+
+Ver `tasks.md` para historial de tareas.
 
 ## Pendientes (V1)
 
@@ -50,4 +58,8 @@ npm run start
 
 ## Stack
 
-Next.js 14 · TypeScript · Tailwind CSS · Recharts · lucide-react · Railway
+Next.js 14 · TypeScript · Tailwind CSS · Apache ECharts · lucide-react · Railway
+
+## Rama activa
+
+`feature/echart-style` — Migración a ECharts + paleta de colores PINSA oficial

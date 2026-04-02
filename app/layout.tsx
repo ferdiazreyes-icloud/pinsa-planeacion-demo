@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
+import SidebarLayout from "@/components/layout/SidebarLayout";
 
 export const metadata: Metadata = {
   title: "PINSA | Torre de Control de Planeación",
@@ -14,9 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="h-full">
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
-        <Navbar />
-        <main className="flex-1">{children}</main>
+      <body className="h-full" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+        <SidebarLayout>{children}</SidebarLayout>
       </body>
     </html>
   );

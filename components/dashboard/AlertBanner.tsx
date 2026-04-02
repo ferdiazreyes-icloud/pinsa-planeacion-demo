@@ -1,4 +1,4 @@
-import { AlertTriangle, AlertCircle, Info, Zap } from 'lucide-react'
+import { Zap, AlertTriangle, Info } from 'lucide-react'
 import { formatCurrency } from '@/lib/formatters'
 
 type Alert = {
@@ -10,33 +10,40 @@ type Alert = {
   financialImpactMXN: number
 }
 
-const severityConfig = {
-  high: { icon: Zap, bg: 'bg-red-50', border: 'border-red-200', iconColor: 'text-red-500', badge: 'bg-red-100 text-red-700' },
-  medium: { icon: AlertTriangle, bg: 'bg-amber-50', border: 'border-amber-200', iconColor: 'text-amber-500', badge: 'bg-amber-100 text-amber-700' },
-  low: { icon: Info, bg: 'bg-blue-50', border: 'border-blue-200', iconColor: 'text-blue-500', badge: 'bg-blue-100 text-blue-700' },
+const cfg = {
+  high:   { icon: Zap,           bg: 'rgba(155,28,74,0.05)',   border: 'rgba(155,28,74,0.18)',  iconColor: '#9B1C4A', badgeBg: 'rgba(155,28,74,0.08)',  badgeColor: '#9B1C4A', label: 'Alta' },
+  medium: { icon: AlertTriangle, bg: 'rgba(184,125,26,0.05)',  border: 'rgba(184,125,26,0.18)', iconColor: '#B87D1A', badgeBg: 'rgba(184,125,26,0.08)', badgeColor: '#B87D1A', label: 'Media' },
+  low:    { icon: Info,          bg: 'rgba(36,45,81,0.04)',    border: 'rgba(36,45,81,0.15)',   iconColor: '#242d51', badgeBg: 'rgba(36,45,81,0.08)',   badgeColor: '#242d51', label: 'Baja' },
 }
 
 export default function AlertBanner({ alerts }: { alerts: Alert[] }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {alerts.map(alert => {
-        const cfg = severityConfig[alert.severity]
-        const Icon = cfg.icon
+        const c = cfg[alert.severity]
+        const Icon = c.icon
         return (
-          <div key={alert.id} className={`${cfg.bg} border ${cfg.border} rounded-xl p-4 flex items-start gap-3`}>
-            <Icon size={18} className={`${cfg.iconColor} flex-shrink-0 mt-0.5`} />
+          <div
+            key={alert.id}
+            className="flex items-start gap-3 px-4 py-3 rounded-xl transition-all"
+            style={{ background: c.bg, border: `1px solid ${c.border}` }}
+          >
+            <Icon size={15} style={{ color: c.iconColor, flexShrink: 0, marginTop: 2 }} />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-semibold text-slate-800 text-sm">{alert.title}</span>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${cfg.badge}`}>
-                  {alert.severity === 'high' ? 'Alta' : alert.severity === 'medium' ? 'Media' : 'Baja'} prioridad
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{alert.title}</span>
+                <span
+                  className="text-xs px-2 py-0.5 rounded-full font-medium"
+                  style={{ background: c.badgeBg, color: c.badgeColor }}
+                >
+                  {c.label}
                 </span>
               </div>
-              <p className="text-slate-600 text-sm mt-1 leading-relaxed">{alert.description}</p>
+              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{alert.description}</p>
             </div>
             <div className="text-right flex-shrink-0">
-              <div className="text-sm font-semibold text-slate-700">{formatCurrency(alert.financialImpactMXN, true)}</div>
-              <div className="text-xs text-slate-400">impacto est.</div>
+              <div className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>{formatCurrency(alert.financialImpactMXN, true)}</div>
+              <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>impacto</div>
             </div>
           </div>
         )
