@@ -163,8 +163,15 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="text-center py-5 text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>
-        PINSA Torre de Control · Demo confidencial · {new Date().getFullYear()}
+      <div className="flex flex-col items-center gap-3 py-6">
+        <div className="flex items-center gap-2">
+          <span className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>Powered by</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logos/arena-blanco-h.png" alt="Arena Analytics" style={{ height: 18, width: 'auto', opacity: 0.35 }} />
+        </div>
+        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.12)' }}>
+          Demo confidencial · {new Date().getFullYear()}
+        </span>
       </div>
 
       <TourGuide

@@ -112,8 +112,8 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Tour relaunch + Demo badge */}
-      <div className="px-4 pb-5">
+      {/* Tour relaunch + Arena logo + Demo badge */}
+      <div className="px-4 pb-5 space-y-3">
         <button
           className="tour-relaunch"
           onClick={() => window.dispatchEvent(new CustomEvent('pinsa-start-tour'))}
@@ -124,6 +124,20 @@ export default function Sidebar() {
           </svg>
           Ver tour guiado
         </button>
+
+        {/* Arena Analytics branding */}
+        <div className="flex flex-col items-start gap-1 px-1">
+          <span className="text-xs" style={{ color: 'rgba(255,255,255,0.25)', fontSize: 10, letterSpacing: '0.05em' }}>
+            Powered by
+          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logos/arena-blanco-h.png"
+            alt="Arena Analytics"
+            style={{ height: 22, width: 'auto', opacity: 0.7 }}
+          />
+        </div>
+
         <div
           className="flex items-center gap-2 px-3 py-2 rounded-xl"
           style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}

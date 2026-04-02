@@ -162,11 +162,8 @@ export default function TourGuide({
           <div className="tour-welcome-backdrop" onClick={endTour} />
           <div className="tour-welcome-card">
             <div className="tour-welcome-icon">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logos/arena-icono-azul.png" alt="Arena Analytics" style={{ width: 40, height: 40, objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
             </div>
             <h2>{welcomeTitle}</h2>
             <p>{welcomeDesc}</p>
