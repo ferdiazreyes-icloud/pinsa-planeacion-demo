@@ -9,9 +9,62 @@ export interface TourStep {
   position: 'top' | 'bottom' | 'left' | 'right'
 }
 
-const SPOT_PAD  = 10
-const TIP_GAP   = 16
-const TIP_W     = 300
+const SPOT_PAD = 10
+const TIP_GAP  = 16
+const TIP_W    = 300
+const MARGIN   = 16   // min distance from any viewport edge
+
+type Arrow = 'top' | 'bottom' | 'left' | 'right'
+interface TipPos { top: number; left: number; arrow: Arrow }
+
+function calcTipPos(
+  rect: DOMRect,
+  preferredPos: TourStep['position'],
+  tipH: number,
+): TipPos {
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+  const { top: rt, right: rr, bottom: rb, left: rl, height: rh } = rect
+
+  // Auto-flip if preferred direction has no room
+  let pos = preferredPos
+  if (pos === 'bottom' && rb + SPOT_PAD + TIP_GAP + tipH > vh - MARGIN) pos = 'top'
+  if (pos === 'top'    && rt - SPOT_PAD - TIP_GAP - tipH < MARGIN)       pos = 'bottom'
+  if (pos === 'right'  && rr + SPOT_PAD + TIP_GAP + TIP_W > vw - MARGIN) pos = 'left'
+  if (pos === 'left'   && rl - SPOT_PAD - TIP_GAP - TIP_W < MARGIN)      pos = 'right'
+
+  let top = 0, left = 0
+  let arrow: Arrow = 'top'
+
+  switch (pos) {
+    case 'bottom':
+      top   = rb + SPOT_PAD + TIP_GAP
+      left  = Math.max(MARGIN, Math.min(rl, vw - TIP_W - MARGIN))
+      arrow = 'top'
+      break
+    case 'top':
+      top   = rt - SPOT_PAD - TIP_GAP - tipH
+      left  = Math.max(MARGIN, Math.min(rl, vw - TIP_W - MARGIN))
+      arrow = 'bottom'
+      break
+    case 'right':
+      top   = rt + rh / 2 - tipH / 2
+      left  = rr + SPOT_PAD + TIP_GAP
+      arrow = 'left'
+      break
+    case 'left':
+      top   = rt + rh / 2 - tipH / 2
+      left  = rl - SPOT_PAD - TIP_GAP - TIP_W
+      arrow = 'right'
+      break
+  }
+
+  // Final clamp — never escape the viewport
+  top  = Math.max(MARGIN, Math.min(top,  vh - tipH  - MARGIN))
+  left = Math.max(MARGIN, Math.min(left, vw - TIP_W - MARGIN))
+
+  return { top, left, arrow }
+}
 
 export default function TourGuide({
   steps,
@@ -28,10 +81,10 @@ export default function TourGuide({
   const [active,      setActive]      = useState(false)
   const [stepIdx,     setStepIdx]     = useState(0)
   const [spotRect,    setSpotRect]    = useState<DOMRect | null>(null)
-  const [arrowDir,    setArrowDir]    = useState<'top'|'bottom'|'left'|'right'>('top')
+  const [tipPos,      setTipPos]      = useState<TipPos>({ top: 0, left: 0, arrow: 'top' })
   const tooltipRef = useRef<HTMLDivElement>(null)
 
-  /* ── show welcome on first visit ── */
+  /* ── first-visit welcome ── */
   useEffect(() => {
     const seen = localStorage.getItem(storageKey)
     if (!seen) {
@@ -40,7 +93,7 @@ export default function TourGuide({
     }
   }, [storageKey])
 
-  /* ── sidebar "Ver tour" button fires this event ── */
+  /* ── sidebar "Ver tour guiado" event ── */
   useEffect(() => {
     const handler = () => {
       setShowWelcome(false)
@@ -52,7 +105,7 @@ export default function TourGuide({
     return () => window.removeEventListener('pinsa-start-tour', handler)
   }, [])
 
-  /* ── measure element and position spotlight ── */
+  /* ── scroll target into view, then measure ── */
   const measureStep = useCallback((idx: number) => {
     const s = steps[idx]
     if (!s) return
@@ -60,17 +113,23 @@ export default function TourGuide({
     if (!el) return
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     setTimeout(() => {
-      setSpotRect(el.getBoundingClientRect())
-      setArrowDir(
-        s.position === 'bottom' ? 'top'
-          : s.position === 'top'    ? 'bottom'
-          : s.position === 'right'  ? 'left'
-          : 'right'
-      )
+      const rect = el.getBoundingClientRect()
+      setSpotRect(rect)
+      // First-pass position with estimate height; refined after tooltip renders (see useEffect below)
+      const tipH = tooltipRef.current?.offsetHeight ?? 200
+      setTipPos(calcTipPos(rect, s.position, tipH))
     }, 350)
   }, [steps])
 
   useEffect(() => { if (active) measureStep(stepIdx) }, [active, stepIdx, measureStep])
+
+  /* ── second-pass: refine position after tooltip actually renders ── */
+  useEffect(() => {
+    if (!active || !spotRect) return
+    const tipH = tooltipRef.current?.offsetHeight
+    if (!tipH) return
+    setTipPos(calcTipPos(spotRect, steps[stepIdx].position, tipH))
+  }, [spotRect, active, stepIdx, steps])
 
   /* ── reposition on resize / scroll ── */
   useEffect(() => {
@@ -94,39 +153,6 @@ export default function TourGuide({
   const startTour = () => { setShowWelcome(false); setStepIdx(0); setSpotRect(null); setActive(true) }
   const goNext    = () => stepIdx < steps.length - 1 ? setStepIdx(i => i + 1) : endTour()
   const goPrev    = () => stepIdx > 0 && setStepIdx(i => i - 1)
-
-  /* ── tooltip position ── */
-  const tipStyle = (): { top: number; left: number } => {
-    if (!spotRect || typeof window === 'undefined') return { top: 100, left: 100 }
-    const s  = steps[stepIdx]
-    const th = tooltipRef.current?.offsetHeight ?? 170
-    const vw = window.innerWidth
-    const vh = window.innerHeight
-    const { top: rt, right: rr, bottom: rb, left: rl, width: rw, height: rh } = spotRect
-    let top = 0, left = 0
-
-    switch (s.position) {
-      case 'bottom':
-        top  = rb + SPOT_PAD + TIP_GAP
-        left = Math.max(16, Math.min(rl, vw - TIP_W - 16))
-        break
-      case 'top':
-        top  = rt - SPOT_PAD - TIP_GAP - th
-        left = Math.max(16, Math.min(rl, vw - TIP_W - 16))
-        break
-      case 'right':
-        top  = Math.max(16, Math.min(rt + rh / 2 - th / 2, vh - th - 16))
-        left = Math.min(rr + SPOT_PAD + TIP_GAP, vw - TIP_W - 16)
-        break
-      case 'left':
-        top  = Math.max(16, Math.min(rt + rh / 2 - th / 2, vh - th - 16))
-        left = Math.max(16, rl - SPOT_PAD - TIP_GAP - TIP_W)
-        break
-    }
-    return { top, left }
-  }
-
-  const tp = active && spotRect ? tipStyle() : { top: 0, left: 0 }
 
   return (
     <>
@@ -178,9 +204,9 @@ export default function TourGuide({
           <div
             ref={tooltipRef}
             className="tour-tooltip"
-            style={{ top: tp.top, left: tp.left, width: TIP_W }}
+            style={{ top: tipPos.top, left: tipPos.left, width: TIP_W }}
           >
-            <div className={`tour-arrow tour-arrow-${arrowDir}`} />
+            <div className={`tour-arrow tour-arrow-${tipPos.arrow}`} />
             <div className="tour-badge">{stepIdx + 1} / {steps.length}</div>
             <h3 className="tour-title">{steps[stepIdx].title}</h3>
             <p className="tour-desc">{steps[stepIdx].desc}</p>
