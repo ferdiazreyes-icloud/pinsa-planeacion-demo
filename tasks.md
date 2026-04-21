@@ -100,14 +100,14 @@
 - [x] E3.3 — Brecha explícita L5 Pouch 80g Portola (118% util, 17K cajas): 3 opciones con impactos $ calculados (+$1.85M OPEX / −$3.4M ventas / −$4.8M revenue redistribuido)
 - [x] E3.4 — Botón "Escalar a Sesión Ejecutiva" por opción con estado de confirmación
 
-### E4 — Vista Sesión Ejecutiva Mensual (nuevo módulo)
+### E4 — Vista Sesión Ejecutiva Mensual (nuevo módulo) [COMPLETADO v0.4.5]
 
-- [ ] E4.1 — Nueva ruta `/sesion-ejecutiva` con los 4 KPIs del `.md`: Fill Rate, Días Inventario, Forecast Accuracy, Brechas Abiertas
-- [ ] E4.2 — Drill-down de 1 clic en cualquier KPI en rojo → causa raíz + opciones
-- [ ] E4.3 — Sección "Brechas que requieren decisión" (alimentada por E3.4)
-- [ ] E4.4 — Sección "Resumen financiero" (P&L del ciclo, riesgos, capital trabajo) — migrada desde el ex-Paso 5
-- [ ] E4.5 — Sección "Escenarios comparados" (alimentada por E6)
-- [ ] E4.6 — Agregar tarjeta de acceso en Home
+- [x] E4.1 — Nueva ruta `/sesion-ejecutiva` con los 4 KPIs: Fill Rate, Forecast Accuracy, Días Inventario, Brechas Abiertas
+- [x] E4.2 — Drill-down de 1 clic por KPI (expande panel con causa raíz + acción sugerida)
+- [x] E4.3 — Sección "Brechas que requieren decisión" conectada a `productionCapacity.gapAnalysis` (3 opciones, botón "Elegir esta opción")
+- [x] E4.4 — Sección "Resumen financiero" migrada desde Step5Finance (P&L proyectado, 4 indicadores, 4 riesgos)
+- [x] E4.5 — Sección "Escenarios comparados" como placeholder preparado para E6
+- [x] E4.6 — Tarjeta "Director de Operaciones" en Home + enlace "Sesión Ejecutiva" en Sidebar + 9 nuevos E2E tests
 
 ### E5 — Vista multi-nodo inventario (1 planta + 1 CEDIS)
 

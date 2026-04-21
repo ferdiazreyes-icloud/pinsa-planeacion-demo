@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BarChart3, GitBranch, Sliders, Home, TrendingUp, Activity } from 'lucide-react'
+import { BarChart3, GitBranch, Sliders, Home, TrendingUp, Activity, Gavel } from 'lucide-react'
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: BarChart3, description: 'KPIs ejecutivos' },
-  { href: '/sop', label: 'Ciclo S&OP', icon: GitBranch, description: 'Flujo mensual' },
-  { href: '/simulator', label: 'Simulador', icon: Sliders, description: 'Escenarios' },
+  { href: '/dashboard',         label: 'Dashboard',        icon: BarChart3, description: 'KPIs ejecutivos' },
+  { href: '/sop',               label: 'Ciclo S&OP',       icon: GitBranch, description: 'Flujo mensual'   },
+  { href: '/sesion-ejecutiva',  label: 'Sesión Ejecutiva', icon: Gavel,     description: 'Decisión mensual' },
+  { href: '/simulator',         label: 'Simulador',        icon: Sliders,   description: 'Escenarios'       },
 ]
 
 export default function Sidebar() {

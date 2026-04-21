@@ -2,14 +2,15 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.4.4 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2 + E3) · **Ciclo activo:** Abril 2026
+**Version:** 0.4.5 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2 + E3 + E4) · **Ciclo activo:** Abril 2026
 
 ---
 
 ## Funcionalidad implementada
 
-- [x] **Home / Role selector** — Landing page con KPIs actuales y acceso por rol
-- [x] **Dashboard Directivo** — KPI cards (Fill Rate, Asertividad, Inventario, Capital de trabajo), alertas activas, graficas de tendencia (12 meses)
+- [x] **Home / Role selector** — Landing con 4 roles: Director de Operaciones, Directivo Cadena, Planeador Demanda, Planeador Inventarios
+- [x] **Sesión Ejecutiva** (`/sesion-ejecutiva`) — vista mensual de 60 min para decidir (no reportar): 4 KPIs con drill-down, brechas abiertas con 3 opciones, P&L proyectado, decisión del ciclo
+- [x] **Dashboard Directivo** — KPI cards continuos, alertas activas, gráficas de tendencia (12 meses)
 - [x] **Ciclo S&OP Mensual (5 pasos — alineado con propuesta Arena Analytics):**
   - [x] Paso 1: Pronóstico estadístico con accuracy por SKU
   - [x] Paso 2: Colaboración comercial (tabla editable con cuentas nombradas: Walmart, OXXO, Sam's, etc.)
@@ -17,6 +18,17 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
   - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.4.5 (Fase E4 — Sesión Ejecutiva S&OP)
+
+- [x] **Nuevo módulo** `/sesion-ejecutiva` — vista mensual de decisión, complementaria al Dashboard continuo
+- [x] **4 KPIs ejecutivos con drill-down**: Fill Rate OTIF, Forecast Accuracy, Días Inventario, Brechas Abiertas. Un clic expande causa raíz + acción sugerida
+- [x] **Sección "Brechas que requieren decisión"**: las 3 opciones de la brecha L5 Pouch con botones "Elegir esta opción" que registran la decisión en el acta
+- [x] **Resumen financiero P&L**: migrado desde Step5Finance — 4 indicadores (Ventas, COGS, Margen, Capital) vs presupuesto + 4 riesgos identificados
+- [x] **Escenarios comparados**: placeholder preparado (se activa en E6 con escenarios del Simulador)
+- [x] **Decisión del ciclo**: botones Aprobar/Rechazar plan Abr 2026 con comentarios del Director de Operaciones
+- [x] **Sidebar** actualizado con enlace · **Home** actualizado: tarjeta del Director de Operaciones reemplaza la de Ventas
+- [x] **9 nuevos E2E tests** para la ruta `/sesion-ejecutiva`
 
 ## Completado en v0.4.4 (Fase E3 — Planeación de Producción con brecha de capacidad)
 

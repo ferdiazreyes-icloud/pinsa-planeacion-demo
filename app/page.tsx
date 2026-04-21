@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BarChart3, GitBranch, Sliders, TrendingUp, Package, ArrowRight } from 'lucide-react'
+import { BarChart3, GitBranch, Sliders, TrendingUp, Package, ArrowRight, Gavel } from 'lucide-react'
 import TourGuide, { type TourStep } from '@/components/layout/TourGuide'
 
 const HOME_TOUR: TourStep[] = [
@@ -25,34 +25,34 @@ const HOME_TOUR: TourStep[] = [
 
 const roles = [
   {
-    role: 'Directivo',
-    description: 'Vista ejecutiva con KPIs de la cadena, tendencias y alertas activas.',
+    role: 'Director de Operaciones',
+    description: 'Sesión Ejecutiva mensual: 4 KPIs, brechas abiertas, P&L y decisión del ciclo. 60 min para decidir, no para reportar.',
+    href: '/sesion-ejecutiva',
+    icon: Gavel,
+    accentColor: '#601b4d',
+    badge: '1 brecha · 4 KPIs',
+    badgeBg: 'rgba(96,27,77,0.15)',
+    badgeColor: '#D4A0C0',
+  },
+  {
+    role: 'Directivo — Cadena',
+    description: 'Dashboard continuo con KPIs operativos, alertas activas y tendencias de 12 meses.',
     href: '/dashboard',
     icon: BarChart3,
     accentColor: '#242d51',
     badge: '4 alertas activas',
     badgeBg: 'rgba(184,125,26,0.15)',
-    badgeColor: '#D4A0C0',
+    badgeColor: '#E8C06A',
   },
   {
     role: 'Planeador de Demanda',
-    description: 'Pronóstico estadístico, evaluación de colaboración y ciclo S&OP mensual.',
+    description: 'Pronóstico estadístico, colaboración comercial y ciclo S&OP mensual de 5 pasos.',
     href: '/sop',
     icon: TrendingUp,
     accentColor: '#1A7A6E',
-    badge: 'Ciclo Mar 25 abierto',
+    badge: 'Ciclo Abr 26 abierto',
     badgeBg: 'rgba(26,122,110,0.15)',
     badgeColor: '#6ECEC5',
-  },
-  {
-    role: 'Ventas / Colaboración',
-    description: 'Ajusta el pronóstico por cliente y canal con visibilidad del baseline estadístico.',
-    href: '/sop?step=2',
-    icon: GitBranch,
-    accentColor: '#601b4d',
-    badge: '32% SKUs pendientes',
-    badgeBg: 'rgba(96,27,77,0.15)',
-    badgeColor: '#D4A0C0',
   },
   {
     role: 'Planeador de Inventarios',
