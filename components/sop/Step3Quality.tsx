@@ -6,9 +6,9 @@ import { CheckCircle2, AlertCircle, TrendingUp } from 'lucide-react'
 const qualityData = [
   { sku: 'DOL-170-ACE', statMAPE: 29.8, collabMAPE: 25.1, improvement: 4.7, accepted: true },
   { sku: 'DOL-170-AGU', statMAPE: 27.5, collabMAPE: 22.3, improvement: 5.2, accepted: true },
-  { sku: 'DOL-POUCH-ACE', statMAPE: 31.2, collabMAPE: 26.8, improvement: 4.4, accepted: true },
-  { sku: 'GUA-170-ACE', statMAPE: 34.1, collabMAPE: 28.5, improvement: 5.6, accepted: true },
-  { sku: 'SIR-SARD-425', statMAPE: 25.8, collabMAPE: 21.2, improvement: 4.6, accepted: true },
+  { sku: 'POR-POUCH-ACE', statMAPE: 31.2, collabMAPE: 26.8, improvement: 4.4, accepted: true },
+  { sku: 'MAZ-170-ACE', statMAPE: 34.1, collabMAPE: 28.5, improvement: 5.6, accepted: true },
+  { sku: 'ELD-SARD-JIT-425', statMAPE: 25.8, collabMAPE: 21.2, improvement: 4.6, accepted: true },
 ]
 
 const radarData = [

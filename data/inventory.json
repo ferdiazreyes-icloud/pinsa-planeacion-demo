@@ -11,16 +11,16 @@
   { "skuId": "DOL-170-AGU", "period": "2026-04", "openingStock": 52400, "closingStock": 41900, "daysOfCover": 25, "safetyStockDays": 35, "replenishmentOrder": 22000, "stockValueMXN": 11648200 },
   { "skuId": "DOL-170-AGU", "period": "2026-05", "openingStock": 41900, "closingStock": 36700, "daysOfCover": 23, "safetyStockDays": 28, "replenishmentOrder": 18000, "stockValueMXN": 10202600 },
 
-  { "skuId": "DOL-POUCH-ACE", "period": "2026-02", "openingStock": 78000, "closingStock": 72500, "daysOfCover": 34, "safetyStockDays": 25, "replenishmentOrder": 21000, "stockValueMXN": 13412500 },
-  { "skuId": "DOL-POUCH-ACE", "period": "2026-03", "openingStock": 72500, "closingStock": 65800, "daysOfCover": 29, "safetyStockDays": 25, "replenishmentOrder": 22000, "stockValueMXN": 12173000 },
-  { "skuId": "DOL-POUCH-ACE", "period": "2026-04", "openingStock": 65800, "closingStock": 51600, "daysOfCover": 22, "safetyStockDays": 32, "replenishmentOrder": 32000, "stockValueMXN": 9546000 },
-  { "skuId": "DOL-POUCH-ACE", "period": "2026-05", "openingStock": 51600, "closingStock": 44200, "daysOfCover": 19, "safetyStockDays": 25, "replenishmentOrder": 26000, "stockValueMXN": 8177000 },
+  { "skuId": "POR-POUCH-ACE", "period": "2026-02", "openingStock": 78000, "closingStock": 72500, "daysOfCover": 34, "safetyStockDays": 25, "replenishmentOrder": 21000, "stockValueMXN": 13412500 },
+  { "skuId": "POR-POUCH-ACE", "period": "2026-03", "openingStock": 72500, "closingStock": 65800, "daysOfCover": 29, "safetyStockDays": 25, "replenishmentOrder": 22000, "stockValueMXN": 12173000 },
+  { "skuId": "POR-POUCH-ACE", "period": "2026-04", "openingStock": 65800, "closingStock": 51600, "daysOfCover": 22, "safetyStockDays": 32, "replenishmentOrder": 32000, "stockValueMXN": 9546000 },
+  { "skuId": "POR-POUCH-ACE", "period": "2026-05", "openingStock": 51600, "closingStock": 44200, "daysOfCover": 19, "safetyStockDays": 25, "replenishmentOrder": 26000, "stockValueMXN": 8177000 },
 
-  { "skuId": "GUA-170-ACE", "period": "2026-02", "openingStock": 24000, "closingStock": 22500, "daysOfCover": 32, "safetyStockDays": 28, "replenishmentOrder": 7000, "stockValueMXN": 6030000 },
-  { "skuId": "GUA-170-ACE", "period": "2026-03", "openingStock": 22500, "closingStock": 20800, "daysOfCover": 28, "safetyStockDays": 28, "replenishmentOrder": 7500, "stockValueMXN": 5574400 },
-  { "skuId": "GUA-170-ACE", "period": "2026-04", "openingStock": 20800, "closingStock": 16400, "daysOfCover": 19, "safetyStockDays": 35, "replenishmentOrder": 11000, "stockValueMXN": 4395200 },
+  { "skuId": "MAZ-170-ACE", "period": "2026-02", "openingStock": 24000, "closingStock": 22500, "daysOfCover": 32, "safetyStockDays": 28, "replenishmentOrder": 7000, "stockValueMXN": 6030000 },
+  { "skuId": "MAZ-170-ACE", "period": "2026-03", "openingStock": 22500, "closingStock": 20800, "daysOfCover": 28, "safetyStockDays": 28, "replenishmentOrder": 7500, "stockValueMXN": 5574400 },
+  { "skuId": "MAZ-170-ACE", "period": "2026-04", "openingStock": 20800, "closingStock": 16400, "daysOfCover": 19, "safetyStockDays": 35, "replenishmentOrder": 11000, "stockValueMXN": 4395200 },
 
-  { "skuId": "SIR-SARD-425", "period": "2026-02", "openingStock": 17500, "closingStock": 16200, "daysOfCover": 33, "safetyStockDays": 30, "replenishmentOrder": 5000, "stockValueMXN": 5103000 },
-  { "skuId": "SIR-SARD-425", "period": "2026-03", "openingStock": 16200, "closingStock": 14900, "daysOfCover": 30, "safetyStockDays": 30, "replenishmentOrder": 5500, "stockValueMXN": 4693500 },
-  { "skuId": "SIR-SARD-425", "period": "2026-04", "openingStock": 14900, "closingStock": 11200, "daysOfCover": 21, "safetyStockDays": 38, "replenishmentOrder": 8000, "stockValueMXN": 3528000 }
+  { "skuId": "ELD-SARD-JIT-425", "period": "2026-02", "openingStock": 17500, "closingStock": 16200, "daysOfCover": 33, "safetyStockDays": 30, "replenishmentOrder": 5000, "stockValueMXN": 5103000 },
+  { "skuId": "ELD-SARD-JIT-425", "period": "2026-03", "openingStock": 16200, "closingStock": 14900, "daysOfCover": 30, "safetyStockDays": 30, "replenishmentOrder": 5500, "stockValueMXN": 4693500 },
+  { "skuId": "ELD-SARD-JIT-425", "period": "2026-04", "openingStock": 14900, "closingStock": 11200, "daysOfCover": 21, "safetyStockDays": 38, "replenishmentOrder": 8000, "stockValueMXN": 3528000 }
 ]

@@ -6,9 +6,9 @@ import { AlertTriangle } from 'lucide-react'
 const inventoryPlan = [
   { sku: 'DOL-170-ACE',   demand: 20800, currentStock: 44200, safetyDays: 35, daysOfCover: 27, replenishment: 19500, status: 'warning'  as const, statusNote: 'Por debajo del mínimo post-Semana Santa' },
   { sku: 'DOL-170-AGU',   demand: 25000, currentStock: 52400, safetyDays: 35, daysOfCover: 25, replenishment: 22000, status: 'warning'  as const, statusNote: 'Ajustar orden de compra +10%' },
-  { sku: 'DOL-POUCH-ACE', demand: 35000, currentStock: 65800, safetyDays: 32, daysOfCover: 22, replenishment: 32000, status: 'critical' as const, statusNote: 'Inventario crítico — priorizar producción' },
-  { sku: 'GUA-170-ACE',   demand: 11200, currentStock: 20800, safetyDays: 35, daysOfCover: 19, replenishment: 11000, status: 'critical' as const, statusNote: 'Riesgo desabasto post-veda hojalata' },
-  { sku: 'SIR-SARD-425',  demand: 8000,  currentStock: 14900, safetyDays: 38, daysOfCover: 21, replenishment: 8000,  status: 'warning'  as const, statusNote: 'Cobertura justa para temporada' },
+  { sku: 'POR-POUCH-ACE',    demand: 35000, currentStock: 65800, safetyDays: 32, daysOfCover: 22, replenishment: 32000, status: 'critical' as const, statusNote: 'Inventario crítico — priorizar producción' },
+  { sku: 'MAZ-170-ACE',      demand: 11200, currentStock: 20800, safetyDays: 35, daysOfCover: 19, replenishment: 11000, status: 'critical' as const, statusNote: 'Riesgo desabasto post-veda hojalata' },
+  { sku: 'ELD-SARD-JIT-425', demand: 8000,  currentStock: 14900, safetyDays: 38, daysOfCover: 21, replenishment: 8000,  status: 'warning'  as const, statusNote: 'Cobertura justa para temporada' },
 ]
 
 const STATUS_COLORS = {
@@ -38,7 +38,7 @@ export default function Step4Inventory() {
     },
     xAxis: {
       type: 'category',
-      data: inventoryPlan.map(r => r.sku.replace('DOL-', '').replace('GUA-', 'GUA-').replace('SIR-', 'SIR-')),
+      data: inventoryPlan.map(r => r.sku),
       axisLine: { show: false },
       axisTick: { show: false },
       axisLabel: { color: '#8E93AF', fontSize: 10 },

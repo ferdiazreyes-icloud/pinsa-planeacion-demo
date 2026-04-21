@@ -19,7 +19,7 @@ Objetivo: mostrar a PINSA el valor de una torre de control de planeación.
 ## Data
 
 All data is in `/data/*.json` — fictitious but credible PINSA data.
-- `skus.json` — 10 SKUs (Dolores, Guardamar, La Sirena)
+- `skus.json` — 10 SKUs (Dolores, Mazatún, El Dorado, Portola)
 - `forecast.json` — 12 months history + 3 months forward
 - `inventory.json` — monthly inventory records per SKU
 - `rawMaterials.json` — 4 raw materials with price history

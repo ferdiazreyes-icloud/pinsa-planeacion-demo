@@ -50,7 +50,7 @@ describe('Sidebar', () => {
 
   it('renders current period badge', () => {
     render(<Sidebar />)
-    expect(screen.getByText('Mar 2025')).toBeInTheDocument()
+    expect(screen.getByText('Abr 2026')).toBeInTheDocument()
   })
 
   it('renders Demo Mode badge', () => {

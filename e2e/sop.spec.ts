@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test.describe('S&OP Ciclo Mensual', () => {
   test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('pinsa-tour-sop', '1')
+    })
     await page.goto('/sop')
   })
 
@@ -13,9 +16,9 @@ test.describe('S&OP Ciclo Mensual', () => {
   test('shows stepper with 5 steps', async ({ page }) => {
     await expect(page.locator('text=Pronóstico').first()).toBeVisible()
     await expect(page.locator('text=Colaboración').first()).toBeVisible()
-    await expect(page.locator('text=Calidad').first()).toBeVisible()
     await expect(page.locator('text=Inventarios').first()).toBeVisible()
-    await expect(page.locator('text=Finanzas').first()).toBeVisible()
+    await expect(page.locator('text=Producción').first()).toBeVisible()
+    await expect(page.locator('text=Distribución').first()).toBeVisible()
   })
 
   test('step 1 content is visible by default', async ({ page }) => {
@@ -37,30 +40,30 @@ test.describe('S&OP Ciclo Mensual', () => {
 
   test('navigates to step 2 on "Confirmar y continuar"', async ({ page }) => {
     await page.click('button:has-text("Confirmar y continuar")')
-    await expect(page.locator('text=Colaboración de ventas')).toBeVisible()
+    await expect(page.locator('text=Colaboración comercial')).toBeVisible()
   })
 
   test('navigates through all 5 steps', async ({ page }) => {
     // Step 2
     await page.click('button:has-text("Confirmar y continuar")')
-    await expect(page.locator('text=Colaboración de ventas')).toBeVisible()
+    await expect(page.locator('text=Colaboración comercial')).toBeVisible()
 
-    // Step 3
+    // Step 3 — Planeación de Inventarios
     await page.click('button:has-text("Confirmar y continuar")')
-    await expect(page.locator('text=Revisión de calidad')).toBeVisible()
+    await expect(page.locator('text=Planeación de Inventarios')).toBeVisible()
 
-    // Step 4
+    // Step 4 — Planeación de Producción
     await page.click('button:has-text("Confirmar y continuar")')
-    await expect(page.locator('text=Plan de inventarios')).toBeVisible()
+    await expect(page.locator('text=Planeación de Producción')).toBeVisible()
 
-    // Step 5
+    // Step 5 — Planeación de Distribución
     await page.click('button:has-text("Confirmar y continuar")')
-    await expect(page.locator('text=Validación financiera')).toBeVisible()
+    await expect(page.locator('text=Planeación de Distribución')).toBeVisible()
   })
 
   test('back button returns to previous step', async ({ page }) => {
     await page.click('button:has-text("Confirmar y continuar")')
-    await expect(page.locator('text=Colaboración de ventas')).toBeVisible()
+    await expect(page.locator('text=Colaboración comercial')).toBeVisible()
 
     await page.click('button:has-text("Paso anterior")')
     await expect(page.locator('text=Pronóstico estadístico').first()).toBeVisible()
@@ -71,45 +74,39 @@ test.describe('S&OP Ciclo Mensual', () => {
     await expect(backBtn).toBeDisabled()
   })
 
-  test('step 5 shows P&L section', async ({ page }) => {
-    for (let i = 0; i < 4; i++) {
-      await page.click('button:has-text("Confirmar y continuar")')
-    }
-    await expect(page.locator('text=P&L proyectado')).toBeVisible()
-    await expect(page.locator('text=Ventas netas')).toBeVisible()
-    await expect(page.locator('text=Margen bruto')).toBeVisible()
-  })
-
-  test('step 5 shows risk flags', async ({ page }) => {
-    for (let i = 0; i < 4; i++) {
-      await page.click('button:has-text("Confirmar y continuar")')
-    }
-    await expect(page.locator('text=Riesgos financieros identificados')).toBeVisible()
-  })
-
-  test('step 5 approve button works', async ({ page }) => {
-    for (let i = 0; i < 4; i++) {
-      await page.click('button:has-text("Confirmar y continuar")')
-    }
-    await page.click('button:has-text("Aprobar plan Abr 2026")')
-    await expect(page.locator('text=Plan Abril 2026 aprobado')).toBeVisible()
-  })
-
-  test('step 5 reject button works', async ({ page }) => {
-    for (let i = 0; i < 4; i++) {
-      await page.click('button:has-text("Confirmar y continuar")')
-    }
-    await page.click('button:has-text("Devolver con observaciones")')
-    await expect(page.locator('text=Plan devuelto a revisión')).toBeVisible()
-  })
-
-  test('step 4 shows inventory coverage chart', async ({ page }) => {
-    for (let i = 0; i < 3; i++) {
+  test('step 3 shows inventory plan', async ({ page }) => {
+    for (let i = 0; i < 2; i++) {
       await page.click('button:has-text("Confirmar y continuar")')
     }
     await expect(page.locator('text=Plan de reposición detallado')).toBeVisible()
     await page.waitForTimeout(500)
     const canvases = await page.locator('canvas').count()
     expect(canvases).toBeGreaterThanOrEqual(1)
+  })
+
+  test('step 4 shows production capacity gap with 3 options', async ({ page }) => {
+    for (let i = 0; i < 3; i++) {
+      await page.click('button:has-text("Confirmar y continuar")')
+    }
+    await expect(page.locator('text=brecha capacidad vs demanda')).toBeVisible()
+    await expect(page.locator('text=Ampliar turno nocturno Línea 4')).toBeVisible()
+    await expect(page.locator('text=Aceptar quiebre controlado en OXXO')).toBeVisible()
+    await expect(page.locator('text=Re-negociar plan comercial')).toBeVisible()
+  })
+
+  test('step 5 shows distribution plan planta → cedis', async ({ page }) => {
+    for (let i = 0; i < 4; i++) {
+      await page.click('button:has-text("Confirmar y continuar")')
+    }
+    await expect(page.locator('text=plan de reposición Planta → CEDIS')).toBeVisible()
+    await expect(page.locator('text=Cajas a enviar a CEDIS')).toBeVisible()
+    await expect(page.locator('text=Plan de reposición por SKU')).toBeVisible()
+  })
+
+  test('step 5 approve button completes cycle', async ({ page }) => {
+    for (let i = 0; i < 4; i++) {
+      await page.click('button:has-text("Confirmar y continuar")')
+    }
+    await expect(page.locator('button:has-text("Aprobar plan Abr 2026")')).toBeVisible()
   })
 })

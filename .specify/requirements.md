@@ -45,7 +45,7 @@
 - Responsive to 1280px+ screens (laptop presentations)
 
 ### NFR-03: Data Realism
-- SKU names match real PINSA brand portfolio (Dolores, Guardamar, La Sirena)
+- SKU names match real PINSA brand portfolio (Dolores, Mazatún, El Dorado, Portola)
 - Volumes in ranges credible for Mexican CPG tuna market
 - Prices in MXN, current market ranges
 - Seasonality reflects real patterns (Holy Week, summer, year-end)

@@ -104,7 +104,7 @@ export default function Step5Finance() {
         <div className="space-y-2">
           {[
             { risk: 'COGS +7.1% sobre presupuesto por alza atún y hojalata', impact: '$6.4M', severity: 'high' as const },
-            { risk: 'Posible pérdida de ventas por desabasto DOL-POUCH y GUA-170 (fill rate 89%)', impact: '$18.5M', severity: 'high' as const },
+            { risk: 'Posible pérdida de ventas por desabasto POR-POUCH y MAZ-170 (fill rate 89%)', impact: '$18.5M', severity: 'high' as const },
             { risk: 'Capital de trabajo $11.2M sobre plan por mayor inventario de seguridad', impact: '$11.2M', severity: 'medium' as const },
             { risk: 'Revenue +$6.5M sobre plan por mejor temporada Semana Santa', impact: '+$6.5M', severity: 'low' as const },
           ].map(({ risk, impact, severity }) => {

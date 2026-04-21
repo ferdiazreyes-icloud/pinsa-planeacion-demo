@@ -36,7 +36,7 @@
       "type": "supply",
       "title": "Riesgo de desabasto: Hojalata",
       "description": "Proveedor principal advierte retraso de 3 semanas por aranceles acero. Impacto estimado: -12% capacidad producción May–Jun.",
-      "skusAffected": ["DOL-170-ACE", "DOL-170-AGU", "GUA-170-ACE", "SIR-SARD-425"],
+      "skusAffected": ["DOL-170-ACE", "DOL-170-AGU", "MAZ-170-ACE", "ELD-SARD-JIT-425"],
       "financialImpactMXN": 18500000
     },
     {
@@ -45,16 +45,16 @@
       "type": "forecast",
       "title": "Colaboración pendiente: Abr 2026",
       "description": "32% de SKUs Clase A sin colaboración de ventas para el período de Semana Santa. Deadline: 10 Abr.",
-      "skusAffected": ["DOL-280-ACE", "DOL-FOODSVC-1KG", "GUA-170-AGU"],
+      "skusAffected": ["DOL-280-ACE", "DOL-FOODSVC-1KG", "MAZ-170-AGU"],
       "financialImpactMXN": 4200000
     },
     {
       "id": "ALERT-003",
       "severity": "medium",
       "type": "inventory",
-      "title": "Inventario bajo: DOL-POUCH-ACE",
-      "description": "Dolores Atún Pouch proyecta 19 días de cobertura en Abril, por debajo del mínimo de 25 días.",
-      "skusAffected": ["DOL-POUCH-ACE"],
+      "title": "Inventario bajo: POR-POUCH-ACE",
+      "description": "Portola Atún Pouch proyecta 19 días de cobertura en Abril, por debajo del mínimo de 25 días.",
+      "skusAffected": ["POR-POUCH-ACE"],
       "financialImpactMXN": 2800000
     },
     {
@@ -63,7 +63,7 @@
       "type": "price",
       "title": "Atún entero +8.5% vs año anterior",
       "description": "Precio promedio atún entero acumula alza de 8.5% en los últimos 12 meses. COGS proyectado supera presupuesto en $6.2M MXN.",
-      "skusAffected": ["DOL-170-ACE", "DOL-170-AGU", "DOL-POUCH-ACE", "GUA-170-ACE", "GUA-170-AGU"],
+      "skusAffected": ["DOL-170-ACE", "DOL-170-AGU", "POR-POUCH-ACE", "MAZ-170-ACE", "MAZ-170-AGU"],
       "financialImpactMXN": 6200000
     }
   ]
