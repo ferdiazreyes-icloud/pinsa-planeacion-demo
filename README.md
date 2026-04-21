@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.4.2 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1) · **Ciclo activo:** Abril 2026
+**Version:** 0.4.3 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2) · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -17,6 +17,15 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
   - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.4.3 (Fase E2 — Forecast Value Added en Colaboración)
+
+- [x] **5 categorías de ajuste** estructuradas: Promoción, Estacionalidad, Lanzamiento NPI, Acuerdo de anaquel, Acción competencia
+- [x] **FVA histórico visible** como tarjetas superiores: muestra mejora/deterioro promedio del baseline por tipo de ajuste (n=muestras)
+- [x] **Select de categoría** obligatorio en modo edición
+- [x] **Badge verde/rojo** al lado del ajuste según FVA histórico de la categoría
+- [x] **FVA proyectado del ciclo**: promedio ponderado de las categorías usadas en el S&OP actual
+- [x] **Insight comercial**: "acción competencia" empeora baseline (−3.8%) → sobre-reacción. "promoción" y "estacionalidad" son los más predictivos
 
 ## Completado en v0.4.2 (Fase E1 — Forecast con intervalo de confianza)
 
