@@ -87,11 +87,11 @@
 - [x] E1.3 — Copy explicativo con ejemplo numérico concreto Abril 2026: "el rango — no el número — define tu stock de seguridad"
 - [x] E1.4 — Chips de eventos calendáricos (Buen Fin, Navidad, Cuaresma · Semana Santa) sobre el eje temporal
 
-### E2 — Forecast Value Added en Paso 2 (Colaboración Comercial)
+### E2 — Forecast Value Added en Paso 2 (Colaboración Comercial) [COMPLETADO v0.4.3]
 
-- [ ] E2.1 — Agregar selector de categoría de ajuste en tabla editable (`promoción / lanzamiento / acuerdo anaquel / acción competencia`)
-- [ ] E2.2 — Mostrar FVA histórico por categoría (mock de datos): "Ajustes de tipo X mejoraron/empeoraron el baseline en Y% últimos 6 ciclos"
-- [ ] E2.3 — Badge visual (verde/rojo) al lado del ajuste según el FVA histórico de esa categoría
+- [x] E2.1 — Selector de categoría de ajuste (5 categorías: Promoción, Estacionalidad, Lanzamiento NPI, Acuerdo de anaquel, Acción competencia)
+- [x] E2.2 — FVA histórico mock por categoría en tarjetas superiores: Promoción +8.2%, Estacionalidad +6.1%, Lanzamiento +4.1%, Anaquel +2.5%, Competencia −3.8% (n=11-42 por cat.)
+- [x] E2.3 — Badge verde/rojo inline al lado del ajuste según FVA histórico + FVA proyectado del ciclo como chip agregado
 
 ### E3 — Planeación de Producción con brecha de capacidad (Paso 4)
 
