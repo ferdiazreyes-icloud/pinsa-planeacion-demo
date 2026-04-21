@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.4.5 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2 + E3 + E4) · **Ciclo activo:** Abril 2026
+**Version:** 0.4.6 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2 + E3 + E4 + E5) · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -18,6 +18,16 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
   - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.4.6 (Fase E5 — Inventario multi-nodo + política ABC)
+
+- [x] **Inventario por nodo**: cada registro ahora tiene desglose Planta Mazatlán vs CEDIS México con stock, días de cobertura y target por ubicación
+- [x] **Toggle de vista** en Paso 3: Consolidado · Planta · CEDIS — cambia KPIs, gráfica y cálculos de status
+- [x] **Política ABC diferenciada** visible: 3 tarjetas explican Clase A (seguridad dinámico, reabasto semanal), B (estándar, quincenal), C (racionalización, bajo demanda)
+- [x] **Señales de reabasto Planta→CEDIS** automáticas cuando cobertura CEDIS < target, con cantidad calculada en cajas a enviar
+- [x] **Badges ABC** en tabla con fondo de color por clase
+- [x] **Diagrama de red** Planta → CEDIS visible en el header del paso
+- [x] **Data layer**: `InventoryNode` type + `Inventory` como `InventoryRecord[]` tipado
 
 ## Completado en v0.4.5 (Fase E4 — Sesión Ejecutiva S&OP)
 

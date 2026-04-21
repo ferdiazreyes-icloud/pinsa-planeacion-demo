@@ -109,12 +109,12 @@
 - [x] E4.5 — Sección "Escenarios comparados" como placeholder preparado para E6
 - [x] E4.6 — Tarjeta "Director de Operaciones" en Home + enlace "Sesión Ejecutiva" en Sidebar + 9 nuevos E2E tests
 
-### E5 — Vista multi-nodo inventario (1 planta + 1 CEDIS)
+### E5 — Vista multi-nodo inventario (1 planta + 1 CEDIS) [COMPLETADO v0.4.6]
 
-- [ ] E5.1 — Extender `data/inventory.json` con campo `location` (`"planta"` o `"cedis"`)
-- [ ] E5.2 — En el nuevo Paso 3 "Planeación de Inventarios": separar vista por ubicación
-- [ ] E5.3 — Mostrar señal de reabasto planta → CEDIS cuando CEDIS < target
-- [ ] E5.4 — Aplicar política ABC visualmente diferenciada: A (dinámico), B (estándar), C (racionalización)
+- [x] E5.1 — `data/inventory.json` extendido con `byNode.planta` y `byNode.cedis` (stock, días, target, valor); splits por ABC class (A: 60/40, B: 65/35, C: 75/25)
+- [x] E5.2 — Paso 3 con toggle Consolidado/Planta/CEDIS que cambia KPIs, gráfica y cálculos
+- [x] E5.3 — Señales de reabasto automáticas cuando CEDIS < target con cantidad calculada
+- [x] E5.4 — Política ABC diferenciada visible en 3 tarjetas + badges inline en tabla
 
 ### E6 — Escenarios guardados en Simulador
 
