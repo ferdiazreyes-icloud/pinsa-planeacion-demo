@@ -80,12 +80,12 @@
   - Step3Quality.tsx y Step5Finance.tsx preservados para migrar a Sesión Ejecutiva (E4)
 - [x] E0.4 — Validación: build ✅ · 88 unit tests ✅ · 44 E2E tests ✅
 
-### E1 — Forecast con intervalo de confianza (Paso 1)
+### E1 — Forecast con intervalo de confianza (Paso 1) [COMPLETADO v0.4.2]
 
-- [ ] E1.1 — Extender `data/forecast.json` con campos `forecastLow` y `forecastHigh` por SKU/mes (baseline ± rango)
-- [ ] E1.2 — Actualizar `components/sop/Step1Forecast.tsx`: graficar banda de confianza (área sombreada entre high/low) además de la línea baseline
-- [ ] E1.3 — Copy explicativo en la vista: "el rango, no el número, define tu stock de seguridad"
-- [ ] E1.4 — Agregar chips visuales de eventos calendáricos (Semana Santa, temporada calor, Navidad) sobre el eje de tiempo
+- [x] E1.1 — Extender `data/forecast.json` con campos `forecastLow` y `forecastHigh` por SKU/mes (volatilidad diferenciada DOL 10-12%, MAZ 13%, ELD 16%, POR 18%, + premium por eventos estacionales)
+- [x] E1.2 — Migrar `components/sop/Step1Forecast.tsx` de bar a line chart con banda de confianza stacked (área sombreada `rgba(36,45,81,0.12)` entre high/low)
+- [x] E1.3 — Copy explicativo con ejemplo numérico concreto Abril 2026: "el rango — no el número — define tu stock de seguridad"
+- [x] E1.4 — Chips de eventos calendáricos (Buen Fin, Navidad, Cuaresma · Semana Santa) sobre el eje temporal
 
 ### E2 — Forecast Value Added en Paso 2 (Colaboración Comercial)
 

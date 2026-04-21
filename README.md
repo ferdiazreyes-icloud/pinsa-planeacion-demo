@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.4.1 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0) · **Ciclo activo:** Abril 2026
+**Version:** 0.4.2 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1) · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -17,6 +17,14 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
   - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.4.2 (Fase E1 — Forecast con intervalo de confianza)
+
+- [x] **Banda de confianza** en Paso 1 del S&OP: área sombreada entre `forecastLow` y `forecastHigh` alrededor del pronóstico estadístico
+- [x] **Chart upgrade** de bar a line con banda, smoothing y connectNulls para distinguir histórico vs forward
+- [x] **Chips de eventos calendáricos**: Buen Fin, Navidad, Cuaresma · Semana Santa visibles sobre la gráfica
+- [x] **Copy narrativo**: "El rango — no el número — define tu stock de seguridad" con ejemplo concreto de Abril 2026
+- [x] **Dataset extendido**: `data/forecast.json` ahora incluye `forecastLow` y `forecastHigh` por SKU/mes con volatilidad diferenciada (DOL ±10-12%, MAZ ±13%, ELD ±16%, POR ±18%) y premium por evento estacional
 
 ## Completado en v0.4.1 (Fase E0 — Alineación con propuesta full)
 

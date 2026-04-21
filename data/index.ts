@@ -25,6 +25,8 @@ export type ForecastRecord = {
   collaborated: number | null
   actual: number | null
   adjustmentReason: string | null
+  forecastLow: number
+  forecastHigh: number
 }
 
 export type InventoryRecord = {
