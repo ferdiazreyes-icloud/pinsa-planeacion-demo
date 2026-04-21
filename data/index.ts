@@ -3,6 +3,7 @@ import forecast from './forecast.json'
 import inventory from './inventory.json'
 import rawMaterials from './rawMaterials.json'
 import kpis from './kpis.json'
+import productionCapacity from './productionCapacity.json'
 
 export type SKU = {
   id: string
@@ -61,5 +62,44 @@ export type MonthlyKPI = {
   cogs: number
 }
 
+export type ProductionLine = {
+  id: string
+  name: string
+  primarySkus: string[]
+  family: string
+  capacityWeekCases: number
+  demandWeekCases: number
+  setupHours: number
+  minBatchCases: number
+  status: 'ok' | 'tight' | 'gap' | 'slack'
+}
+
+export type GapOption = {
+  id: string
+  label: string
+  type: 'expand-capacity' | 'accept-stockout' | 'adjust-plan'
+  costMXN: number
+  incrementalCapacityCases?: number
+  salesLostMXN?: number
+  revenueLostMXN?: number
+  serviceImpact: string
+  feasibility: string
+  tradeoff: string
+}
+
+export type ProductionCapacity = {
+  period: string
+  lines: ProductionLine[]
+  gapAnalysis: {
+    lineId: string
+    skuAffected: string
+    gapCases: number
+    demandCases: number
+    capacityCases: number
+    options: GapOption[]
+  }
+}
+
 export { skus as SKUs, forecast as Forecast, inventory as Inventory, rawMaterials as RawMaterials }
 export const KPIs = kpis
+export const ProductionCapacity = productionCapacity as ProductionCapacity

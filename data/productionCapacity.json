@@ -1,0 +1,198 @@
+{
+  "period": "2026-04",
+  "lines": [
+    {
+      "id": "L1",
+      "name": "Línea 1 — Lata 170g ACE premium",
+      "primarySkus": ["DOL-170-ACE"],
+      "family": "Atún 170g",
+      "capacityWeekCases": 78000,
+      "demandWeekCases": 71000,
+      "setupHours": 2.5,
+      "minBatchCases": 8000,
+      "status": "ok"
+    },
+    {
+      "id": "L2",
+      "name": "Línea 2 — Lata 170g AGU premium",
+      "primarySkus": ["DOL-170-AGU"],
+      "family": "Atún 170g",
+      "capacityWeekCases": 82000,
+      "demandWeekCases": 78500,
+      "setupHours": 2.5,
+      "minBatchCases": 8000,
+      "status": "ok"
+    },
+    {
+      "id": "L3",
+      "name": "Línea 3 — Lata 170g ACE económico",
+      "primarySkus": ["MAZ-170-ACE"],
+      "family": "Atún 170g",
+      "capacityWeekCases": 58000,
+      "demandWeekCases": 52000,
+      "setupHours": 2.0,
+      "minBatchCases": 6000,
+      "status": "ok"
+    },
+    {
+      "id": "L4",
+      "name": "Línea 4 — Lata 170g AGU económico",
+      "primarySkus": ["MAZ-170-AGU"],
+      "family": "Atún 170g",
+      "capacityWeekCases": 58000,
+      "demandWeekCases": 49000,
+      "setupHours": 2.0,
+      "minBatchCases": 6000,
+      "status": "ok"
+    },
+    {
+      "id": "L5",
+      "name": "Línea 5 — Pouch 80g Portola",
+      "primarySkus": ["POR-POUCH-ACE"],
+      "family": "Pouch especialidad",
+      "capacityWeekCases": 95000,
+      "demandWeekCases": 112000,
+      "setupHours": 4.5,
+      "minBatchCases": 15000,
+      "status": "gap"
+    },
+    {
+      "id": "L6",
+      "name": "Línea 6 — Lata 280g premium",
+      "primarySkus": ["DOL-280-ACE"],
+      "family": "Atún 280g",
+      "capacityWeekCases": 48000,
+      "demandWeekCases": 42500,
+      "setupHours": 3.0,
+      "minBatchCases": 5000,
+      "status": "ok"
+    },
+    {
+      "id": "L7",
+      "name": "Línea 7 — Lata 425g sardina premium",
+      "primarySkus": ["ELD-SARD-JIT-425"],
+      "family": "Sardina 425g",
+      "capacityWeekCases": 72000,
+      "demandWeekCases": 68000,
+      "setupHours": 3.5,
+      "minBatchCases": 8000,
+      "status": "ok"
+    },
+    {
+      "id": "L8",
+      "name": "Línea 8 — Lata 425g sardina económica",
+      "primarySkus": ["MAZ-SARD-JIT-425"],
+      "family": "Sardina 425g",
+      "capacityWeekCases": 52000,
+      "demandWeekCases": 39000,
+      "setupHours": 3.5,
+      "minBatchCases": 8000,
+      "status": "ok"
+    },
+    {
+      "id": "L9",
+      "name": "Línea 9 — Lata 215g sardina aceite",
+      "primarySkus": ["ELD-SARD-ACE-215"],
+      "family": "Sardina 215g",
+      "capacityWeekCases": 40000,
+      "demandWeekCases": 33000,
+      "setupHours": 3.0,
+      "minBatchCases": 5000,
+      "status": "ok"
+    },
+    {
+      "id": "L10",
+      "name": "Línea 10 — Foodservice 1kg",
+      "primarySkus": ["DOL-FOODSVC-1KG"],
+      "family": "Foodservice",
+      "capacityWeekCases": 18000,
+      "demandWeekCases": 15500,
+      "setupHours": 5.0,
+      "minBatchCases": 2500,
+      "status": "ok"
+    },
+    {
+      "id": "L11",
+      "name": "Línea 11 — Flex 170g (backup)",
+      "primarySkus": ["DOL-170-ACE", "DOL-170-AGU", "MAZ-170-ACE"],
+      "family": "Flex 170g",
+      "capacityWeekCases": 55000,
+      "demandWeekCases": 48000,
+      "setupHours": 3.0,
+      "minBatchCases": 6000,
+      "status": "tight"
+    },
+    {
+      "id": "L12",
+      "name": "Línea 12 — Flex 170g",
+      "primarySkus": ["DOL-170-AGU", "MAZ-170-AGU"],
+      "family": "Flex 170g",
+      "capacityWeekCases": 55000,
+      "demandWeekCases": 53500,
+      "setupHours": 3.0,
+      "minBatchCases": 6000,
+      "status": "tight"
+    },
+    {
+      "id": "L13",
+      "name": "Línea 13 — Maquila / NPI",
+      "primarySkus": [],
+      "family": "Otros",
+      "capacityWeekCases": 22000,
+      "demandWeekCases": 8000,
+      "setupHours": 6.0,
+      "minBatchCases": 3000,
+      "status": "slack"
+    },
+    {
+      "id": "L14",
+      "name": "Línea 14 — Empaque secundario / retrabajo",
+      "primarySkus": [],
+      "family": "Otros",
+      "capacityWeekCases": 30000,
+      "demandWeekCases": 26000,
+      "setupHours": 1.5,
+      "minBatchCases": 2000,
+      "status": "ok"
+    }
+  ],
+  "gapAnalysis": {
+    "lineId": "L5",
+    "skuAffected": "POR-POUCH-ACE",
+    "gapCases": 17000,
+    "demandCases": 112000,
+    "capacityCases": 95000,
+    "options": [
+      {
+        "id": "option-a",
+        "label": "Ampliar turno nocturno Línea 5",
+        "type": "expand-capacity",
+        "costMXN": 1850000,
+        "incrementalCapacityCases": 22000,
+        "serviceImpact": "Fill rate POR-POUCH se mantiene en 95%",
+        "feasibility": "Disponible con 2 semanas de aviso · requiere coordinación con RH",
+        "tradeoff": "+$1.85M OPEX · sin pérdida de servicio"
+      },
+      {
+        "id": "option-b",
+        "label": "Aceptar quiebre controlado en OXXO",
+        "type": "accept-stockout",
+        "costMXN": 3400000,
+        "salesLostMXN": 3400000,
+        "serviceImpact": "Fill rate cae a 87% · riesgo de perder frentes en OXXO",
+        "feasibility": "Decisión inmediata",
+        "tradeoff": "−$3.4M revenue · riesgo de deslistado en 2-3 meses"
+      },
+      {
+        "id": "option-c",
+        "label": "Renegociar plan comercial con Walmart",
+        "type": "adjust-plan",
+        "costMXN": 0,
+        "revenueLostMXN": 4800000,
+        "serviceImpact": "Redistribución de volumen a Dolores 170g (línea con slack)",
+        "feasibility": "Sujeto a aprobación comercial + llamada con comprador",
+        "tradeoff": "−$4.8M revenue redistribuido · cero costo directo · riesgo relación cliente"
+      }
+    ]
+  }
+}

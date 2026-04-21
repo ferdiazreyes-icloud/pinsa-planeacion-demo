@@ -93,15 +93,12 @@
 - [x] E2.2 — FVA histórico mock por categoría en tarjetas superiores: Promoción +8.2%, Estacionalidad +6.1%, Lanzamiento +4.1%, Anaquel +2.5%, Competencia −3.8% (n=11-42 por cat.)
 - [x] E2.3 — Badge verde/rojo inline al lado del ajuste según FVA histórico + FVA proyectado del ciclo como chip agregado
 
-### E3 — Planeación de Producción con brecha de capacidad (Paso 4)
+### E3 — Planeación de Producción con brecha de capacidad (Paso 4) [COMPLETADO v0.4.4]
 
-- [ ] E3.1 — Nuevo dataset `data/productionCapacity.json` con capacidad por línea/semana (14 líneas según brief), lotes mínimos, tiempo de arranque
-- [ ] E3.2 — Nuevo componente `Step4Production.tsx` con programa línea × semana
-- [ ] E3.3 — **Brecha explícita** cuando demanda > capacidad: mostrar 3 opciones modeladas con impactos:
-  - Opción A: Ampliar turno (costo $, impacto servicio)
-  - Opción B: Quiebre controlado (ventas perdidas $, fill rate impacto)
-  - Opción C: Ajustar plan de ventas (revenue perdido $, alineación comercial)
-- [ ] E3.4 — CTA "Escalar a Sesión Ejecutiva" para las brechas no resueltas
+- [x] E3.1 — Dataset `data/productionCapacity.json` con 14 líneas reales PINSA: capacidad semanal, demanda, lote mínimo, setup hours, status
+- [x] E3.2 — `Step4Production.tsx` funcional con bar chart capacidad vs demanda + tabla detalle por línea
+- [x] E3.3 — Brecha explícita L5 Pouch 80g Portola (118% util, 17K cajas): 3 opciones con impactos $ calculados (+$1.85M OPEX / −$3.4M ventas / −$4.8M revenue redistribuido)
+- [x] E3.4 — Botón "Escalar a Sesión Ejecutiva" por opción con estado de confirmación
 
 ### E4 — Vista Sesión Ejecutiva Mensual (nuevo módulo)
 
