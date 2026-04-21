@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.4.3 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2) · **Ciclo activo:** Abril 2026
+**Version:** 0.4.4 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2 + E3) · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -17,6 +17,19 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
   - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.4.4 (Fase E3 — Planeación de Producción con brecha de capacidad)
+
+- [x] **Dataset real** `data/productionCapacity.json` con las **14 líneas de producción** de PINSA (brief), cada una con capacidad semanal, demanda, lote mínimo, tiempo de arranque y estado
+- [x] **Bar chart doble**: capacidad (gris) vs demanda (coloreada por estado) por línea
+- [x] **Tabla detalle por línea**: SKU primario, utilización %, lote mínimo, setup hours, estado
+- [x] **Estados visuales**: OK (en capacidad) · Ajustado · Brecha (demanda > capacidad) · Holgura
+- [x] **Brecha detectada automáticamente**: Línea 5 (Pouch 80g Portola) — 118% utilización, 17K cajas de brecha
+- [x] **3 opciones modeladas con impactos calculados**:
+  - A) Ampliar turno nocturno: +$1.85M OPEX, +22K cajas/sem, mantiene fill rate 95%
+  - B) Aceptar quiebre controlado: −$3.4M ventas perdidas, fill rate cae a 87%, riesgo deslistado OXXO
+  - C) Renegociar plan Walmart: −$4.8M revenue redistribuido, cero costo directo
+- [x] **Botón "Escalar a Sesión Ejecutiva"** por opción (el sistema no decide, presenta para decisión)
 
 ## Completado en v0.4.3 (Fase E2 — Forecast Value Added en Colaboración)
 

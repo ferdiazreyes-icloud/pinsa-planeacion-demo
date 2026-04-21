@@ -88,10 +88,11 @@ test.describe('S&OP Ciclo Mensual', () => {
     for (let i = 0; i < 3; i++) {
       await page.click('button:has-text("Confirmar y continuar")')
     }
-    await expect(page.locator('text=brecha capacidad vs demanda')).toBeVisible()
-    await expect(page.locator('text=Ampliar turno nocturno Línea 4')).toBeVisible()
+    await expect(page.locator('text=Programa de producción por línea')).toBeVisible()
+    await expect(page.locator('text=Brecha detectada')).toBeVisible()
+    await expect(page.locator('text=Ampliar turno nocturno Línea 5')).toBeVisible()
     await expect(page.locator('text=Aceptar quiebre controlado en OXXO')).toBeVisible()
-    await expect(page.locator('text=Re-negociar plan comercial')).toBeVisible()
+    await expect(page.locator('text=Renegociar plan comercial con Walmart')).toBeVisible()
   })
 
   test('step 5 shows distribution plan planta → cedis', async ({ page }) => {
