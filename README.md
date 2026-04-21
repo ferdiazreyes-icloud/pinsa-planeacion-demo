@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.4.6 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0 + E1 + E2 + E3 + E4 + E5) · **Ciclo activo:** Abril 2026
+**Version:** 0.5.0 · **Status:** Demo V0.5 — Alineado con propuesta Arena Analytics (E0–E6 completos) · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -18,6 +18,17 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
   - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.5.0 (Fase E6 — Escenarios guardados + Eficiencia producción)
+
+- [x] **Persistencia localStorage** (`lib/scenarios.ts`): guardar, cargar, borrar y marcar escenarios para Sesión Ejecutiva
+- [x] **Botón "Guardar escenario"** en Simulador con modal para nombrar el escenario
+- [x] **Panel "Escenarios guardados"** con lista, resumen de parámetros y métricas (Fill Rate, WC, Eficiencia)
+- [x] **Comparación lado a lado** (modal) de 2 escenarios seleccionables mediante checkbox
+- [x] **Botón martillo** para marcar escenario "para Sesión Ejecutiva" — aparece en la vista ejecutiva
+- [x] **4º KPI Eficiencia producción** al simulador (según propuesta full): fórmula derivada de desabasto, demanda y utilización — rango 40–100%
+- [x] **Sección "Escenarios what-if" en Sesión Ejecutiva** conectada a los marcados: tabla con 9 columnas comparativas
+- [x] **4 nuevos E2E tests** para persistencia y conexión simulador↔sesión ejecutiva
 
 ## Completado en v0.4.6 (Fase E5 — Inventario multi-nodo + política ABC)
 
