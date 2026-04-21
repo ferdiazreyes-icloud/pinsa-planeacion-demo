@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.4.0 · **Status:** Demo V0 — Listo para presentacion · **Ciclo activo:** Abril 2026
+**Version:** 0.4.1 · **Status:** Demo V0 — Alineado con propuesta Arena Analytics (E0) · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -10,13 +10,21 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
 
 - [x] **Home / Role selector** — Landing page con KPIs actuales y acceso por rol
 - [x] **Dashboard Directivo** — KPI cards (Fill Rate, Asertividad, Inventario, Capital de trabajo), alertas activas, graficas de tendencia (12 meses)
-- [x] **Ciclo S&OP Mensual (5 pasos):**
-  - [x] Paso 1: Pronostico estadistico con accuracy por SKU
-  - [x] Paso 2: Colaboracion de ventas (tabla editable con ajustes y justificaciones)
-  - [x] Paso 3: Revision de calidad (comparativo MAPE, radar score)
-  - [x] Paso 4: Plan de inventarios (dias de cobertura, ordenes de reposicion)
-  - [x] Paso 5: Validacion financiera (P&L, riesgos, aprobacion)
+- [x] **Ciclo S&OP Mensual (5 pasos — alineado con propuesta Arena Analytics):**
+  - [x] Paso 1: Pronóstico estadístico con accuracy por SKU
+  - [x] Paso 2: Colaboración comercial (tabla editable con cuentas nombradas: Walmart, OXXO, Sam's, etc.)
+  - [x] Paso 3: Planeación de Inventarios (dias de cobertura, ordenes de reposicion)
+  - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
+  - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.4.1 (Fase E0 — Alineación con propuesta full)
+
+- [x] **Marcas reales PINSA**: Dolores, Mazatún, El Dorado, Portola (reemplaza Guardamar/La Sirena)
+- [x] **Canales con cuentas nombradas**: Autoservicios (Walmart, Chedraui, Soriana, Bodega), Clubes de Precio (Sam's, Costco, City), Conveniencia (OXXO, 7-Eleven, Super K), Mayoristas (Zorro, 3B, Merza), Distribuidores, Foodservice, Exportación
+- [x] **Stepper S&OP renombrado**: Pasos 3/4/5 ahora son Planeación de Inventarios / Producción / Distribución
+- [x] **Nuevos componentes preview**: `Step4Production` (brecha capacidad + 3 opciones) y `Step5Distribution` (reposición Planta→CEDIS)
+- [x] **Tests actualizados**: 88/88 unit · 44/44 E2E · build limpio
 
 ## Completado en v0.4.0
 

@@ -14,13 +14,13 @@ type CollabRow = {
 }
 
 const initialRows: CollabRow[] = [
-  { skuId: 'DOL-170-ACE', sku: 'Dolores Atún Aceite 170g', channel: 'Autoservicio', statistical: 12800, collaborated: 14200, reason: 'Activación Walmart Semana Santa', status: 'done' },
-  { skuId: 'DOL-170-AGU', sku: 'Dolores Atún Agua 170g', channel: 'Autoservicio', statistical: 16200, collaborated: 18000, reason: 'Exhibición especial Soriana + OXXO', status: 'done' },
-  { skuId: 'DOL-POUCH-ACE', sku: 'Dolores Pouch Aceite 80g', channel: 'Tienda proximidad', statistical: 9800, collaborated: 12000, reason: 'Lanzamiento canal Kiosko', status: 'done' },
-  { skuId: 'DOL-170-ACE', sku: 'Dolores Atún Aceite 170g', channel: 'Mayoreo', statistical: 6300, collaborated: 6300, reason: '', status: 'pending' },
-  { skuId: 'DOL-280-ACE', sku: 'Dolores Atún Aceite 280g', channel: 'Autoservicio', statistical: 4200, collaborated: 4200, reason: '', status: 'pending' },
-  { skuId: 'GUA-170-ACE', sku: 'Guardamar Atún Aceite 170g', channel: 'Mayoreo', statistical: 7400, collaborated: 8100, reason: 'Pedido especial CHEDRAUI norte', status: 'done' },
-  { skuId: 'SIR-SARD-425', sku: 'La Sirena Sardina Jitomate 425g', channel: 'Export', statistical: 3200, collaborated: 3200, reason: '', status: 'pending' },
+  { skuId: 'DOL-170-ACE', sku: 'Dolores Atún Aceite 170g', channel: 'Walmart', statistical: 12800, collaborated: 14200, reason: 'Activación Semana Santa Walmart', status: 'done' },
+  { skuId: 'DOL-170-AGU', sku: 'Dolores Atún Agua 170g', channel: 'Soriana', statistical: 16200, collaborated: 18000, reason: 'Exhibición especial Soriana + OXXO', status: 'done' },
+  { skuId: 'POR-POUCH-ACE', sku: 'Portola Pouch Aceite 80g', channel: 'OXXO', statistical: 9800, collaborated: 12000, reason: 'Lanzamiento canal Kiosko OXXO', status: 'done' },
+  { skuId: 'DOL-170-ACE', sku: 'Dolores Atún Aceite 170g', channel: 'Zorro Abarrotero', statistical: 6300, collaborated: 6300, reason: '', status: 'pending' },
+  { skuId: 'DOL-280-ACE', sku: 'Dolores Atún Aceite 280g', channel: "Sam's Club", statistical: 4200, collaborated: 4200, reason: '', status: 'pending' },
+  { skuId: 'MAZ-170-ACE', sku: 'Mazatún Atún Aceite 170g', channel: 'Chedraui', statistical: 7400, collaborated: 8100, reason: 'Pedido especial CHEDRAUI norte', status: 'done' },
+  { skuId: 'ELD-SARD-JIT-425', sku: 'El Dorado Sardina Jitomate 425g', channel: 'Exportación LATAM', statistical: 3200, collaborated: 3200, reason: '', status: 'pending' },
   { skuId: 'DOL-FOODSVC-1KG', sku: 'Dolores Foodservice 1kg', channel: 'Foodservice', statistical: 1100, collaborated: 1100, reason: '', status: 'pending' },
 ]
 

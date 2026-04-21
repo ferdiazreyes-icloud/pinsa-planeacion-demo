@@ -8,7 +8,7 @@
 type SKU = {
   id: string              // e.g. "DOLORES-170-ACE"
   name: string            // e.g. "Dolores Atún en Aceite 170g"
-  brand: string           // Dolores | Guardamar | La Sirena
+  brand: string           // Dolores | Mazatún | El Dorado | Portola
   category: string        // Atún | Sardina | Mariscos
   presentation: string    // 170g | 280g | 1kg
   packType: string        // Lata | Pouch

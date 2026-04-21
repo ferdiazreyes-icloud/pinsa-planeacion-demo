@@ -1,6 +1,6 @@
 # PINSA Torre de Control de Planeacion — Resumen del Sistema
 
-**Version:** 0.3.0 · **Fecha:** Abril 2025 · **Estado:** Demo listo para presentacion
+**Version:** 0.4.1 · **Fecha:** Abril 2026 · **Estado:** Demo alineado con propuesta Arena Analytics (E0)
 
 ---
 
@@ -29,15 +29,15 @@ El demo muestra como se veria la herramienta con datos reales de PINSA (atun, sa
 - 4 KPIs principales: Fill Rate OTIF, Asertividad de Pronostico, Cobertura de Inventario, Capital de Trabajo
 - Alertas activas con severidad (Alta / Media / Baja)
 - Graficas de tendencia: Fill Rate 12 meses, Ventas vs COGS, Capital de Trabajo
-- Mix de ventas por canal (Autoservicio, Mayoreo, Foodservice, Exportacion)
+- Mix de ventas por canal con cuentas nombradas (Autoservicios Walmart/Chedraui/Soriana, Clubes Sam's/Costco, Conveniencia OXXO/7-Eleven, Mayoristas, Foodservice, Exportación)
 - Top SKUs por volumen
 
-### Ciclo S&OP — 5 pasos
-1. **Pronostico** — Comparativo estadistico vs colaborado vs real. Accuracy por SKU.
-2. **Colaboracion** — Tabla editable: ventas puede ajustar el pronostico y justificar el cambio.
-3. **Calidad** — Radar de score de calidad del proceso S&OP, comparativo MAPE por canal.
-4. **Inventarios** — Dias de cobertura por SKU, plan de reposicion con alertas criticas.
-5. **Finanzas** — P&L proyectado vs presupuesto, riesgos identificados, boton de aprobacion/rechazo.
+### Ciclo S&OP — 5 pasos (alineado con propuesta Arena Analytics)
+1. **Pronóstico estadístico** — Comparativo estadistico vs colaborado vs real. Accuracy por SKU.
+2. **Colaboración comercial** — Tabla editable con cuentas nombradas (Walmart, OXXO, etc.): ventas ajusta el pronóstico y justifica el cambio.
+3. **Planeación de Inventarios** — Dias de cobertura por SKU, plan de reposicion con alertas criticas.
+4. **Planeación de Producción** — Preview de programa por línea × semana con brecha capacidad vs demanda y 3 opciones modeladas (ampliar turno / quiebre controlado / ajustar plan comercial).
+5. **Planeación de Distribución** — Preview plan de reposición Planta Mazatlán → CEDIS México por SKU.
 
 ### Simulador de Escenarios
 - 4 variables ajustables: precio de materia prima, desabasto de MP, variacion de demanda, stock de seguridad
@@ -51,7 +51,7 @@ El demo muestra como se veria la herramienta con datos reales de PINSA (atun, sa
 
 | Metrica | Valor |
 |---|---|
-| SKUs en el sistema | 10 (Dolores, Guardamar, La Sirena) |
+| SKUs en el sistema | 10 (Dolores, Mazatún, El Dorado, Portola) |
 | Meses de historial | 12 meses + 3 meses forward |
 | Materias primas | 4 (atun, sardina, hojalata, aceite) |
 | Tests automatizados | 133 (88 unitarios + 45 E2E) |

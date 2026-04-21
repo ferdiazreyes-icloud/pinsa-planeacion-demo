@@ -192,9 +192,8 @@ Hacer clic en **"Ciclo S&OP"** en la barra lateral izquierda.
    - Revenue +$6.5M por mejor temporada Semana Santa (Baja — positivo)
 
 3. Mostrar el **boton de aprobacion**:
-   - Escribir un comentario breve en el campo de texto
-   - Hacer clic en **"Aprobar plan Mar 2025"**
-   - Mostrar el estado de aprobacion confirmado
+   - Hacer clic en **"Aprobar plan Abr 2026"** (botón al final del stepper)
+   - El ciclo se marca como completado
 
 ### Lista de verificacion
 - [ ] El stepper muestra los 5 pasos con el paso actual resaltado

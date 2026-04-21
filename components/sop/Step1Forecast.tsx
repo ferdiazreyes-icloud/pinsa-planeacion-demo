@@ -3,7 +3,7 @@
 import ReactECharts from 'echarts-for-react'
 import { Forecast, SKUs } from '@/data'
 
-const TOP_SKUS = ['DOL-170-ACE', 'DOL-170-AGU', 'DOL-POUCH-ACE', 'GUA-170-ACE', 'SIR-SARD-425']
+const TOP_SKUS = ['DOL-170-ACE', 'DOL-170-AGU', 'POR-POUCH-ACE', 'MAZ-170-ACE', 'ELD-SARD-JIT-425']
 
 const accuracyData = TOP_SKUS.map(skuId => {
   const sku = SKUs.find(s => s.id === skuId)!
@@ -11,7 +11,7 @@ const accuracyData = TOP_SKUS.map(skuId => {
   const mape = records.length
     ? records.reduce((sum, r) => sum + Math.abs((r.actual! - r.statistical) / r.actual!) * 100, 0) / records.length
     : 0
-  return { sku: sku?.name.replace('Dolores ', 'DOL ').replace('Guardamar ', 'GUA ').replace('La Sirena ', 'SIR '), accuracy: Math.round((100 - mape) * 10) / 10 }
+  return { sku: sku?.name.replace('Dolores ', 'DOL ').replace('Portola ', 'POR ').replace('Mazatún ', 'MAZ ').replace('El Dorado ', 'ELD '), accuracy: Math.round((100 - mape) * 10) / 10 }
 })
 
 const chartData = ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04'].map(period => {

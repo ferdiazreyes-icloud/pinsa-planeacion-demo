@@ -55,8 +55,9 @@ test.describe('Dashboard', () => {
 
   test('shows mix de ventas por canal section', async ({ page }) => {
     await expect(page.locator('text=Mix de ventas por canal')).toBeVisible()
-    await expect(page.locator('text=Autoservicio')).toBeVisible()
-    await expect(page.locator('text=Mayoreo')).toBeVisible()
+    await expect(page.locator('text=Autoservicios').first()).toBeVisible()
+    await expect(page.locator('text=Mayoristas').first()).toBeVisible()
+    await expect(page.locator('text=Clubes de Precio').first()).toBeVisible()
   })
 
   test('shows top SKUs table', async ({ page }) => {

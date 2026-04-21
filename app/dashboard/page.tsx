@@ -18,7 +18,7 @@ export default function DashboardPage() {
     { target: '[data-tour="dash-alerts"]',   title: 'Alertas activas',          desc: 'El sistema identifica automáticamente los problemas más urgentes y los ordena por severidad. Sin necesidad de revisar correos ni reportes manuales.', position: 'bottom' },
     { target: '[data-tour="dash-fillrate"]', title: 'Fill Rate — 12 meses',     desc: 'Tendencia histórica del Fill Rate OTIF. La línea punteada es la meta del 95%. Ideal para detectar caídas y estacionalidad.',                       position: 'bottom' },
     { target: '[data-tour="dash-revenue"]',  title: 'Ventas vs COGS',           desc: 'Comparativo mes a mes de ingresos y costo de venta. Detecta compresión de margen de un vistazo. Las barras claras son pronóstico.',                  position: 'bottom' },
-    { target: '[data-tour="dash-channels"]', title: 'Mix de ventas por canal',  desc: 'Participación de Autoservicio, Mayoreo, Tienda de proximidad, Foodservice y Export. Útil para identificar concentración de riesgo.',                  position: 'top'    },
+    { target: '[data-tour="dash-channels"]', title: 'Mix de ventas por canal',  desc: 'Participación por Autoservicios (Walmart, Chedraui, Soriana), Clubes de Precio (Sam\'s, Costco), Conveniencia (OXXO, 7-Eleven), Mayoristas (Zorro, 3B), Foodservice y Exportación.',                  position: 'top'    },
     { target: '[data-tour="dash-skus"]',     title: 'Top SKUs por volumen',     desc: 'Los 5 productos con mayor volumen este mes con fill rate individual y tendencia vs el mes anterior.',                                                  position: 'top'    },
   ]
 
@@ -117,14 +117,19 @@ export default function DashboardPage() {
           <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Mix de ventas por canal</div>
           <div className="space-y-3">
             {[
-              { channel: 'Autoservicio', pct: 48, color: 'var(--brand-navy)' },
-              { channel: 'Mayoreo', pct: 28, color: 'var(--brand-maroon)' },
-              { channel: 'Tienda de proximidad', pct: 14, color: 'var(--brand-teal)' },
-              { channel: 'Foodservice', pct: 6, color: 'var(--brand-gold)' },
-              { channel: 'Export', pct: 4, color: 'var(--brand-silver)' },
-            ].map(({ channel, pct, color }) => (
+              { channel: 'Autoservicios',   hint: 'Walmart · Chedraui · Soriana · Bodega',  pct: 38, color: 'var(--brand-navy)'   },
+              { channel: 'Mayoristas',      hint: 'Zorro · 3B · Merza · Calimax',           pct: 22, color: 'var(--brand-maroon)' },
+              { channel: 'Conveniencia',    hint: 'OXXO · 7-Eleven · Super K',              pct: 14, color: 'var(--brand-teal)'   },
+              { channel: 'Clubes de Precio',hint: "Sam's · Costco · City Club",             pct: 12, color: '#5B4DBD'             },
+              { channel: 'Distribuidores',  hint: 'Duero · Regionales',                     pct:  6, color: 'var(--brand-silver)' },
+              { channel: 'Foodservice',     hint: 'Restaurantes · Cadenas institucionales', pct:  5, color: 'var(--brand-gold)'   },
+              { channel: 'Exportación',     hint: 'LATAM · Caribe',                         pct:  3, color: '#8A96B5'             },
+            ].map(({ channel, hint, pct, color }) => (
               <div key={channel} className="flex items-center gap-3">
-                <span className="text-xs w-40 flex-shrink-0" style={{ color: 'var(--text-secondary)' }}>{channel}</span>
+                <div className="w-44 flex-shrink-0">
+                  <div className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>{channel}</div>
+                  <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{hint}</div>
+                </div>
                 <div className="flex-1 rounded-full h-2" style={{ background: 'var(--bg-tertiary)' }}>
                   <div className="h-2 rounded-full transition-all" style={{ width: `${pct}%`, background: color }} />
                 </div>
@@ -140,10 +145,10 @@ export default function DashboardPage() {
           <div className="space-y-0">
             {[
               { sku: 'Dolores Atún Agua 170g',    cases: 19500, fillRate: 93.2, trend: '+1.2pp' },
-              { sku: 'Dolores Pouch Aceite 80g',  cases: 27400, fillRate: 92.8, trend: '+0.8pp' },
+              { sku: 'Portola Pouch Aceite 80g',  cases: 27400, fillRate: 92.8, trend: '+0.8pp' },
               { sku: 'Dolores Atún Aceite 170g',  cases: 16300, fillRate: 91.5, trend: '-0.3pp' },
-              { sku: 'Guardamar Atún Aceite 170g',cases: 9000,  fillRate: 89.4, trend: '-1.5pp' },
-              { sku: 'La Sirena Sardina Jitomate',cases: 6300,  fillRate: 94.1, trend: '+2.1pp' },
+              { sku: 'Mazatún Atún Aceite 170g',  cases: 9000,  fillRate: 89.4, trend: '-1.5pp' },
+              { sku: 'El Dorado Sardina Jitomate',cases: 6300,  fillRate: 94.1, trend: '+2.1pp' },
             ].map(({ sku, cases, fillRate, trend }) => (
               <div
                 key={sku}

@@ -6,17 +6,17 @@ import { Suspense } from 'react'
 import TourGuide, { type TourStep } from '@/components/layout/TourGuide'
 import Step1Forecast from '@/components/sop/Step1Forecast'
 import Step2Collaboration from '@/components/sop/Step2Collaboration'
-import Step3Quality from '@/components/sop/Step3Quality'
 import Step4Inventory from '@/components/sop/Step4Inventory'
-import Step5Finance from '@/components/sop/Step5Finance'
+import Step4Production from '@/components/sop/Step4Production'
+import Step5Distribution from '@/components/sop/Step5Distribution'
 import { CheckCircle2, ArrowRight } from 'lucide-react'
 
 const STEPS = [
-  { id: 1, label: 'Pronóstico estadístico', role: 'Planeador Demanda',    shortLabel: 'Pronóstico'  },
-  { id: 2, label: 'Colaboración de ventas', role: 'Ejecutivo de Ventas',  shortLabel: 'Colaboración'},
-  { id: 3, label: 'Revisión de calidad',    role: 'Planeador Demanda',    shortLabel: 'Calidad'     },
-  { id: 4, label: 'Plan de inventarios',    role: 'Planeador Inventarios',shortLabel: 'Inventarios' },
-  { id: 5, label: 'Validación financiera',  role: 'Finanzas',             shortLabel: 'Finanzas'    },
+  { id: 1, label: 'Pronóstico estadístico',     role: 'Planeador Demanda',     shortLabel: 'Pronóstico'   },
+  { id: 2, label: 'Colaboración comercial',      role: 'Equipo Comercial',      shortLabel: 'Colaboración' },
+  { id: 3, label: 'Planeación de Inventarios',   role: 'Supply Chain',          shortLabel: 'Inventarios'  },
+  { id: 4, label: 'Planeación de Producción',    role: 'Operaciones Planta',    shortLabel: 'Producción'   },
+  { id: 5, label: 'Planeación de Distribución',  role: 'Logística',             shortLabel: 'Distribución' },
 ]
 
 function SOPContent() {
@@ -27,8 +27,8 @@ function SOPContent() {
 
   const SOP_TOUR: TourStep[] = [
     { target: '[data-tour="sop-stepper"]',     title: 'Ciclo S&OP en 5 pasos',    desc: 'El proceso mensual completo en una sola pantalla. El stepper muestra en qué paso estás. Puedes regresar a cualquier paso ya completado.',          position: 'bottom' },
-    { target: '[data-tour="sop-step-header"]', title: 'Rol responsable del paso', desc: 'Cada paso indica qué rol ejecuta la acción: Planeador de Demanda, Ventas, Supply Chain o Finanzas. Facilita la coordinación entre equipos.',           position: 'bottom' },
-    { target: '[data-tour="sop-content"]',     title: 'Contenido del paso actual', desc: 'Aquí se muestra la información y herramientas del paso en curso: gráficas de pronóstico, tablas editables, radar de calidad, inventarios o P&L.',    position: 'top'    },
+    { target: '[data-tour="sop-step-header"]', title: 'Rol responsable del paso', desc: 'Cada paso indica qué rol ejecuta la acción: Planeador de Demanda, Equipo Comercial, Supply Chain, Operaciones de Planta o Logística. Facilita la coordinación entre equipos.',           position: 'bottom' },
+    { target: '[data-tour="sop-content"]',     title: 'Contenido del paso actual', desc: 'Aquí se muestra la información y herramientas del paso en curso: pronóstico, ajustes comerciales, inventarios por nodo, programa de producción y plan de reposición.',    position: 'top'    },
     { target: '[data-tour="sop-nav"]',         title: 'Navegar entre pasos',       desc: 'Usa "Confirmar y continuar" para avanzar. El flujo es secuencial pero puedes regresar con "Paso anterior" en cualquier momento sin perder cambios.', position: 'top'    },
   ]
 
@@ -139,9 +139,9 @@ function SOPContent() {
         <div data-tour="sop-content">
         {currentStep === 1 && <Step1Forecast />}
         {currentStep === 2 && <Step2Collaboration />}
-        {currentStep === 3 && <Step3Quality />}
-        {currentStep === 4 && <Step4Inventory />}
-        {currentStep === 5 && <Step5Finance />}
+        {currentStep === 3 && <Step4Inventory />}
+        {currentStep === 4 && <Step4Production />}
+        {currentStep === 5 && <Step5Distribution />}
         </div>
 
         {/* Navigation */}
@@ -181,7 +181,7 @@ function SOPContent() {
         steps={SOP_TOUR}
         storageKey="pinsa-tour-sop"
         welcomeTitle="Ciclo S&OP Mensual"
-        welcomeDesc="Flujo guiado de 5 pasos: Pronóstico → Colaboración → Calidad → Inventarios → Finanzas."
+        welcomeDesc="Flujo guiado de 5 pasos: Pronóstico → Colaboración Comercial → Inventarios → Producción → Distribución."
       />
     </div>
   )

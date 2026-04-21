@@ -8,18 +8,18 @@ const alerts: Alert[] = [
     id: 'a1',
     severity: 'high',
     type: 'supply',
-    title: 'Riesgo de desabasto DOL-POUCH-ACE',
+    title: 'Riesgo de desabasto POR-POUCH-ACE',
     description: 'Inventario proyectado cae a 18 días de cobertura.',
-    skusAffected: ['DOL-POUCH-ACE'],
+    skusAffected: ['POR-POUCH-ACE'],
     financialImpactMXN: 18_500_000,
   },
   {
     id: 'a2',
     severity: 'medium',
     type: 'forecast',
-    title: 'Baja asertividad GUA-170',
+    title: 'Baja asertividad MAZ-170',
     description: 'MAPE supera 35% en últimos 3 meses.',
-    skusAffected: ['GUA-170-ACE'],
+    skusAffected: ['MAZ-170-ACE'],
     financialImpactMXN: 3_200_000,
   },
   {
@@ -36,8 +36,8 @@ const alerts: Alert[] = [
 describe('AlertBanner', () => {
   it('renders all alerts', () => {
     render(<AlertBanner alerts={alerts} />)
-    expect(screen.getByText('Riesgo de desabasto DOL-POUCH-ACE')).toBeInTheDocument()
-    expect(screen.getByText('Baja asertividad GUA-170')).toBeInTheDocument()
+    expect(screen.getByText('Riesgo de desabasto POR-POUCH-ACE')).toBeInTheDocument()
+    expect(screen.getByText('Baja asertividad MAZ-170')).toBeInTheDocument()
     expect(screen.getByText('Alerta precio hojalata')).toBeInTheDocument()
   })
 
@@ -67,7 +67,7 @@ describe('AlertBanner', () => {
 
   it('renders a single alert', () => {
     render(<AlertBanner alerts={[alerts[0]]} />)
-    expect(screen.getByText('Riesgo de desabasto DOL-POUCH-ACE')).toBeInTheDocument()
-    expect(screen.queryByText('Baja asertividad GUA-170')).not.toBeInTheDocument()
+    expect(screen.getByText('Riesgo de desabasto POR-POUCH-ACE')).toBeInTheDocument()
+    expect(screen.queryByText('Baja asertividad MAZ-170')).not.toBeInTheDocument()
   })
 })
