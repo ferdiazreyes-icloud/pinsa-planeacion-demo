@@ -19,6 +19,8 @@ function makeRecord(actual: number, statistical: number, collaborated?: number):
     collaborated: collaborated ?? null,
     actual,
     adjustmentReason: null,
+    forecastLow: Math.round(statistical * 0.9),
+    forecastHigh: Math.round(statistical * 1.1),
   }
 }
 
@@ -38,7 +40,7 @@ describe('calculateMAPE', () => {
 
   it('returns 0 when no record has actual data', () => {
     const records: ForecastRecord[] = [
-      { skuId: 'X', period: '2025-01', statistical: 100, collaborated: null, actual: null, adjustmentReason: null },
+      { skuId: 'X', period: '2025-01', statistical: 100, collaborated: null, actual: null, adjustmentReason: null, forecastLow: 90, forecastHigh: 110 },
     ]
     expect(calculateMAPE(records)).toBe(0)
   })
@@ -77,7 +79,7 @@ describe('calculateMAPE', () => {
   it('ignores records where actual is null', () => {
     const records = [
       makeRecord(100, 80),
-      { skuId: 'X', period: '2025-01', statistical: 999, collaborated: null, actual: null, adjustmentReason: null },
+      { skuId: 'X', period: '2025-01', statistical: 999, collaborated: null, actual: null, adjustmentReason: null, forecastLow: 900, forecastHigh: 1100 },
     ]
     expect(calculateMAPE(records)).toBeCloseTo(20, 5)
   })
@@ -292,5 +294,47 @@ describe('isExtremeScenario', () => {
 
   it('returns false when demand is negative even with high supply disruption', () => {
     expect(isExtremeScenario({ ...baseInputs, supplyDisruptionPct: 80, demandChangePct: -20 })).toBe(false)
+  })
+})
+
+// ── productionEfficiency ──────────────────────────────────────────────────────
+
+describe('productionEfficiency', () => {
+  it('returns baseline 85% for no changes', () => {
+    expect(simulateScenario(baseInputs).productionEfficiency).toBe(85)
+  })
+
+  it('drops with supply disruption (less input → less throughput)', () => {
+    const out = simulateScenario({ ...baseInputs, supplyDisruptionPct: 40 })
+    expect(out.productionEfficiency).toBeLessThan(85)
+  })
+
+  it('rises with moderate demand increase (more throughput)', () => {
+    const out = simulateScenario({ ...baseInputs, demandChangePct: 20 })
+    expect(out.productionEfficiency).toBeGreaterThan(85)
+  })
+
+  it('caps contribution of demand at +30% (overload ceiling)', () => {
+    const at30  = simulateScenario({ ...baseInputs, demandChangePct: 30 })
+    const at50  = simulateScenario({ ...baseInputs, demandChangePct: 50 })
+    // Demand above 30 should not add additional efficiency
+    expect(at50.productionEfficiency).toBe(at30.productionEfficiency)
+  })
+
+  it('drops with deep negative demand (line idling)', () => {
+    const out = simulateScenario({ ...baseInputs, demandChangePct: -30 })
+    expect(out.productionEfficiency).toBeLessThan(85)
+  })
+
+  it('clamps between 40 and 100', () => {
+    const worst = simulateScenario({ ...baseInputs, supplyDisruptionPct: 80, demandChangePct: -30 })
+    expect(worst.productionEfficiency).toBeGreaterThanOrEqual(40)
+    const best = simulateScenario({ ...baseInputs, supplyDisruptionPct: 0, demandChangePct: 30 })
+    expect(best.productionEfficiency).toBeLessThanOrEqual(100)
+  })
+
+  it('is a number with at most 1 decimal place', () => {
+    const out = simulateScenario({ ...baseInputs, supplyDisruptionPct: 25, demandChangePct: 15 })
+    expect(out.productionEfficiency).toBe(Math.round(out.productionEfficiency * 10) / 10)
   })
 })

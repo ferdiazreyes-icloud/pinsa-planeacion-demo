@@ -123,18 +123,22 @@
 - [x] E6.3 — 4º KPI Eficiencia producción (fórmula: 85 − desabasto×0.55 + min(demanda,30)×0.35 − max(0,−demanda−20)×0.45, clamp 40–100)
 - [x] E6.4 — Botón martillo "Para Sesión Ejecutiva" conecta simulador con vista ejecutiva; tabla comparativa de 9 columnas
 
-### E7 — Tests
+### E7 — Tests [COMPLETADO v0.5.1]
 
-- [ ] E7.1 — Unit tests para nuevas funciones (FVA, brecha capacidad, comparación escenarios)
-- [ ] E7.2 — E2E: flujo completo con el nuevo Paso 4 (Producción) y Sesión Ejecutiva
-- [ ] E7.3 — Verificar que 45 E2E existentes sigan pasando con los renombres
+- [x] E7.1 — `__tests__/lib/scenarios.test.ts` (8 tests: add, load, delete, toggle, filter, error-handling)
+- [x] E7.2 — `productionEfficiency` tests (7 tests: baseline 85%, cap +30, clamp 40-100, demanda negativa)
+- [x] E7.3 — 57 E2E pasan con renombres y nuevos módulos (sesion-ejecutiva.spec.ts + scenarios.spec.ts)
 
-### E8 — Documentación
+### E8 — Documentación [COMPLETADO v0.5.1]
 
-- [ ] E8.1 — Actualizar `README.md` a v0.5.0 con la nueva funcionalidad
-- [ ] E8.2 — Actualizar `docs/GUIA_DEMO.md` con el nuevo flujo (Home → Dashboard → 5 pasos → Sesión Ejecutiva → Simulador)
-- [ ] E8.3 — Actualizar `docs/RESUMEN_SISTEMA.md`
-- [ ] E8.4 — Actualizar `.specify/02-business-architecture.md` y `.specify/03-information-systems-architecture.md` con los nuevos flujos y datasets
+- [x] E8.1 — README.md actualizado a v0.5.1 con funcionalidad completa
+- [x] E8.2 — `docs/GUIA_DEMO.md` reescrito con flujo v0.5 (Home → Sesión Ejecutiva → Dashboard → 5 pasos → Simulador)
+- [x] E8.3 — `docs/RESUMEN_SISTEMA.md` y `docs/UAT_DATOS_DEMO.md` reescritos con datos actuales
+- [x] E8.4 — `.specify/02-business`, `03-information-systems`, `04-technology` actualizados con nuevos flujos, tipos y stack
+
+---
+
+## 🎯 Roadmap E0–E8 completado · Demo v0.5.1 listo para presentación a PINSA
 
 ---
 
