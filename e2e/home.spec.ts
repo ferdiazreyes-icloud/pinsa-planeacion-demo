@@ -17,14 +17,14 @@ test.describe('Home page', () => {
   })
 
   test('shows exactly 4 role cards', async ({ page }) => {
-    const cards = page.locator('a[href="/dashboard"], a[href="/sop"], a[href="/sop?step=2"], a[href="/simulator"]')
+    const cards = page.locator('a[href="/sesion-ejecutiva"], a[href="/dashboard"], a[href="/sop"], a[href="/simulator"]')
     await expect(cards).toHaveCount(4)
   })
 
   test('shows all role names', async ({ page }) => {
-    await expect(page.locator('text=Directivo')).toBeVisible()
+    await expect(page.locator('text=Director de Operaciones')).toBeVisible()
+    await expect(page.locator('text=Directivo — Cadena')).toBeVisible()
     await expect(page.locator('text=Planeador de Demanda')).toBeVisible()
-    await expect(page.locator('text=Ventas / Colaboración')).toBeVisible()
     await expect(page.locator('text=Planeador de Inventarios')).toBeVisible()
   })
 
