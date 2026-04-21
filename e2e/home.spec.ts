@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Home page', () => {
   test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('pinsa-tour-home', '1')
+    })
     await page.goto('/')
   })
 
@@ -38,7 +41,7 @@ test.describe('Home page', () => {
   test('clicking Directivo card navigates to /dashboard', async ({ page }) => {
     await page.click('a[href="/dashboard"]')
     await expect(page).toHaveURL('/dashboard')
-    await expect(page.locator('text=Dashboard Ejecutivo')).toBeVisible()
+    await expect(page.locator('h1', { hasText: 'Dashboard Ejecutivo' })).toBeVisible()
   })
 
   test('clicking Planeador de Demanda card navigates to /sop', async ({ page }) => {

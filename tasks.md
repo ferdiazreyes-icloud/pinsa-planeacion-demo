@@ -116,12 +116,12 @@
 - [x] E5.3 — Señales de reabasto automáticas cuando CEDIS < target con cantidad calculada
 - [x] E5.4 — Política ABC diferenciada visible en 3 tarjetas + badges inline en tabla
 
-### E6 — Escenarios guardados en Simulador
+### E6 — Escenarios guardados en Simulador [COMPLETADO v0.5.0]
 
-- [ ] E6.1 — Botón "Guardar escenario" en `/simulator` → persiste en `localStorage` con nombre
-- [ ] E6.2 — Vista lateral "Escenarios guardados" con lista + comparación lado a lado
-- [ ] E6.3 — Agregar impacto en **eficiencia de producción** al simulador (4º eje que falta según `.md`)
-- [ ] E6.4 — Botón "Llevar a Sesión Ejecutiva" → alimenta E4.5
+- [x] E6.1 — Botón "Guardar escenario" con modal de nombre, persistencia en `lib/scenarios.ts` (localStorage)
+- [x] E6.2 — Panel de escenarios guardados con lista, cargar, borrar y comparación 2-a-la-vez mediante modal
+- [x] E6.3 — 4º KPI Eficiencia producción (fórmula: 85 − desabasto×0.55 + min(demanda,30)×0.35 − max(0,−demanda−20)×0.45, clamp 40–100)
+- [x] E6.4 — Botón martillo "Para Sesión Ejecutiva" conecta simulador con vista ejecutiva; tabla comparativa de 9 columnas
 
 ### E7 — Tests
 

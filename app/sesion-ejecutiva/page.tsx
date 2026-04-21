@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   BarChart3, TrendingUp, Package, AlertTriangle,
   Clock, Zap, Send, ChevronDown, ChevronUp,
-  CheckCircle2, AlertCircle, DollarSign, TrendingDown,
+  CheckCircle2, AlertCircle, DollarSign, TrendingDown, GitCompare,
 } from 'lucide-react'
 import TourGuide, { type TourStep } from '@/components/layout/TourGuide'
 import { KPIs, ProductionCapacity, type Alert, type GapOption } from '@/data'
 import { formatCurrency } from '@/lib/formatters'
+import { getExecutiveSessionScenarios, type SavedScenario } from '@/lib/scenarios'
 
 type KpiKey = 'fillRate' | 'accuracy' | 'inventory' | 'openGaps'
 
@@ -40,6 +41,11 @@ export default function SesionEjecutivaPage() {
   const [decidedOption, setDecidedOption] = useState<string | null>(null)
   const [cycleDecision, setCycleDecision] = useState<'approved' | 'rejected' | null>(null)
   const [decisionComment, setDecisionComment] = useState('')
+  const [executiveScenarios, setExecutiveScenarios] = useState<SavedScenario[]>([])
+
+  useEffect(() => {
+    setExecutiveScenarios(getExecutiveSessionScenarios())
+  }, [])
 
   const toggle = (k: KpiKey) => setExpanded(prev => prev === k ? null : k)
 
@@ -381,16 +387,65 @@ export default function SesionEjecutivaPage() {
         </div>
       </div>
 
-      {/* Escenarios comparados — placeholder alimentado en E6 */}
-      <div className="ec-card p-5 mb-6" style={{ background: 'rgba(36,45,81,0.03)', border: '1px dashed var(--border-primary)' }}>
-        <div className="flex items-center gap-2 mb-2">
-          <TrendingUp size={16} style={{ color: 'var(--text-tertiary)' }} />
-          <span className="text-sm font-bold" style={{ color: 'var(--text-secondary)' }}>Escenarios comparados</span>
-          <span className="text-xs ml-auto" style={{ color: 'var(--text-tertiary)' }}>Se activa en v0.5 (E6) con escenarios guardados desde el Simulador</span>
+      {/* Escenarios comparados — alimentado desde el Simulador */}
+      <div className="ec-card p-5 mb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <GitCompare size={16} style={{ color: 'var(--brand-navy)' }} />
+          <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
+            Escenarios &quot;what-if&quot; para esta sesión ({executiveScenarios.length})
+          </span>
+          <a
+            href="/simulator"
+            className="ml-auto text-xs font-semibold transition-colors"
+            style={{ color: 'var(--brand-navy)' }}
+          >
+            + Ir al Simulador →
+          </a>
         </div>
-        <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-          Los &quot;what-if&quot; del simulador se podrán guardar y traer a esta sección para comparar 2-3 alternativas lado a lado en la sesión ejecutiva.
-        </p>
+        {executiveScenarios.length === 0 ? (
+          <div className="text-xs rounded-lg px-4 py-3" style={{ color: 'var(--text-tertiary)', background: 'rgba(36,45,81,0.04)', border: '1px dashed var(--border-primary)' }}>
+            No hay escenarios marcados. Abre el Simulador, guarda un escenario y haz clic en el ícono del martillo para traerlo a esta sesión.
+          </div>
+        ) : (
+          <div className="overflow-x-auto rounded-xl" style={{ border: '1px solid var(--border-primary)' }}>
+            <table className="w-full text-xs">
+              <thead>
+                <tr style={{ background: 'var(--bg-tertiary)' }}>
+                  <th className="text-left px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Escenario</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Horizonte</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Δ MP</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Desabasto</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Δ Demanda</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Fill Rate</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Capital</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Eficiencia</th>
+                  <th className="text-right px-3 py-2.5 font-semibold" style={{ color: 'var(--text-secondary)' }}>Revenue riesgo</th>
+                </tr>
+              </thead>
+              <tbody>
+                {executiveScenarios.map(s => (
+                  <tr key={s.id} style={{ borderTop: '1px solid var(--border-primary)' }}>
+                    <td className="px-3 py-2.5 font-semibold" style={{ color: 'var(--text-primary)' }}>{s.name}</td>
+                    <td className="px-3 py-2.5 text-right" style={{ color: 'var(--text-secondary)' }}>{s.horizon}m</td>
+                    <td className="px-3 py-2.5 text-right" style={{ color: 'var(--text-secondary)' }}>{s.params.rawMaterialPriceChangePct >= 0 ? '+' : ''}{s.params.rawMaterialPriceChangePct}%</td>
+                    <td className="px-3 py-2.5 text-right" style={{ color: 'var(--text-secondary)' }}>{s.params.supplyDisruptionPct}%</td>
+                    <td className="px-3 py-2.5 text-right" style={{ color: 'var(--text-secondary)' }}>{s.params.demandChangePct >= 0 ? '+' : ''}{s.params.demandChangePct}%</td>
+                    <td className="px-3 py-2.5 text-right font-bold" style={{ color: s.metrics.avgFillRate >= 90 ? 'var(--positive)' : 'var(--negative)' }}>
+                      {s.metrics.avgFillRate.toFixed(1)}%
+                    </td>
+                    <td className="px-3 py-2.5 text-right" style={{ color: 'var(--text-secondary)' }}>{formatCurrency(s.metrics.avgWC, true)}</td>
+                    <td className="px-3 py-2.5 text-right font-bold" style={{ color: s.metrics.avgProductionEfficiency >= 80 ? 'var(--positive)' : 'var(--warning)' }}>
+                      {s.metrics.avgProductionEfficiency.toFixed(0)}%
+                    </td>
+                    <td className="px-3 py-2.5 text-right" style={{ color: s.metrics.totalRevenueAtRisk > 0 ? 'var(--negative)' : 'var(--text-tertiary)' }}>
+                      {s.metrics.totalRevenueAtRisk > 0 ? `-${formatCurrency(s.metrics.totalRevenueAtRisk, true)}` : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
       {/* Decisión del ciclo */}

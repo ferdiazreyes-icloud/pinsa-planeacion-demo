@@ -54,6 +54,7 @@ export type ScenarioOutput = {
   workingCapitalMXN: number
   revenueAtRiskMXN: number
   cogsDeltaMXN: number
+  productionEfficiency: number
 }
 
 const BASE = {
@@ -89,12 +90,23 @@ export function simulateScenario(inputs: ScenarioInputs, months = 3): ScenarioOu
   // COGS impact from raw material price changes (52% of COGS is tuna-driven)
   const cogsDeltaMXN = BASE.cogsMXN * months * (rawMatFactor - 1) * 0.52 * demandFactor
 
+  // Production efficiency (capacity utilization vs target 85%)
+  // Supply disruption reduces throughput (less input, less output).
+  // High demand > 30% pushes above target (overload); very low demand < -20% idles lines.
+  const BASE_EFFICIENCY = 85
+  let productionEfficiency = BASE_EFFICIENCY
+    - inputs.supplyDisruptionPct * 0.55
+    + Math.min(inputs.demandChangePct, 30) * 0.35
+    - Math.max(0, -inputs.demandChangePct - 20) * 0.45
+  productionEfficiency = Math.min(100, Math.max(40, productionEfficiency))
+
   return {
     fillRate: Math.round(fillRate * 10) / 10,
     inventoryValueMXN: Math.round(inventoryValueMXN),
     workingCapitalMXN: Math.round(workingCapitalMXN),
     revenueAtRiskMXN: Math.round(revenueAtRiskMXN),
     cogsDeltaMXN: Math.round(cogsDeltaMXN),
+    productionEfficiency: Math.round(productionEfficiency * 10) / 10,
   }
 }
 
