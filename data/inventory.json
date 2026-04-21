@@ -1,26 +1,582 @@
 [
-  { "skuId": "DOL-170-ACE", "period": "2026-02", "openingStock": 52000, "closingStock": 48500, "daysOfCover": 38, "safetyStockDays": 30, "replenishmentOrder": 12000, "stockValueMXN": 14432150 },
-  { "skuId": "DOL-170-ACE", "period": "2026-03", "openingStock": 48500, "closingStock": 44200, "daysOfCover": 34, "safetyStockDays": 30, "replenishmentOrder": 14000, "stockValueMXN": 13155400 },
-  { "skuId": "DOL-170-ACE", "period": "2026-04", "openingStock": 44200, "closingStock": 36800, "daysOfCover": 27, "safetyStockDays": 35, "replenishmentOrder": 19500, "stockValueMXN": 10951600 },
-  { "skuId": "DOL-170-ACE", "period": "2026-05", "openingStock": 36800, "closingStock": 32100, "daysOfCover": 25, "safetyStockDays": 30, "replenishmentOrder": 16000, "stockValueMXN": 9557800 },
-  { "skuId": "DOL-170-ACE", "period": "2026-06", "openingStock": 32100, "closingStock": 30500, "daysOfCover": 24, "safetyStockDays": 30, "replenishmentOrder": 15000, "stockValueMXN": 9088900 },
-  { "skuId": "DOL-170-ACE", "period": "2026-07", "openingStock": 30500, "closingStock": 31200, "daysOfCover": 24, "safetyStockDays": 30, "replenishmentOrder": 18000, "stockValueMXN": 9297600 },
-
-  { "skuId": "DOL-170-AGU", "period": "2026-02", "openingStock": 62000, "closingStock": 57800, "daysOfCover": 36, "safetyStockDays": 28, "replenishmentOrder": 14500, "stockValueMXN": 16066900 },
-  { "skuId": "DOL-170-AGU", "period": "2026-03", "openingStock": 57800, "closingStock": 52400, "daysOfCover": 33, "safetyStockDays": 28, "replenishmentOrder": 16000, "stockValueMXN": 14567200 },
-  { "skuId": "DOL-170-AGU", "period": "2026-04", "openingStock": 52400, "closingStock": 41900, "daysOfCover": 25, "safetyStockDays": 35, "replenishmentOrder": 22000, "stockValueMXN": 11648200 },
-  { "skuId": "DOL-170-AGU", "period": "2026-05", "openingStock": 41900, "closingStock": 36700, "daysOfCover": 23, "safetyStockDays": 28, "replenishmentOrder": 18000, "stockValueMXN": 10202600 },
-
-  { "skuId": "POR-POUCH-ACE", "period": "2026-02", "openingStock": 78000, "closingStock": 72500, "daysOfCover": 34, "safetyStockDays": 25, "replenishmentOrder": 21000, "stockValueMXN": 13412500 },
-  { "skuId": "POR-POUCH-ACE", "period": "2026-03", "openingStock": 72500, "closingStock": 65800, "daysOfCover": 29, "safetyStockDays": 25, "replenishmentOrder": 22000, "stockValueMXN": 12173000 },
-  { "skuId": "POR-POUCH-ACE", "period": "2026-04", "openingStock": 65800, "closingStock": 51600, "daysOfCover": 22, "safetyStockDays": 32, "replenishmentOrder": 32000, "stockValueMXN": 9546000 },
-  { "skuId": "POR-POUCH-ACE", "period": "2026-05", "openingStock": 51600, "closingStock": 44200, "daysOfCover": 19, "safetyStockDays": 25, "replenishmentOrder": 26000, "stockValueMXN": 8177000 },
-
-  { "skuId": "MAZ-170-ACE", "period": "2026-02", "openingStock": 24000, "closingStock": 22500, "daysOfCover": 32, "safetyStockDays": 28, "replenishmentOrder": 7000, "stockValueMXN": 6030000 },
-  { "skuId": "MAZ-170-ACE", "period": "2026-03", "openingStock": 22500, "closingStock": 20800, "daysOfCover": 28, "safetyStockDays": 28, "replenishmentOrder": 7500, "stockValueMXN": 5574400 },
-  { "skuId": "MAZ-170-ACE", "period": "2026-04", "openingStock": 20800, "closingStock": 16400, "daysOfCover": 19, "safetyStockDays": 35, "replenishmentOrder": 11000, "stockValueMXN": 4395200 },
-
-  { "skuId": "ELD-SARD-JIT-425", "period": "2026-02", "openingStock": 17500, "closingStock": 16200, "daysOfCover": 33, "safetyStockDays": 30, "replenishmentOrder": 5000, "stockValueMXN": 5103000 },
-  { "skuId": "ELD-SARD-JIT-425", "period": "2026-03", "openingStock": 16200, "closingStock": 14900, "daysOfCover": 30, "safetyStockDays": 30, "replenishmentOrder": 5500, "stockValueMXN": 4693500 },
-  { "skuId": "ELD-SARD-JIT-425", "period": "2026-04", "openingStock": 14900, "closingStock": 11200, "daysOfCover": 21, "safetyStockDays": 38, "replenishmentOrder": 8000, "stockValueMXN": 3528000 }
+  {
+    "skuId": "DOL-170-ACE",
+    "period": "2026-02",
+    "openingStock": 52000,
+    "closingStock": 48500,
+    "daysOfCover": 38,
+    "safetyStockDays": 30,
+    "replenishmentOrder": 12000,
+    "stockValueMXN": 14432150,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 31200,
+        "closingStock": 29100,
+        "daysOfCover": 44,
+        "targetDays": 40,
+        "stockValueMXN": 8659290
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 20800,
+        "closingStock": 19400,
+        "daysOfCover": 27,
+        "targetDays": 22,
+        "stockValueMXN": 5772860
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-ACE",
+    "period": "2026-03",
+    "openingStock": 48500,
+    "closingStock": 44200,
+    "daysOfCover": 34,
+    "safetyStockDays": 30,
+    "replenishmentOrder": 14000,
+    "stockValueMXN": 13155400,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 29100,
+        "closingStock": 26520,
+        "daysOfCover": 39,
+        "targetDays": 40,
+        "stockValueMXN": 7893240
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 19400,
+        "closingStock": 17680,
+        "daysOfCover": 24,
+        "targetDays": 22,
+        "stockValueMXN": 5262160
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-ACE",
+    "period": "2026-04",
+    "openingStock": 44200,
+    "closingStock": 36800,
+    "daysOfCover": 27,
+    "safetyStockDays": 35,
+    "replenishmentOrder": 19500,
+    "stockValueMXN": 10951600,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 26520,
+        "closingStock": 22080,
+        "daysOfCover": 31,
+        "targetDays": 45,
+        "stockValueMXN": 6570960
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 17680,
+        "closingStock": 14720,
+        "daysOfCover": 19,
+        "targetDays": 22,
+        "stockValueMXN": 4380640
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-ACE",
+    "period": "2026-05",
+    "openingStock": 36800,
+    "closingStock": 32100,
+    "daysOfCover": 25,
+    "safetyStockDays": 30,
+    "replenishmentOrder": 16000,
+    "stockValueMXN": 9557800,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 22080,
+        "closingStock": 19260,
+        "daysOfCover": 29,
+        "targetDays": 40,
+        "stockValueMXN": 5734680
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 14720,
+        "closingStock": 12840,
+        "daysOfCover": 18,
+        "targetDays": 22,
+        "stockValueMXN": 3823120
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-ACE",
+    "period": "2026-06",
+    "openingStock": 32100,
+    "closingStock": 30500,
+    "daysOfCover": 24,
+    "safetyStockDays": 30,
+    "replenishmentOrder": 15000,
+    "stockValueMXN": 9088900,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 19260,
+        "closingStock": 18300,
+        "daysOfCover": 28,
+        "targetDays": 40,
+        "stockValueMXN": 5453340
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 12840,
+        "closingStock": 12200,
+        "daysOfCover": 17,
+        "targetDays": 22,
+        "stockValueMXN": 3635560
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-ACE",
+    "period": "2026-07",
+    "openingStock": 30500,
+    "closingStock": 31200,
+    "daysOfCover": 24,
+    "safetyStockDays": 30,
+    "replenishmentOrder": 18000,
+    "stockValueMXN": 9297600,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 18300,
+        "closingStock": 18720,
+        "daysOfCover": 28,
+        "targetDays": 40,
+        "stockValueMXN": 5578560
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 12200,
+        "closingStock": 12480,
+        "daysOfCover": 17,
+        "targetDays": 22,
+        "stockValueMXN": 3719040
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-AGU",
+    "period": "2026-02",
+    "openingStock": 62000,
+    "closingStock": 57800,
+    "daysOfCover": 36,
+    "safetyStockDays": 28,
+    "replenishmentOrder": 14500,
+    "stockValueMXN": 16066900,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 37200,
+        "closingStock": 34680,
+        "daysOfCover": 41,
+        "targetDays": 38,
+        "stockValueMXN": 9640140
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 24800,
+        "closingStock": 23120,
+        "daysOfCover": 26,
+        "targetDays": 22,
+        "stockValueMXN": 6426760
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-AGU",
+    "period": "2026-03",
+    "openingStock": 57800,
+    "closingStock": 52400,
+    "daysOfCover": 33,
+    "safetyStockDays": 28,
+    "replenishmentOrder": 16000,
+    "stockValueMXN": 14567200,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 34680,
+        "closingStock": 31440,
+        "daysOfCover": 38,
+        "targetDays": 38,
+        "stockValueMXN": 8740320
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 23120,
+        "closingStock": 20960,
+        "daysOfCover": 24,
+        "targetDays": 22,
+        "stockValueMXN": 5826880
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-AGU",
+    "period": "2026-04",
+    "openingStock": 52400,
+    "closingStock": 41900,
+    "daysOfCover": 25,
+    "safetyStockDays": 35,
+    "replenishmentOrder": 22000,
+    "stockValueMXN": 11648200,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 31440,
+        "closingStock": 25140,
+        "daysOfCover": 29,
+        "targetDays": 45,
+        "stockValueMXN": 6988920
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 20960,
+        "closingStock": 16760,
+        "daysOfCover": 18,
+        "targetDays": 22,
+        "stockValueMXN": 4659280
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "DOL-170-AGU",
+    "period": "2026-05",
+    "openingStock": 41900,
+    "closingStock": 36700,
+    "daysOfCover": 23,
+    "safetyStockDays": 28,
+    "replenishmentOrder": 18000,
+    "stockValueMXN": 10202600,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 25140,
+        "closingStock": 22020,
+        "daysOfCover": 26,
+        "targetDays": 38,
+        "stockValueMXN": 6121560
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 16760,
+        "closingStock": 14680,
+        "daysOfCover": 17,
+        "targetDays": 22,
+        "stockValueMXN": 4081040
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "POR-POUCH-ACE",
+    "period": "2026-02",
+    "openingStock": 78000,
+    "closingStock": 72500,
+    "daysOfCover": 34,
+    "safetyStockDays": 25,
+    "replenishmentOrder": 21000,
+    "stockValueMXN": 13412500,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 46800,
+        "closingStock": 43500,
+        "daysOfCover": 39,
+        "targetDays": 35,
+        "stockValueMXN": 8047500
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 31200,
+        "closingStock": 29000,
+        "daysOfCover": 24,
+        "targetDays": 22,
+        "stockValueMXN": 5365000
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "POR-POUCH-ACE",
+    "period": "2026-03",
+    "openingStock": 72500,
+    "closingStock": 65800,
+    "daysOfCover": 29,
+    "safetyStockDays": 25,
+    "replenishmentOrder": 22000,
+    "stockValueMXN": 12173000,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 43500,
+        "closingStock": 39480,
+        "daysOfCover": 33,
+        "targetDays": 35,
+        "stockValueMXN": 7303800
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 29000,
+        "closingStock": 26320,
+        "daysOfCover": 21,
+        "targetDays": 22,
+        "stockValueMXN": 4869200
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "POR-POUCH-ACE",
+    "period": "2026-04",
+    "openingStock": 65800,
+    "closingStock": 51600,
+    "daysOfCover": 22,
+    "safetyStockDays": 32,
+    "replenishmentOrder": 32000,
+    "stockValueMXN": 9546000,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 39480,
+        "closingStock": 30960,
+        "daysOfCover": 25,
+        "targetDays": 42,
+        "stockValueMXN": 5727600
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 26320,
+        "closingStock": 20640,
+        "daysOfCover": 16,
+        "targetDays": 22,
+        "stockValueMXN": 3818400
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "POR-POUCH-ACE",
+    "period": "2026-05",
+    "openingStock": 51600,
+    "closingStock": 44200,
+    "daysOfCover": 19,
+    "safetyStockDays": 25,
+    "replenishmentOrder": 26000,
+    "stockValueMXN": 8177000,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 30960,
+        "closingStock": 26520,
+        "daysOfCover": 22,
+        "targetDays": 35,
+        "stockValueMXN": 4906200
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 20640,
+        "closingStock": 17680,
+        "daysOfCover": 14,
+        "targetDays": 22,
+        "stockValueMXN": 3270800
+      }
+    },
+    "abcClass": "A"
+  },
+  {
+    "skuId": "MAZ-170-ACE",
+    "period": "2026-02",
+    "openingStock": 24000,
+    "closingStock": 22500,
+    "daysOfCover": 32,
+    "safetyStockDays": 28,
+    "replenishmentOrder": 7000,
+    "stockValueMXN": 6030000,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 15600,
+        "closingStock": 14625,
+        "daysOfCover": 37,
+        "targetDays": 38,
+        "stockValueMXN": 3919500
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 8400,
+        "closingStock": 7875,
+        "daysOfCover": 23,
+        "targetDays": 18,
+        "stockValueMXN": 2110500
+      }
+    },
+    "abcClass": "B"
+  },
+  {
+    "skuId": "MAZ-170-ACE",
+    "period": "2026-03",
+    "openingStock": 22500,
+    "closingStock": 20800,
+    "daysOfCover": 28,
+    "safetyStockDays": 28,
+    "replenishmentOrder": 7500,
+    "stockValueMXN": 5574400,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 14625,
+        "closingStock": 13520,
+        "daysOfCover": 32,
+        "targetDays": 38,
+        "stockValueMXN": 3623360
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 7875,
+        "closingStock": 7280,
+        "daysOfCover": 20,
+        "targetDays": 18,
+        "stockValueMXN": 1951040
+      }
+    },
+    "abcClass": "B"
+  },
+  {
+    "skuId": "MAZ-170-ACE",
+    "period": "2026-04",
+    "openingStock": 20800,
+    "closingStock": 16400,
+    "daysOfCover": 19,
+    "safetyStockDays": 35,
+    "replenishmentOrder": 11000,
+    "stockValueMXN": 4395200,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 13520,
+        "closingStock": 10660,
+        "daysOfCover": 22,
+        "targetDays": 45,
+        "stockValueMXN": 2856880
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 7280,
+        "closingStock": 5740,
+        "daysOfCover": 14,
+        "targetDays": 18,
+        "stockValueMXN": 1538320
+      }
+    },
+    "abcClass": "B"
+  },
+  {
+    "skuId": "ELD-SARD-JIT-425",
+    "period": "2026-02",
+    "openingStock": 17500,
+    "closingStock": 16200,
+    "daysOfCover": 33,
+    "safetyStockDays": 30,
+    "replenishmentOrder": 5000,
+    "stockValueMXN": 5103000,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 11375,
+        "closingStock": 10530,
+        "daysOfCover": 38,
+        "targetDays": 40,
+        "stockValueMXN": 3316950
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 6125,
+        "closingStock": 5670,
+        "daysOfCover": 24,
+        "targetDays": 18,
+        "stockValueMXN": 1786050
+      }
+    },
+    "abcClass": "B"
+  },
+  {
+    "skuId": "ELD-SARD-JIT-425",
+    "period": "2026-03",
+    "openingStock": 16200,
+    "closingStock": 14900,
+    "daysOfCover": 30,
+    "safetyStockDays": 30,
+    "replenishmentOrder": 5500,
+    "stockValueMXN": 4693500,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 10530,
+        "closingStock": 9685,
+        "daysOfCover": 35,
+        "targetDays": 40,
+        "stockValueMXN": 3050775
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 5670,
+        "closingStock": 5215,
+        "daysOfCover": 22,
+        "targetDays": 18,
+        "stockValueMXN": 1642725
+      }
+    },
+    "abcClass": "B"
+  },
+  {
+    "skuId": "ELD-SARD-JIT-425",
+    "period": "2026-04",
+    "openingStock": 14900,
+    "closingStock": 11200,
+    "daysOfCover": 21,
+    "safetyStockDays": 38,
+    "replenishmentOrder": 8000,
+    "stockValueMXN": 3528000,
+    "byNode": {
+      "planta": {
+        "location": "planta",
+        "openingStock": 9685,
+        "closingStock": 7280,
+        "daysOfCover": 24,
+        "targetDays": 48,
+        "stockValueMXN": 2293200
+      },
+      "cedis": {
+        "location": "cedis",
+        "openingStock": 5215,
+        "closingStock": 3920,
+        "daysOfCover": 15,
+        "targetDays": 18,
+        "stockValueMXN": 1234800
+      }
+    },
+    "abcClass": "B"
+  }
 ]

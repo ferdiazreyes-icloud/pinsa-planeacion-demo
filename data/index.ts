@@ -30,6 +30,15 @@ export type ForecastRecord = {
   forecastHigh: number
 }
 
+export type InventoryNode = {
+  location: 'planta' | 'cedis'
+  openingStock: number
+  closingStock: number
+  daysOfCover: number
+  targetDays: number
+  stockValueMXN: number
+}
+
 export type InventoryRecord = {
   skuId: string
   period: string
@@ -39,6 +48,11 @@ export type InventoryRecord = {
   safetyStockDays: number
   replenishmentOrder: number
   stockValueMXN: number
+  abcClass?: 'A' | 'B' | 'C'
+  byNode?: {
+    planta: InventoryNode
+    cedis: InventoryNode
+  }
 }
 
 export type Alert = {
@@ -100,6 +114,7 @@ export type ProductionCapacity = {
   }
 }
 
-export { skus as SKUs, forecast as Forecast, inventory as Inventory, rawMaterials as RawMaterials }
+export { skus as SKUs, forecast as Forecast, rawMaterials as RawMaterials }
+export const Inventory = inventory as InventoryRecord[]
 export const KPIs = kpis
 export const ProductionCapacity = productionCapacity as ProductionCapacity
