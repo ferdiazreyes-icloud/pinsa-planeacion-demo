@@ -7,8 +7,8 @@ import { BarChart3, GitBranch, Sliders, Home, TrendingUp, Activity, Gavel } from
 const navItems = [
   { href: '/dashboard',         label: 'Dashboard',        icon: BarChart3, description: 'KPIs ejecutivos' },
   { href: '/sop',               label: 'Ciclo S&OP',       icon: GitBranch, description: 'Flujo mensual'   },
-  { href: '/sesion-ejecutiva',  label: 'Sesión Ejecutiva', icon: Gavel,     description: 'Decisión mensual' },
   { href: '/simulator',         label: 'Simulador',        icon: Sliders,   description: 'Escenarios'       },
+  { href: '/sesion-ejecutiva',  label: 'Sesión Ejecutiva', icon: Gavel,     description: 'Decisión mensual' },
 ]
 
 export default function Sidebar() {

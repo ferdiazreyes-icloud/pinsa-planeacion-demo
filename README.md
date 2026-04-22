@@ -2,7 +2,7 @@
 
 Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquestar su cadena de valor.
 
-**Version:** 0.5.0 · **Status:** Demo V0.5 — Alineado con propuesta Arena Analytics (E0–E6 completos) · **Ciclo activo:** Abril 2026
+**Version:** 0.5.1 · **Status:** Demo V0.5 final — Alineado 100% con propuesta Arena Analytics (E0–E8 completos) · **Ciclo activo:** Abril 2026
 
 ---
 
@@ -18,6 +18,18 @@ Demo interactivo de plataforma S&OP/IBP para mostrar a PINSA el valor de orquest
   - [x] Paso 4: Planeación de Producción (programa por línea, brecha capacidad con 3 opciones modeladas)
   - [x] Paso 5: Planeación de Distribución (plan Planta Mazatlán → CEDIS México)
 - [x] **Simulador de Escenarios** — 4 variables (precio MP, desabasto, demanda, politica inventario), horizonte 1-12 meses, graficas reactivas en tiempo real
+
+## Completado en v0.5.1 (Fase E7 + E8 — Tests + Documentación final)
+
+- [x] **15 unit tests nuevos**: 8 para `lib/scenarios.ts` (CRUD localStorage + errores) + 7 para `productionEfficiency` (baseline, cap demanda +30, clamp 40–100)
+- [x] **Documentación reescrita con estado v0.5**:
+  - `docs/UAT_DATOS_DEMO.md` — todos los datos actualizados (marcas reales, canales, brecha L5, FVA)
+  - `docs/GUIA_DEMO.md` — flujo alineado (Home → Sesión Ejecutiva → Dashboard → 5 pasos → Simulador)
+  - `docs/RESUMEN_SISTEMA.md` — 5 módulos, nuevos datasets, stack v0.5
+- [x] **.specify/ actualizado**:
+  - `02-business-architecture.md` — 4 flujos (A continuo, B sesión ejecutiva, C 5 pasos, D simulador)
+  - `03-information-systems-architecture.md` — tipos nuevos (ForecastRecord con band, InventoryNode, ProductionCapacity, SavedScenario)
+  - `04-technology-architecture.md` — stack actualizado, testing tools, client-side state
 
 ## Completado en v0.5.0 (Fase E6 — Escenarios guardados + Eficiencia producción)
 
